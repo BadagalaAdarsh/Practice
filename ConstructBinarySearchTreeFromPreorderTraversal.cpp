@@ -11,10 +11,34 @@ struct TreeNode
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };  
 
+// Quadratic Complexity
 TreeNode* bstFromPreorder(vector<int>& preorder){
-    return NULL;
+    if(preorder.empty()){
+        return NULL;
+    }
+
+    int root_value = preorder[0];
+    vector<int> smaller, greater;
+    for(int i = 1; i < (int)preorder.size(); i++){
+        if(preorder[i] < root_value){
+            smaller.push_back(preorder[i]);
+        }
+        else{
+            greater.push_back(preorder[i]);
+        }
+    }
+
+    TreeNode* root = new TreeNode(root_value);
+    root->left = bstFromPreorder(smaller);
+    root->right = bstFromPreorder(greater);
+    return root;
 }
-    
+
+//Linear Complexity
+TreeNode* bstFromPreorderLinear(vector<int>& preorder){
+
+}
+                
 int main(){
 
     int test;

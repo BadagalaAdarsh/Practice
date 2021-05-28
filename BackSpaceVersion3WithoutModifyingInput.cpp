@@ -12,7 +12,6 @@ bool backspacestring(string s, string t){
                 skip_s++;
                 i--;
             }
-
             else if(skip_s > 0){
                 skip_s--;
                 i--;
@@ -21,18 +20,15 @@ bool backspacestring(string s, string t){
                 break;
             }
         }
-
         while (j>=0){
             if(t[j] == '#'){
                 skip_t++;
                 j--;
             }
-
             else if(skip_t > 0){
                 skip_t--;
                 j--;
             }
-
             else{
                 break;
             }
@@ -41,14 +37,12 @@ bool backspacestring(string s, string t){
         if(i>=0 && j>=0 && s[i] != t[j]){
             return false;
         }
-
         if((i>=0) != (j>=0)){
             return false;
         }
         i--;
-        j--;
+        j--; 
     }
-
     return true;
 }
 
@@ -57,15 +51,12 @@ int main()
     int test;
     cin >> test;
 
-    while(test--){
-
+    while(test--){  
         string s, t;
-
         cin >> s;
         cin >> t;
 
         cout << backspacestring(s,t) << endl;
     }
-
     return 0;
 }
