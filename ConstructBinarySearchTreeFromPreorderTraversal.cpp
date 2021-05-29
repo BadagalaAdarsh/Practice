@@ -34,9 +34,24 @@ TreeNode* bstFromPreorder(vector<int>& preorder){
     return root;
 }
 
+
+// helper method for linear complexity
+TreeNode* helper(vector<int>& preorder, int id, int limit){
+    if(id == (int)preorder.size() || preorder[id] > limit){
+        return NULL;
+    }
+    int root_value = preorder[id];
+    TreeNode* root = new TreeNode(root_value);
+    id++;
+    root->left = helper(preorder, id, root_value);
+    root->right = helper(preorder, id, limit);
+    return root;
+}
+
 //Linear Complexity
 TreeNode* bstFromPreorderLinear(vector<int>& preorder){
-
+    int id = 0;
+    return helper(preorder, id, INT_MAX);
 }
                 
 int main(){
