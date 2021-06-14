@@ -1,0 +1,877 @@
+Question 1 :
+
+Ramu has N dishes of different types arranged in a row: A1,A2,…,AN where Ai denotes the type of the ith dish. He wants to choose as many dishes as possible from the given list but while satisfying two conditions:
+
+ 
+
+He can choose only one type of dish.
+No two chosen dishes should be adjacent to each other.
+Ramu wants to know which type of dish he should choose from, so that he can pick the maximum number of dishes.
+
+Example :
+
+Given N= 9 and A= [1,2,2,1,2,1,1,1,1]
+
+For type 1, Ramu can choose at most four dishes. One of the ways to choose four dishes of type 1 is A1,A4, A7 and A9.
+
+For type 2, Ramu can choose at most two dishes. One way is to choose A3 and A5.
+
+So in this case, Ramu should go for type 1, in which he can pick more dishes.
+
+INPUT FORMAT:
+
+The first line contains T, the number of test cases. Then the test cases follow.
+For each test case, the first line contains a single integer N.
+The second line contains N integers A1,A2,…,AN.
+OUTPUT FORMAT
+
+For each test case, print a single line containing one integer ― the type of the dish that Ramu should choose from. If there are multiple answers, print the smallest one.
+
+CONSTRAINTS :
+
+1 <= T <= 10^3
+1 <= N <= 10^3
+1 <= Ai <= 10^3
+Sample Input :
+
+3
+
+5
+
+1 2 2 1 2
+
+6
+
+1 1 1 1 1 1
+
+8
+
+1 2 2 2 3 4 2 1
+
+Sample Output :
+
+1
+
+1
+
+2
+################ Logic ###########################
+
+
+
+
+################# Program in c ################################
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int choose_dish(long long int array[], long long int n)
+{
+    long long int frequency[1001] = {0};
+    long long int max = 0, result;
+
+    for(long long int i = 0 ; i < n-1 ; i++ )
+    {
+        frequency[array[i]]++;
+
+        if (array[i] == array[i+1])
+            i++;
+    }
+
+    for(int i = 1; i <= 1000; i++)
+    {
+        if (frequency[i] > max)
+        {
+            max = frequency[i];
+            result = i;
+        }
+    }
+
+    return result;
+}
+
+int main()
+{
+    long long int test;
+    scanf("%lld",&test);
+    
+    while (test--)
+    {
+        long long int n;               
+        scanf("%lld",&n);
+
+        long long int array[n];
+
+        for (long long int i = 0 ; i < n ; i++ )
+            scanf("%lld",&array[i]);
+
+        int result = choose_dish(array, n);
+
+        printf("%d\n",result);
+    }
+    return 0;
+}
+
+############################## Java Program ########################
+
+import java.util.Scanner;
+
+public class Main
+{
+    
+    static int choose_dish(int array[], int n)
+    {
+        int frequency[] = new int[1001];
+        
+        for (int i=0; i<1001 ; i++)
+            frequency[i] = 0;
+            
+        int max = 0, result= 0;
+
+        for(int i = 0 ; i < n-1 ; i++ )
+        {
+            frequency[array[i]]++;
+
+            if (array[i] == array[i+1])
+                i++;
+        }
+
+        for(int i = 1; i <= 1000; i++)
+        {
+            if (frequency[i] > max)
+            {
+                max = frequency[i];
+                result = i;
+            }
+        }
+
+        return result;
+    }
+    
+    
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+        int test = sc.nextInt();
+
+        while(test != 0)
+        {
+            int n = sc.nextInt();
+            int array[] = new int[n];
+
+            for (int i = 0; i < n; i++)
+                array[i] = sc.nextInt();
+
+            int result = choose_dish(array, n);
+
+            System.out.println(result);
+            test--;
+
+        }
+    }
+}
+
+############################### Python Program #############################
+
+def choose_dish(array,n):
+
+    frequency = [0 for i in range (1001)]
+    max = 0
+    i = 0
+
+    while i < n - 1:
+        
+        frequency[array[i]] += 1
+
+        if array[i] == array[i+1]:
+            i += 1
+
+        i += 1
+
+    for i in range (1,1001):
+        
+        if frequency[i] > max:
+            max = frequency[i]
+            result = i 
+
+    return result
+
+        
+def main():
+
+    test = int(input())
+
+    for _ in range (test):
+
+        n = int(input())
+        array = list(map(int,input().split()))
+
+        result = choose_dish(array,n)
+        print(result)
+        
+main()
+
+
+################################# End of 1st question from prepinsta ##########################333
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+Question 2:-
+There are three piles of stones. The first pile contains a stones, the second pile contains b stones and the third pile contains c stones. You must choose one of the piles and split the stones from it to the other two piles; specifically, if the chosen pile initially contained s stones, you should choose an integer k (0≤k≤s), move k stones from the chosen pile onto one of the remaining two piles and s−k stones onto the other remaining pile. Determine if it is possible for the two remaining piles (in any order) to contain x stones and y stones respectively after performing this action.
+
+INPUT FORMAT :
+
+The first line of the input contains a single integer T denoting the number of test cases. The description of T test cases follows.
+The first and only line of each test case contains five space-separated integers 
+          a,b,c, x and y.
+
+ 
+
+OUTPUT FORMAT :
+
+For each test case, print a single line containing the string “YES” if it is possible to obtain piles of the given sizes or “NO” if it is impossible.
+
+CONSTRAINTS :
+
+1 <= T <= 100
+1 <= a,b,c,x,y <= 10^9
+SAMPLE INPUT :
+
+4
+
+1 2 3 2 4
+
+3 2 5 6 5
+
+2 4 2 6 2
+
+6 5 2 12 1
+
+SAMPLE OUTPUT :
+
+YES
+
+NO
+
+YES
+
+NO
+############################ C solution #############################################################3
+
+#include<stdio.h>
+#define min(a, b) (((a) < (b)) ? (a) : (b))
+
+const char *ispossible(long long int a, long long int b, long long int c, long long int x, long long int y)
+{
+
+    if ((a+b+c) != (x+y))
+    {
+        return "NO";
+    }
+
+    else if ( y < min(a,min(b,c)) || x < min(a, min(b,c)))
+    {
+        return "NO";
+    }
+
+    else
+    {
+        return "YES";
+    }
+}
+
+int main()
+{
+    int test;
+    scanf("%d",&test);
+
+    while (test--)
+    {
+        long long int a, b, c, x, y;
+
+        scanf("%lld%lld%lld%lld%lld",&a,&b,&c,&x,&y);
+
+        printf("%s\n",ispossible(a,b,c,x,y));
+    }
+
+    return 0;
+}
+
+##################### Java Solution ###########################################
+
+import java.util.Scanner;
+
+public class Main
+{
+    
+    static String ispossible(int a, int b, int c, int x, int y)
+    {
+        if ((a+b+c) != (x+y))
+        {
+            return "NO";
+        }
+
+        else if ( y < Math.min(a,Math.min(b,c)) || x < Math.min(a, Math.min(b,c)))
+        {
+            return "NO";
+        }
+
+        else
+        {
+            return "YES";
+        }
+    }
+    
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+        int test = sc.nextInt();
+
+        while (test != 0)
+        {
+            int a,b,c,x,y;
+
+            a = sc. nextInt();
+            b = sc.nextInt();
+            c = sc.nextInt();
+            x = sc.nextInt();
+            y = sc.nextInt();
+
+            String result = ispossible(a,b,c,x,y);
+
+            System.out.println(result);
+            test--;
+        }
+	}
+}
+
+
+################################## Python solution #############################3
+
+def ispossible(a,b,c,x,y):
+    if (a+b+c) != (x + y):
+        return "NO"
+
+    elif ( y < min(a, min(b,c))) or (x < min(a, min(b,c))):
+        return "NO"
+
+    return "YES"
+
+
+def main():
+
+    test = int(input())
+
+    for _ in range (test):
+
+        a,b,c,x,y = map(int,input().split())
+
+        result = ispossible(a,b,c,x,y)
+
+        print(result)
+
+main()
+
+
+################2nd one completed ############################################
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+Question 3-
+Altaf has recently learned about number bases and is becoming fascinated.
+
+Altaf learned that for bases greater than ten, new digit symbols need to be introduced, and that the convention is to use the first few letters of the English alphabet. For example, in base 16, the digits are 0123456789ABCDEF. Altaf thought that this is unsustainable; the English alphabet only has 26 letters, so this scheme can only work up to base 36. But this is no problem for Altaf, because Altaf is very creative and can just invent new digit symbols when she needs them. (Altaf is very creative.)
+
+Altaf also noticed that in base two, all positive integers start with the digit 1! However, this is the only base where this is true. So naturally, Altaf wonders: Given some integer N, how many bases b are there such that the base-b representation of N starts with a 1?
+
+INPUT FORMAT :
+
+The first line of the input contains an integer T denoting the number of test cases. The description of T test cases follows.
+
+Each test case consists of one line containing a single integer N (in base ten).
+
+OUTPUT FORMAT :
+
+For each test case, output a single line containing the number of bases b, or INFINITY if there are an infinite number of them.
+
+CONSTRAINTS :
+
+ 
+
+1 <= T <= 10^5
+0 <= N < 10^12
+ 
+
+SAMPLE INPUT :
+
+4
+
+6
+
+9
+
+11
+
+24
+
+SAMPLE OUTPUT :
+
+4
+
+7
+
+8
+
+14
+
+
+
+################################ Explanation ######################################################
+
+
+
+############################### Python solution ##############################################
+
+
+def findbase(m):
+
+    global array 
+    
+    
+
+    if m == 1:
+        return "INFINITY"
+
+    ans = (m+1)//2;
+    p = m//2 + 1; 
+
+    for i in range (2,41):
+        ans = ans+ (array[i].index(m+1) - array[i].index(p))
+
+    return ans
+
+
+
+def main():
+
+    array = [[] for i in range (47)]
+    
+    global array
+
+    for i in range (2,int(1e6+1)):
+        tem = i 
+
+        for j in range(2,41):
+            tem *= i 
+
+            if tem > 1e12:
+                break 
+
+            array[j].append(tem)
+
+    test = int(input())
+
+    for _ in range (test):
+
+        m = int(input()) 
+
+        result = findbase(m)
+
+        print(result)
+
+main()
+
+
+
+####################################################################################################
+
+Weighted Strings
+
+In Hackerland every character has a weight. The weight of an English uppercase alphabet A-Z is given below :
+
+A = 1
+
+B = 2*A + A
+
+C = 3*B + B
+
+D = 4*C + C
+
+….
+
+Z = 26*Y + Y
+
+The weight made up of these characters is the summation of weights of each character. Given a total string weight, determine shortest string of given weight. If there is more than one solution, return the lexicographically smallest of them. For example, given weight = 25, and the weights of the first few characters of the alphabets are A=1, B=3, C=12, D=60 it is certain that no letter larger than C is required. Some of the strings with a total weight equal to the target are ABBBBC, ACC, AAAAAAABBBBBB. The shortest of these is ACC. While any permutation of these characters will have same weight, this is the lexicographically smallest of them.
+
+
+
+Example
+
+Input
+
+20
+
+Output
+
+AABBC
+
+######################## Python solution #################################33
+
+def shorteststring():
+
+    di = {}
+
+    li = [1,3]
+
+    for i in range(4,29):
+        li.append(i*li[-1])
+
+    li = li[:27]
+    x = 0
+
+    for i in range(65,91):
+        if li[x] not in di:
+            di[li[x]] = chr(i)
+            x += 1
+
+    s = ""
+
+    for i in range(26,-1,-1):
+
+        if n//li[i] > 0:
+            s += di[li[i]]*(n//li[i])
+            n = n%li[i]
+
+    return "".join(sorted(s))
+
+
+def main():
+
+    n = int(input())
+
+    result = shorteststring(n)
+    print(result)
+
+main()
+
+
+
+####################################################################################################3
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+Distinct Substrings
+
+Given a string, count all distinct substrings of the given string.
+
+Example
+
+Input
+
+abcd
+
+Output
+
+10
+
+All Elements are Distinct
+
+Input
+
+aaa
+
+Output
+
+6
+
+
+################## C solution #########################
+
+#include<stdio.h>
+#include<string.h>
+
+int countstring(char *str)
+{
+    int length = strlen(str);
+    int answer = length * (length+1)/2;
+
+    return answer;
+}
+
+int main()
+{
+    char *str;
+    scanf("%ms",&str);
+
+    printf("%d", countstring(str));
+
+    return 0;
+}
+
+######################### Java Solution ######################~
+
+import java.util.Scanner;
+
+class Main{
+
+    static int countstring(String str)
+    {
+        int length = str.length();
+        int answer = length * (length+1)/2;
+
+        return answer;
+    }
+
+    public static void main(String args[])
+    {
+        Scanner sc = new Scanner(System.in);
+
+        String str = sc.nextLine();
+
+        System.out.println(countstring(str));
+    }
+}
+
+################ Python solution ########################3
+
+def countstring(str):
+
+    length = len(str)
+    answer = length * length(+1)//2
+    return answer;
+
+def main():
+    str = input()
+    print(countstring(str))
+
+main()
+
+###########################################################################################################3
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
+
+
+Class Students
+
+
+
+Dia, Sam, and Robert are the three students of a same class. You know their marks in ‘N’ subjects. Your job is to find their ranks according to their score.
+
+Input
+
+N, integer denoting number of subjects.
+3 array of integers, denoting marks of Dia, Sam and Robert respectively in N subjects.
+
+Output
+
+Ranks
+
+
+
+Example
+
+Input
+
+3
+23 34 23
+32 53 23
+55 22 67
+
+Output
+
+3 2 1
+
+############################ C solution #################################333
+
+#include<stdio.h>
+
+int sum(int array[], int N)
+{
+    int total = 0;
+
+    for(int i=0; i<N; i++)
+        total += array[i];
+
+    return total;
+}
+
+void rank(int subjects)
+{
+    int student_1[subjects];
+    int student_2[subjects];
+    int student_3[subjects];
+
+    for(int i=0; i<subjects; i++)
+        scanf("%d",&student_1[i]);
+
+    for(int i=0; i<subjects; i++)
+        scanf("%d",&student_2[i]);
+
+    for(int i=0; i<subjects; i++)
+        scanf("%d",&student_3[i]);
+
+    int mark_1 = sum(student_1,subjects);
+    int mark_2 = sum(student_2,subjects);
+    int mark_3 = sum(student_3,subjects);
+
+    int array[3] = {mark_1,mark_2,mark_3};
+    
+
+     for (int i = 0; i < 3; ++i) 
+        { 
+            for (int j = i + 1; j < 3; ++j)
+            { 
+                if (array[i] < array[j]) 
+                { 
+                    int a =  array[i];
+                    array[i] = array[j];
+                    array[j] = a; 
+                } 
+            } 
+        }
+
+    int one,two,three;
+
+    for (int i=0; i<3;i++)
+    {   
+        
+        if (array[i] == mark_1)
+            one = i+1;
+
+        if (array[i] == mark_2)
+            two = i+1;
+
+        if (array[i] == mark_3)
+            three = i+1;
+    }
+
+    printf("%d %d %d",one,two,three);
+}
+
+int main()
+{
+    int subjects;
+
+    scanf("%d",&subjects);
+
+    rank(subjects);
+
+    return 0;
+}
+
+################## Java Solution #########################################3
+
+class main
+{
+    static int sum(int array[], int N)
+    {
+        int total = 0;
+
+        for(int i=0; i<N; i++)
+            total += array[i];
+
+        return total;
+    }
+
+    static void rank(int subjects)
+    {
+        int student_1[subjects];
+        int student_2[subjects];
+        int student_3[subjects];
+
+        Scanner sc = new Scanner(System.in);
+
+        for(int i=0; i<subjects; i++)
+            student_1[i] = sc.nextInt()
+
+        for(int i=0; i<subjects; i++)
+            student_2[i] = sc.nextInt();
+
+        for(int i=0; i<subjects; i++)
+            student_3[i] = sc.nextInt();
+
+        int mark_1 = sum(student_1,subjects);
+        int mark_2 = sum(student_2,subjects);
+        int mark_3 = sum(student_3,subjects);
+
+        int array[3] = {mark_1,mark_2,mark_3};
+        
+
+        for (int i = 0; i < 3; ++i) 
+            { 
+                for (int j = i + 1; j < 3; ++j)
+                { 
+                    if (array[i] < array[j]) 
+                    { 
+                        int a =  array[i];
+                        array[i] = array[j];
+                        array[j] = a; 
+                    } 
+                } 
+            }
+
+        int one,two,three;
+
+        for (int i=0; i<3;i++)
+        {   
+            
+            if (array[i] == mark_1)
+                one = i+1;
+
+            if (array[i] == mark_2)
+                two = i+1;
+
+            if (array[i] == mark_3)
+                three = i+1;
+        }
+
+        System.out.println(one+" "+two+" "+three);
+    }
+
+    public static void main(String args[])
+    {
+        Scanner sc = new Scanner(System.in);
+
+        int subjects = sc.nextInt();
+        rank(subjects);
+    }
+
+
+}
+
+######################## Python Solution ##################################3
+
+def rank(subjects):
+    student_1 = list(map(int,input().split()))
+    student_2 = list(map(int,input().split()))
+    student_3 = list(map(int,input().split())) 
+
+    mark_1 = sum(student_1)
+    mark_2 = sum(student_2)
+    mark_3 = sum(student_3)
+
+    array = [mark_1,mark_2,mark_3]
+
+    array.sort()
+    array = array[::-1]
+
+    for i in range(3):
+        if mark_1 == array[i]:
+            one = i+1 
+
+        if mark_2 = array[i]:
+            two = i+1 
+
+        if mark_3 = array[i]
+            three = i+1 
+
+    print(one, two, three)
+
+def main():
+    subjects = int(input())
+    rank(subjects)
+
+main()
+
+################################################################################################
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
