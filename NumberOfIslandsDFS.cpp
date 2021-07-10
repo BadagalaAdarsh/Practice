@@ -3,7 +3,7 @@
 using namespace std;
 
 void dfs(vector<vector<int>>& grid, int i, int j, int row, int col) {
-        
+
     if (i < 0 || i >= row || j < 0 || j >= col || grid[i][j] != 1) {
         return ;
     }
@@ -59,4 +59,5 @@ int main() {
 
         cout << numberOfIsland(grid) << endl;
     }
+
 }
