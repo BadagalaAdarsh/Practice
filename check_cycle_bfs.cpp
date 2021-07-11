@@ -28,6 +28,7 @@ bool cycle(int i, vector<bool>& visited, vector<int> adj[]) {
     return false;
 }
 
+
 bool is_cycle(int nodes, int edges, vector<int> adj[]){
 
     vector<bool> visited(nodes + 1);
