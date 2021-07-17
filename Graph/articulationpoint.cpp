@@ -67,4 +67,6 @@ int main() {
     for(int i = 0; i < nodes; i++) {
         if (isarticulation[i] == 1) cout << i << endl;
     }
+    return 0;
+    
 }
