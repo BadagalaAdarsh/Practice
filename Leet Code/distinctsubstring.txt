@@ -1,0 +1,25 @@
+Distinct Substrings
+
+Given a string, count all distinct substrings of the given string.
+
+Example
+
+Input
+
+abcd
+
+Output
+
+10
+
+All Elements are Distinct
+
+Input
+
+aaa
+
+Output
+
+6
+
+

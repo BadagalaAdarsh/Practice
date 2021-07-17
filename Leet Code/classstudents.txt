@@ -1,0 +1,30 @@
+Class Students
+
+
+
+Dia, Sam, and Robert are the three students of a same class. You know their marks in ‘N’ subjects. Your job is to find their ranks according to their score.
+
+Input
+
+N, integer denoting number of subjects.
+3 array of integers, denoting marks of Dia, Sam and Robert respectively in N subjects.
+
+Output
+
+Ranks
+
+
+
+Example
+
+Input
+
+3
+23 34 23
+32 53 23
+55 22 67
+
+Output
+
+3 2 1
+
