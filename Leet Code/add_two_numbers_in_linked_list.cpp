@@ -62,6 +62,7 @@ int main() {
         ListNode* head1 = NULL, *prev1 = NULL;
 
         while(n--) {
+            // reading the numbers
             int val;
             cin >> val;
 
