@@ -20,6 +20,8 @@ bool inside(int row, int col) {
     return 0 <= row && row < height && 0 <= col && col < width;
 }
 
+
+
 void dfs(int row, int col, int type) {
 
     if(!inside(row,col) || visited[row][col][type]){
