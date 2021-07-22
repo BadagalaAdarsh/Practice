@@ -1,0 +1,10 @@
+for file in  *.mp4
+do
+if [[ $file = IMG* ]]
+then
+        year
+	#echo "date is $year $mon $day, time is $hour $min $sec"
+	touch -a -m -t $year$mon$day$hour$min.$sec $file
+	echo "$file is modified"
+fi
+done
