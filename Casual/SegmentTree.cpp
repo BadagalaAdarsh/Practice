@@ -34,12 +34,16 @@ int main() {
 
     // while n is not a power of 2 
     while(__builtin_popcount(n) != 1 ) {
+	// even if we don't push the 0 at the end of vector it doesn't matter as we are storing
+	// storing the values in the tree which are again by default 0
 	array.push_back(0);
 	n++;
     }
 
     tree.resize(2 * n);
     // fill tree in last as they are just the leaf nodes
+    // if we don't push 0 then below loop changes to
+    // for(int i = 0; i < (int) array.size(); i++)
     for(int i = 0; i < n; i++) {
 	tree[n + i] = array[i];
     }
