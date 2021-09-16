@@ -94,7 +94,7 @@
 ## What do you know about our company?
 
 * CEO of cognizant is Brian Humphries
-* Indian CEO is Lakshmi Narayanan
+* Indian Chair main is Rajesh Nambiar
 * Head quarters of cognizant Teaneck, New Jersey, United States
 * Indian head quarter is Chennai
 * Branches of cognizant Hyderabad, Bengaluru, Cheannai, Coimabatore, Gurgoan, Kolkata, Kochi, Manglore
@@ -103,3 +103,13 @@
 * Cognizant Technology Solutions Philippines Inc. won multiple awards at the International ICT Awards 2018, including Best Company of the Year and Best Company of the Year Providing Services for Health Information Management. Cognizant's leadership was also recognized as the Best C-Suite Team of the Year
 * Cognizant recognised as a Top Provider in the Outsourcing and Consulting categories besides being named as a Customer Satisfaction Leader by CGT
 *Ovum Decision Matrix recognised Cognizant as "Market Leader" in Outsourcing Testing Service Providers
+
+## What Do You Think It Takes To Be Successful In A Company Like Ours?
+
+* 
+
+## What are your weakness?
+
+* It is hard for me to tell No to others but I am slowly learning to say No
+* I fear public speaking but I am slowly overcoming it by taking classses to my juniors which helps me to over come that
+* Some times I procrastinate the less important things but i am working on it by keeping a to do list making sure I complete all the works in my to do list by the end of the day
