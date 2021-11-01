@@ -53,18 +53,7 @@ int main() {
     }
 
 }
-
-    // printing the solution
-    for(int i = 0; i < n; i++) {
-        for(int j = 0; j < pascal[i].size(); j++) {
-            cout << pascal[i][j] << " ";
-        }
-        cout << endl;
-    }
-
-}
-
-};
+;
 ```
 
 #### [Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.](https://leetcode.com/problems/next-permutation/)
