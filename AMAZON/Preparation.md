@@ -40,7 +40,7 @@ int main() {
     int n;
     cin >> n;
 
-    vector<vector<int>> pascal(n, vector<int>(n));
+    vector<vector<int>> pascal;
 
     pascal = generatePascalTriangle(n);
 
