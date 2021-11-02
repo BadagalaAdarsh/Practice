@@ -606,7 +606,7 @@ int main() {
 #### similar approach with bit better code and comments
 
 ```cpp
-vector < int >Solution::repeatedNumber (const vector < int >&arr) {
+vector<int>Solution::repeatedNumber (const vector < int >&arr) {
     /* Will hold xor of all elements and numbers from 1 to n */
     int xor1;
 
@@ -669,4 +669,38 @@ vector < int >Solution::repeatedNumber (const vector < int >&arr) {
     return {x, y};
 }
 ```
+
+# Dynamic Programming Adithya Verma
+
+
+#### Knapsack
+
+##### Memoization
+
+```cpp
+
+int knapsack(vector<int>& weights, vector<int>& prices, int W, int n, int[][] dp) {
+
+    if (n == 0 || W == 0) {
+        return 0;
+    }
+
+    if (dp[n][W] != -1) {
+        return dp[n][W];
+    }
+
+
+    if (weights[n-1] <= W ) {
+        return dp[n][W] = max(prices[n-1] + knapsack(weights, prices, W - w[n-1], n -1, dp) , knapsack(weights, prices, W, n-1, dp));
+    }
+
+    else{
+        return dp[n][W] = knapsack(weights, prices, W, n-1, dp);
+    }
+}
+
+```
+
+
+
 
