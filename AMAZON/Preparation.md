@@ -701,6 +701,200 @@ int knapsack(vector<int>& weights, vector<int>& prices, int W, int n, int[][] dp
 
 ```
 
+##### Tabulation Method
+
+```cpp
+
+int knapsack(int W, int wt[], int val[], int n) {
+    int i, w;
+    vector<vector<int>> dp(n+1, vector<int>(W+1));
+
+    for(int i = 0; i <= n; i++) {
+        for(int w = 0; w <= W; w++) {
+
+            if ( i == 0 || w == 0) {
+                dp[i][w] = 0;
+            }
+
+            else if (wt[i-1] <= w) {
+                dp[i][w] = max(val[i-1] + dp[i-1][w-wt[i-1]], dp[i-1][w]);
+            }
+            else {
+                dp[i][w] = dp[i-1][w];
+            }
+        }
+    }
+
+    return dp[n][W];
+}
+```
+
+##### Dyanmic programming with optimized space complexity
+
+```cpp
+
+int knapsack(int W, int wt[], int val[], int n) {
+
+    int dp[W+1];
+    memset(dp, 0, sizeof(dp));
+
+    for(int i = 1; i < n + 1; i++) {
+        for(int w = W; w >= 0; w--) {
+
+            if (wt[i-1] <= w) {
+                // finding the maximum value
+                dp[w] = max(dp[w], dp[w-wt[i-1]] + val[i-1]);
+
+            }
+        }
+    }
+
+    return dp[W];
+}
+
+```
+
+#### [Subset sum problem](https://www.geeksforgeeks.org/subset-sum-problem-dp-25/)
+
+##### Using Recursion
+
+```cpp
+
+// taking static values
+int dp[1000][1000];
+// initialize table to -1 
+
+int subsetSum(int a[], int n, int sum) {
+
+    if(sum == 0) {
+        return 1;
+    }
+
+    if( n <= 0) {
+        return 0;
+    }
+
+    if(dp[n-1][sum] != -1) {
+        return dp[n-1][sum];
+    }
+
+    if(a[n-1] > sum) {
+        return dp[n-1][sum] = subsetSum(a, n-1, sum);
+    }
+
+    else{
+        return dp[n-1][sum] = subsetSum(a, n-1, sum) ||subsetSum(a, n-1, sum - a[n-1]);
+    }
+
+}
+```
+
+##### Using tabulation
+
+```cpp
+
+bool subsetSum(int set[], int n, int sum) {
+
+    bool dp[n+1][sum+1];
+
+    for(int i = 0; i <= n; i++) 
+        dp[i][0] = true;
+
+    for(int i = 1; i <= sum; i++) 
+        dp[0][i] = false;
+
+    
+    for(int i = 1; i <= n; i++) {
+        for(int j = 1; j <= sum; j++) {
+
+            if (j < set[i-1]) {
+                dp[i][j] = dp[i-1][j];
+            }
+
+            if (j >= set[i-1]) {
+                dp[i][j] = dp[i-1][j] || dp[i][ j - set[i-1]];
+            }
+        }
+    }
+
+    return dp[n][sum];
+}
+
+```
+
+#### [Equal Sum Partition of array](https://www.geeksforgeeks.org/partition-problem-dp-18/)
+
+##### Using recursion
+
+```cpp
+
+// first check total sum of array 
+// if sum is odd directly return false
+// if sum is even check for subset sum with sum is half the sum of the array
+
+// taking static values
+int dp[1000][1000];
+// initialize table to -1 
+
+int subsetSum(int a[], int n, int sum) {
+
+    if(sum == 0) {
+        return 1;
+    }
+
+    if( n <= 0) {
+        return 0;
+    }
+
+    if(dp[n-1][sum] != -1) {
+        return dp[n-1][sum];
+    }
+
+    if(a[n-1] > sum) {
+        return dp[n-1][sum] = subsetSum(a, n-1, sum);
+    }
+
+    else{
+        return dp[n-1][sum] = subsetSum(a, n-1, sum) ||subsetSum(a, n-1, sum - a[n-1]);
+    }
+
+}
+```
+
+
+##### Using Tabulation
+
+```cpp
+
+bool subsetSum(int set[], int n, int sum) {
+
+    bool dp[n+1][sum+1];
+
+    for(int i = 0; i <= n; i++) 
+        dp[i][0] = true;
+
+    for(int i = 1; i <= sum; i++) 
+        dp[0][i] = false;
+
+    
+    for(int i = 1; i <= n; i++) {
+        for(int j = 1; j <= sum; j++) {
+
+            if (j < set[i-1]) {
+                dp[i][j] = dp[i-1][j];
+            }
+
+            if (j >= set[i-1]) {
+                dp[i][j] = dp[i-1][j] || dp[i][ j - set[i-1]];
+            }
+        }
+    }
+
+    return dp[n][sum];
+}
+```
+
+
 
 
 
