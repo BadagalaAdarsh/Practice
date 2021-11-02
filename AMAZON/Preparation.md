@@ -316,3 +316,357 @@ int main() {
 }
 ```
 
+#### [Rotate the given 2D matrix by 90degrees](https://leetcode.com/problems/rotate-image/submissions/)
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+void rotate(vector<vector<int>>& matrix) {
+    int n = matrix.size();
+
+    // first we need to transpose the matrix in-place
+    for(int i = 0;  i < n; i++) {
+        for(int j = 0; j < i; j++) {
+            swap(matrix[i][j], matrix[j][i]);
+        }
+    }
+
+    // then we need to reverse the rows
+    for(int i = 0; i < n; i++)
+        reverse(matrix[i].begin(), matrix[i].end());
+}
+
+int main(){
+    
+    int n;
+    cin >> n;
+
+    vector<vector<int>> matrix(n, vector<int>(n));
+
+    for(int i = 0; i < n; i++) 
+        for(int j = 0; j < n; j++) 
+            cin >> matrix[i][j];
+
+    rotate(matrix);
+
+    // printing the rotated matrix
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < n; j++) 
+            cout << matrix[i][j] << " ";
+        cout << endl;
+    }
+}
+```
+
+#### [Given an array of intervals where intervals[i] = [starti, endi], merge all overlapping intervals, and return an array of the non-overlapping intervals that cover all the intervals in the input.](https://leetcode.com/problems/merge-intervals/)
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<vector<int>> mergeIntervals(vector<vector<int>>& intervals) {
+    vector<vector<int>> res;
+
+
+    // sorting the 2d array based on the first number which uses lamda function
+    sort(intervals.begin(), intervals.end(), [](vector<int> a, vector<int> b) {
+        return a[0] < b[0];
+    });
+
+    res.emplace_back(intervals[0]);
+
+    // traverse the intervals vector and add to result based on the overlapping condition
+
+    for(int i =1 ; i < (int)intervals.size(); i++){
+        
+        // if first number of next interval is smaller or equal to the last number of the previous interval
+        if(intervals[i][0] <= res.back()[1]){
+            // current last number will the max of current last and next last number
+            res.back()[1] = max(res.back()[1], intervals[i][1]);
+        }
+        else{
+            // else directly add the next interval to the result
+            res.emplace_back(intervals[i]);
+        }
+    }
+    // return the result
+    return res;
+}
+
+
+
+int main() {
+
+    int n;
+    cin >> n;
+
+    vector<vector<int>> intervals(n);
+
+    for(int i = 0; i < n; i++) {
+        cin >> intervals[i][0] >> intervals[i][1];
+    }
+
+    vector<vector<int>> answer = mergeIntervals(intervals);
+
+    // print the final answer
+
+    for(int i = 0; i < (int)answer.size(); i++) {
+        cout << answer[i][0] << " " << answer[i][1] << endl;
+    }
+}
+```
+
+#### [You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.](https://leetcode.com/problems/merge-sorted-array/)
+
+#### Merge nums1 and nums2 into a single array sorted in non-decreasing order.
+
+#### The final sorted array should not be returned by the function, but instead be stored inside the array nums1. To accommodate this, nums1 has a length of m + n, where the first m elements denote the elements that should be merged, and the last n elements are set to 0 and should be ignored. nums2 has a length of n.
+
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+int find_gap(int n) {
+    // return the ceil of division by 2
+    // for example, if n = 5, return 3
+    // if n = 1 return 0 as ceil will be still 1 leading to infinite loop
+
+    if (n == 1)
+        return 0;
+
+    else
+        return (n + 1) / 2;
+}
+
+
+void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+    
+    int gap = find_gap(m+n);
+
+    // add the elements of nums2 to nums1
+    for (int i = 0; i < n; i++) {
+        nums1[m + i] = nums2[i];
+    }
+
+    // sort the elements of nums1
+    while( gap != 0 ) {
+
+        int start = 0;
+        int end = gap;
+
+        while ( end < m + n ) {
+
+            if (nums1[start] > nums1[end]) {
+                swap(nums1[start], nums1[end]);
+            }
+            start++;
+            end++;
+
+        }
+
+        gap = find_gap(gap);
+    }
+}
+
+int main() {
+
+    int m, n;
+    cin >> m >> n;
+    vector<int> nums1(m);
+    for (int i = 0; i < m; i++) {
+        cin >> nums1[i];
+    }
+    vector<int> nums2(n);
+    for (int i = 0; i < n; i++) {
+        cin >> nums2[i];
+    }
+    
+    // print the final nums1 vector
+    for (int i = 0; i < m; i++) {
+        cout << nums1[i] << " ";
+    }
+}
+```
+
+#### [Given an array of integers nums containing n + 1 integers where each integer is in the range [1, n] inclusive.](https://leetcode.com/problems/find-the-duplicate-number/)
+
+#### There is only one repeated number in nums, return this repeated number.
+
+#### You must solve the problem without modifying the array nums and uses only constant extra space.
+
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+
+// here we are using the concept of tortoise and hare
+// just like finding the cycle in a linked list
+// one pointer moves twice as fast as the other
+// once they meet once slow pointer is set to 0 and both are incremented at same speed
+int find_duplicate(vector<int>& nums) {
+
+    int slow = nums[0];
+    int fast = nums[nums[0]];
+
+    // here we are finding the first collision
+    while(slow != fast) {
+        slow = nums[slow];
+        fast = nums[nums[fast]];
+    }
+
+    // setting the slow pointer to start
+    // here we are finding the second collision
+    // which is nothing but the duplicate number
+    slow = 0;
+    while(slow != fast) {
+        slow = nums[slow];
+        fast = nums[fast];
+    }
+
+    return slow;
+}
+
+int main() {
+
+    int n;
+    cin >> n;
+
+    vector<int> nums(n);
+    for (int i = 0; i < n; i++) {
+        cin >> nums[i];
+    }
+
+    int answer = find_duplicate(nums);
+
+    cout << answer << endl;
+}
+```
+
+#### [You are given a read only array of n integers from 1 to n.](https://www.interviewbit.com/problems/repeat-and-missing-number-array/)
+
+#### Each integer appears exactly once except A which appears twice and B which is missing.
+
+#### Return A and B.
+
+#### Note: Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
+
+#### Note that in your output A should precede B.
+
+#### [To know why this solution works watch this video](https://www.youtube.com/watch?v=5nMGY4VUoRY&list=PLgUwDviBIf0rPG3Ictpu74YWBQ1CaBkm2&index=4)
+
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int> repeat_and_missing_number(vector<int> &A) {
+
+    int n = A.size();
+    int xor_of_all_numbers = 0;
+    int xor_of_all_numbers_with_missing_number = 0;
+    int xor_of_all_numbers_with_repeated_number = 0;
+
+    for(int i=0;i<n;i++) {
+        xor_of_all_numbers ^= A[i];
+    }
+
+    for(int i=1;i<=n;i++) {
+        xor_of_all_numbers_with_missing_number ^= i;
+    }
+
+    xor_of_all_numbers_with_repeated_number = xor_of_all_numbers ^ xor_of_all_numbers_with_missing_number;
+
+    int missing_number = xor_of_all_numbers_with_missing_number & ~xor_of_all_numbers_with_repeated_number;
+    int repeated_number = xor_of_all_numbers_with_repeated_number & ~xor_of_all_numbers_with_missing_number;
+
+    vector<int> ans;
+    ans.push_back(repeated_number);
+    ans.push_back(missing_number);
+
+    return ans;
+}
+
+int main() {
+
+    int n;
+    cin >> n;
+
+    vector<int> array(n);
+    for(int i = 0; i < n; i++) cin >> array[i];
+
+    vector<int> answer = repeat_and_missing_number(array);
+
+    cout << answer[0] << " " << answer[1] << endl;
+}
+```
+
+#### similar approach with bit better code and comments
+
+```cpp
+vector < int >Solution::repeatedNumber (const vector < int >&arr) {
+    /* Will hold xor of all elements and numbers from 1 to n */
+    int xor1;
+
+    /* Will have only single set bit of xor1 */
+    int set_bit_no;
+
+    int i;
+    int x = 0; // missing
+    int y = 0; // repeated
+    int n = arr.size();
+
+    xor1 = arr[0];
+
+    /* Get the xor of all array elements */
+    for (i = 1; i < n; i++)
+        xor1 = xor1 ^ arr[i];
+
+    /* XOR the previous result with numbers from 1 to n */
+    for (i = 1; i <= n; i++)
+        xor1 = xor1 ^ i;
+
+    /* Get the rightmost set bit in set_bit_no */
+    set_bit_no = xor1 & ~(xor1 - 1);
+
+    /* Now divide elements into two sets by comparing a rightmost set bit
+       of xor1 with the bit at the same position in each element.
+       Also, get XORs of two sets. The two XORs are the output elements.
+       The following two for loops serve the purpose */
+
+    for (i = 0; i < n; i++) {
+        if (arr[i] & set_bit_no)
+            /* arr[i] belongs to first set */
+            x = x ^ arr[i];
+
+        else
+            /* arr[i] belongs to second set */
+            y = y ^ arr[i];
+    }
+
+    for (i = 1; i <= n; i++) {
+        if (i & set_bit_no)
+            /* i belongs to first set */
+            x = x ^ i;
+
+        else
+            /* i belongs to second set */
+            y = y ^ i;
+    }
+
+    // NB! numbers can be swapped, maybe do a check ?
+    int x_count = 0;
+    for (int i=0; i<n; i++) {
+        if (arr[i]==x)
+            x_count++;
+    }
+    
+    if (x_count==0)
+        return {y, x};
+    
+    return {x, y};
+}
+```
+
