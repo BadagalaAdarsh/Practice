@@ -97,4 +97,45 @@
 **following operations take place in the ring topology**
 
 * One station is known as *monitor* station which takes all the responsibilites to perform the operations
-* to transmit the data
+* to transmit the data, the station has to hold the token. After the transmission is done, the token is to be released for other stations to use
+* When no station is transmitting the data, then the token will circulate in the ring
+* There are two types of token release techniques: **Early token release** releases the token just after transmitting the data and the **Delay token release** releases the token after the acknowledgement is received from the receiver
+
+**Advantages of this topology**
+
+* The possibility of collision is minimum in this type of topology
+* Cheap to install and expand
+
+**Problems with this topology**
+
+* Troubleshooting is difficult in this topology
+* The addition of stations in between or removal of stations can disturb the whole topology
+* Less secure
+
+#### Tree Topology
+
+* this topology is the variation of star topology. This topology has hierarchical flow of data
+
+![Image](https://media.geeksforgeeks.org/wp-content/uploads/20200614134830/tree-topology2.png)
+
+* Here various secondary hubs are connected to the central hub which contains the repeater. In this data flow from top to bottom i.e. from the central hub to secondary and then to the device or from bottom to top i.e devices to the secondary hub and then to central hub. It is a mulitpoint connection and a non-robust topology because if the backbone fails the topology crashes
+
+**Advantages of this topology**
+
+* It allows more devices to be attached to a single central hub thus it decreases the distance that is traveled by the signal to come to the devices
+* It allows the network to get isolate and also prioritize from different computers
+
+**Problems with this topology**
+
+* If the central hub fails then the entire system fails
+* The cost is high because of cabling
+
+#### Define Bandwidth
+
+* Network bandwidth is a measurement indicating the maximum capacity of a wired or wireless communication link to transmit data over a network connection in a given amount of time. Typically bandwidth is represented in the number of bits, kilobits, megabits or gigabits that can be transmitted in 1 second
+
+#### Define node and link
+
+* A node is **an individual processing unit**, it has capability to communicate with other nodes on demand, process the information it receives..
+* A link is a physical and logical network component used to interconnect hosts or nodes in the network
+
