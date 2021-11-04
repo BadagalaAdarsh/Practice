@@ -793,32 +793,65 @@ int subsetSum(int a[], int n, int sum) {
 
 ```cpp
 
-bool subsetSum(int set[], int n, int sum) {
+// A Dynamic Programming solution
+// for subset sum problem
+#include <iostream>
+using namespace std;
 
-    bool dp[n+1][sum+1];
+// Returns true if there is a subset of set[]
+// with sum equal to given sum
+bool isSubsetSum(int set[], int n, int sum)
+{
+	// The value of subset[i][j] will be true if
+	// there is a subset of set[0..j-1] with sum
+	// equal to i
+	bool subset[n + 1][sum + 1];
 
-    for(int i = 0; i <= n; i++) 
-        dp[i][0] = true;
+	// If sum is 0, then answer is true
+	for (int i = 0; i <= n; i++)
+		subset[i][0] = true;
 
-    for(int i = 1; i <= sum; i++) 
-        dp[0][i] = false;
+	// If sum is not 0 and set is empty,
+	// then answer is false
+	for (int i = 1; i <= sum; i++)
+		subset[0][i] = false;
 
-    
-    for(int i = 1; i <= n; i++) {
-        for(int j = 1; j <= sum; j++) {
+	// Fill the subset table in bottom up manner
+	for (int i = 1; i <= n; i++) {
+		for (int j = 1; j <= sum; j++) {
+			if (j < set[i - 1])
+				subset[i][j] = subset[i - 1][j];
+			if (j >= set[i - 1])
+				subset[i][j] = subset[i - 1][j]
+							|| subset[i - 1][j - set[i - 1]];
+		}
+	}
 
-            if (j < set[i-1]) {
-                dp[i][j] = dp[i-1][j];
-            }
+	/* // uncomment this code to print table
+	for (int i = 0; i <= n; i++)
+	{
+	for (int j = 0; j <= sum; j++)
+		printf ("%4d", subset[i][j]);
+	cout <<"\n";
+	}*/
 
-            if (j >= set[i-1]) {
-                dp[i][j] = dp[i-1][j] || dp[i][ j - set[i-1]];
-            }
-        }
-    }
-
-    return dp[n][sum];
+	return subset[n][sum];
 }
+
+// Driver code
+int main()
+{
+	int set[] = { 3, 34, 4, 12, 5, 2 };
+	int sum = 9;
+	int n = sizeof(set) / sizeof(set[0]);
+	if (isSubsetSum(set, n, sum) == true)
+		cout <<"Found a subset with given sum";
+	else
+		cout <<"No subset with given sum";
+	return 0;
+}
+// This code is contributed by shivanisinghss2110
+
 
 ```
 
@@ -866,35 +899,369 @@ int subsetSum(int a[], int n, int sum) {
 
 ```cpp
 
-bool subsetSum(int set[], int n, int sum) {
+// A Dynamic Programming solution
+// for subset sum problem
+#include <iostream>
+using namespace std;
 
-    bool dp[n+1][sum+1];
+// Returns true if there is a subset of set[]
+// with sum equal to given sum
+bool isSubsetSum(int set[], int n, int sum)
+{
+	// The value of subset[i][j] will be true if
+	// there is a subset of set[0..j-1] with sum
+	// equal to i
+	bool subset[n + 1][sum + 1];
 
-    for(int i = 0; i <= n; i++) 
-        dp[i][0] = true;
+	// If sum is 0, then answer is true
+	for (int i = 0; i <= n; i++)
+		subset[i][0] = true;
 
-    for(int i = 1; i <= sum; i++) 
-        dp[0][i] = false;
+	// If sum is not 0 and set is empty,
+	// then answer is false
+	for (int i = 1; i <= sum; i++)
+		subset[0][i] = false;
 
-    
-    for(int i = 1; i <= n; i++) {
-        for(int j = 1; j <= sum; j++) {
+	// Fill the subset table in bottom up manner
+	for (int i = 1; i <= n; i++) {
+		for (int j = 1; j <= sum; j++) {
+			if (j < set[i - 1])
+				subset[i][j] = subset[i - 1][j];
+			if (j >= set[i - 1])
+				subset[i][j] = subset[i - 1][j]
+							|| subset[i - 1][j - set[i - 1]];
+		}
+	}
 
-            if (j < set[i-1]) {
-                dp[i][j] = dp[i-1][j];
+	/* // uncomment this code to print table
+	for (int i = 0; i <= n; i++)
+	{
+	for (int j = 0; j <= sum; j++)
+		printf ("%4d", subset[i][j]);
+	cout <<"\n";
+	}*/
+
+	return subset[n][sum];
+}
+
+// Driver code
+int main()
+{
+	int set[] = { 3, 34, 4, 12, 5, 2 };
+	int sum = 9;
+	int n = sizeof(set) / sizeof(set[0]);
+	if (isSubsetSum(set, n, sum) == true)
+		cout <<"Found a subset with given sum";
+	else
+		cout <<"No subset with given sum";
+	return 0;
+}
+// This code is contributed by shivanisinghss2110
+
+```
+
+#### [Count of subsets with sum equal to X](https://www.geeksforgeeks.org/count-of-subsets-with-sum-equal-to-x/)
+
+**Using Recursion Memoization**
+
+```cpp
+
+#include <bits/stdc++.h>
+
+using namespace std; 
+
+int tmp[1001][1001];  
+
+
+int subset_count(int* arr, int sum, int n) 
+{ ` if(sum==0)
+        return 1;
+    if(n==0)
+        return 0;
+    if(tmp[n][sum]!=-1)
+        return tmp[n][sum];
+    else{
+        if(arr[n-1]>sum)
+            return tmp[n][sum]=subset_count(arr,sum, n-1);
+        else{
+            return tmp[n][sum]=subset_count(arr,sum, n- 1)+subset_count(arr,sum-arr[n-1], n-1);`
+        }
+    }
+} 
+
+// Driver code 
+
+int main() 
+{ 
+    memset(tmp,-1,sizeof(tmp));
+    int arr[] = { 2, 3, 5, 6, 8, 10 }; 
+    int n = sizeof(arr) / sizeof(int); 
+    int sum = 10; `
+
+
+    cout << subset_count(arr,sum, n); 
+
+    return 0; 
+}
+
+```
+
+**Using Tabulation**
+
+```cpp
+
+#include <bits/stdc++.h>
+using namespace std;
+  
+int subsetSum(int a[], int n, int sum)
+{
+    // Initializing the matrix
+    int tab[n + 1][sum + 1];
+  // Initializing the first value of matrix
+    tab[0][0] = 1;
+    for (int i = 1; i <= sum; i++)
+        tab[0][i] = 0;
+    for (int i = 1; i <= n; i++)
+        tab[i][0] = 1;
+  
+    for (int i = 1; i <= n; i++)
+    {
+        for (int j = 1; j <= sum; j++)
+        {
+          // if the value is greater than the sum 
+            if (a[i - 1] > j)
+                tab[i][j] = tab[i - 1][j];
+            else
+            {
+                tab[i][j] = tab[i - 1][j] + tab[i - 1][j - a[i - 1]];
             }
+        }
+    }
+  
+  
+    return tab[n][sum];
+}
+  
+int main()
+{
+    int n = 4;
+    int a[] = {3,3,3,3};
+    int sum = 6;
+  
+    cout << (subsetSum(a, n, sum));
+}
+```
 
-            if (j >= set[i-1]) {
-                dp[i][j] = dp[i-1][j] || dp[i][ j - set[i-1]];
-            }
+#### Minimum Subset Sum Difference 
+
+```cpp
+
+// Here we need to find the minimum difference between two subsets that can be found
+// this problem is similar to subset sum problem
+// but here our target sum is half of the sum of the array
+
+// so in subset sum apply dp for the sum (sum is half of array sum) 
+// after getting the values in table traverse the table in reverse order and the first
+// true value index is the sum of first subset 
+// so the minimum difference is
+// abs(first subset - second subset)
+// i.e abs( (array_sum - first subset) - first subset)
+// array_sum - 2 * first subset
+
+// pseudo code for this is
+
+for(int i = sum/2; i >= 0; i--) {
+    if (subset[last_row][i] == true) {
+        diff = array_sum - (2 * i);
+        break;
+    }
+}
+
+return diff;
+}
+
+// complete implementation of the code is
+
+// A Recursive C program to solve minimum sum partition
+// problem.
+#include <bits/stdc++.h>
+using namespace std;
+
+// Returns the minimum value of the difference of the two
+// sets.
+int findMin(int arr[], int n)
+{
+	// Calculate sum of all elements
+	int sum = 0;
+	for (int i = 0; i < n; i++)
+		sum += arr[i];
+
+	// Create an array to store results of subproblems
+	bool dp[n + 1][sum + 1];
+
+	// Initialize first column as true. 0 sum is possible
+	// with all elements.
+	for (int i = 0; i <= n; i++)
+		dp[i][0] = true;
+
+	// Initialize top row, except dp[0][0], as false. With
+	// 0 elements, no other sum except 0 is possible
+	for (int i = 1; i <= sum; i++)
+		dp[0][i] = false;
+
+	// Fill the partition table in bottom up manner
+	for (int i = 1; i <= n; i++) {
+		for (int j = 1; j <= sum; j++) {
+			// If i'th element is excluded
+			dp[i][j] = dp[i - 1][j];
+
+			// If i'th element is included
+			if (arr[i - 1] <= j)
+				dp[i][j] |= dp[i - 1][j - arr[i - 1]];
+		}
+	}
+
+	// Initialize difference of two sums.
+	int diff = INT_MAX;
+
+	// Find the largest j such that dp[n][j]
+	// is true where j loops from sum/2 t0 0
+	for (int j = sum / 2; j >= 0; j--) {
+		// Find the
+		if (dp[n][j] == true) {
+			diff = sum - 2 * j;
+			break;
+		}
+	}
+	return diff;
+}
+
+// Driver program to test above function
+int main()
+{
+	int arr[] = { 3, 1, 4, 2, 2, 1 };
+	int n = sizeof(arr) / sizeof(arr[0]);
+	cout << "The minimum difference between 2 sets is "
+		<< findMin(arr, n);
+	return 0;
+}
+
+```
+
+**Below is space optimized version only see after completion of all**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int minDifference(int arr[], int n)
+{
+	int sum = 0;
+	for (int i = 0; i < n; i++)
+		sum += arr[i];
+	int y = sum / 2 + 1;
+	// dp[i] gives whether is it possible to get i as sum of
+	// elements dd is helper variable
+	// we use dd to ignoring duplicates
+	bool dp[y], dd[y];
+
+	// Initialising dp and dd
+	for (int i = 0; i < y; i++) {
+		dp[i] = dd[i] = false;
+	}
+
+	// sum = 0 is possible
+	dd[0] = true;
+	for (int i = 0; i < n; i++) {
+		// updating dd[k] as true if k can be formed using
+		// elements from 1 to i+1
+		for (int j = 0; j + arr[i] < y; j++) {
+			if (dp[j])
+				dd[j + arr[i]] = true;
+		}
+		// updating dd
+		for (int j = 0; j < y; j++) {
+			if (dd[j])
+				dp[j] = true;
+			dd[j] = false; // reset dd
+		}
+	}
+	// checking the number from sum/2 to 1 which is possible
+	// to get as sum
+
+	for (int i = y - 1; i >= 0; i--) {
+		if (dp[i])
+			return (sum - 2 * i);
+		// since i is possible to form then another number
+		// is sum-i
+		// so mindifference is sum-i-i
+	}
+}
+int main()
+{
+
+	int arr[] = { 1, 6, 11, 5 };
+	int n = sizeof(arr) / sizeof(arr[0]);
+	cout << "The Minimum difference of 2 sets is "
+		<< minDifference(arr, n) << '\n';
+	return 0;
+}
+```
+
+#### [Count number of subsets](https://leetcode.com/discuss/interview-question/1271034/count-no-of-subsets-with-given-difference-dp)
+
+**This sum is same as the count number of subset with given sum with bit of maths involved**
+
+Let sum of subset 1 be s1 and subset 2 with s2
+s1 - s2 = diff (given)
+s1 + s2=sum of array (logical)
+Therefore adding both eq we get :
+2s1= diff + sum of array
+s1= (diff + sum of array)/2;
+Problem reduces to find no of subsets with given sum
+
+```cpp
+int subsetSum(int a[], int n, int sum)
+{
+    // Initializing the matrix
+    int dp[n + 1][sum + 1];
+  // Initializing the first value of matrix
+    dp[0][0] = 1;
+    for (int i = 1; i <= sum; i++)
+        dp[0][i] = 0;
+    for (int i = 1; i <= n; i++)
+        dp[i][0] = 1;
+ 
+    for (int i = 1; i <= n; i++)
+    {
+        for (int j = 1; j <= sum; j++)
+        {
+          // if the value is greater than the sum
+            if (a[i - 1] <= j)
+                dp[i][j] = dp[i - 1][j] + dp[i - 1][j - a[i - 1]]; 
+            else
+                  dp[i][j] = dp[i - 1][j];
         }
     }
 
     return dp[n][sum];
 }
+
+int countWithGivenSum(int arr[ ], int n, int diff)
+{   
+     int sum=0;
+    for(int i=0;i<n;i++)
+         sum+=nums[i]
+	 
+	 int reqSum=(diff+sum)/2;
+	 return subsetSum(arr,n,reqSum);
+}
 ```
 
+#### [Target Sum](https://leetcode.com/problems/target-sum/)
 
+**This sum is same as the above one just the explanation is changed**
+**By adding symbols + and - will result is two sums say S1 (got by adding all positives) and -S2 (got by adding all negatives) now their sum should be K**
 
-
+**That is S1 + (-S2) should be k i.e S1 - S2 = k, now this problem is reduces to count subset with given difference which is further reduces to count number of subsets**
 
