@@ -1265,3 +1265,95 @@ int countWithGivenSum(int arr[ ], int n, int diff)
 
 **That is S1 + (-S2) should be k i.e S1 - S2 = k, now this problem is reduces to count subset with given difference which is further reduces to count number of subsets**
 
+
+
+#### [Unbounded Knapsack](https://stackoverflow.com/questions/50221844/recursive-solution-of-unbounded-knapsack-using-logic-of-0-1-knapsack)
+
+* Unbounded knapsack is almost similar to the 0/1 knapsack
+* only difference is in 0/1 knapsack we are going to consider a item only once 
+
+```cpp
+// that is no matter if the item is included in bag or not
+// we are not going to call that item again
+
+if (current_weight_of_item <= Weight_of_bag ) {
+    return max( val[n-1] + knapsack(weight_array, val_array, Weight_of_bag - weight_array[n-1] , n-1), knapsack(weight_array, val_array, Weight_of_bag, n-1));
+}
+
+else{
+    return knapsack(weight_array, val_array, Weight_of_bag, n-1);
+}
+
+```
+
+* Here we can see that in all the cases we are going to call the function with n-1 which means we have processed the current element
+
+**But in unbounded knapsack if current weight is less that or equal to weight of bag then that can be still included again so it is not completely processed, only if the element is not included then we can treat it as completely processed**
+
+```cpp
+
+if (wt[n-1] <= W) {
+
+    return max( val[n-1] + knapsack(wt, val, W - wt[n-1], n), knapsack(wt, val, W, n-1));
+}
+
+else {
+    return knapsack(wt, val, W, n);
+}
+
+```
+
+* here you can see that in if case when the item is included we are calling the function same with n again
+* currently it is in recursive but below is the python implementation for DP of tabulation and Memoization
+
+**Memoization**
+
+```python
+def UnboundedKnapSack2(wt, val, n, capacity):
+    global dp
+    if dp[n][capacity] != -1:
+        return dp[n][capacity]
+    else:
+        if n == 0 or capacity <= 0:
+            dp[n][capacity] = 0
+            return dp[n][capacity]
+        elif wt[n - 1] <= capacity:
+            dp[n][capacity] = max(
+                val[n - 1] + UnboundedKnapSack(wt, val, n, capacity - wt[n - 1]),
+                UnboundedKnapSack(wt, val, n - 1, capacity),
+            )
+            return dp[n][capacity]
+        else:
+            dp[n][capacity] = UnboundedKnapSack(wt, val, n - 1, capacity)
+            return dp[n][capacity]
+
+weight = [1, 3, 4, 5]
+values = [10, 40, 50, 70]
+capacity = 8
+dp = [[-1 for i in range(capacity + 1)] for j in range(len(weight) + 1)]
+print(UnboundedKnapSack2(weight, values, len(weight), capacity))
+
+```
+
+**Tabulation**
+
+```python
+
+def UnboundedKnapSack3(wt, val, capacity):
+    n = len(wt)
+    dp = [[0 for i in range(capacity + 1)] for j in range(n + 1)]
+    for i in range(n + 1):
+        for j in range(capacity + 1):
+            if i == 0 or j == 0:
+                dp[i][j] = 0
+            elif j >= wt[i - 1]:
+                dp[i][j] = max(val[i - 1] + dp[i][j - wt[i - 1]], dp[i - 1][j])
+            else:
+                dp[i][j] = dp[i - 1][j]
+    return dp[-1][-1]
+
+
+print(UnboundedKnapSack3([1, 3, 4, 5], [10, 40, 50, 70], 8))
+
+```
+
