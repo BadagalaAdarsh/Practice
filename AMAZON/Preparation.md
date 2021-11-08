@@ -1357,3 +1357,227 @@ print(UnboundedKnapSack3([1, 3, 4, 5], [10, 40, 50, 70], 8))
 
 ```
 
+#### Our next question is Rod Cutting problem which is just the other name of unbounded knapsack
+#### [here there is approach is GFG where instead of using 2D array they are using 1D array which is space optimized after completion of everything try to understand the main intuition behind the approach](https://www.geeksforgeeks.org/cutting-a-rod-dp-13/)
+
+
+#### [Coin Change Max number of ways](https://www.geeksforgeeks.org/cutting-a-rod-dp-13/)
+
+* Coin change is just like the number of subset sum problem but it is the version of knapsack
+
+**Memoized version**
+
+```cpp
+
+vector<vector<long>> dp(1000, vector<long>(1000));
+ 
+ long answer(vector<long>& array, int sum, int n){
+     
+     if(sum == 0) {
+         return 1;
+     }
+     
+     if (n == 0) {
+         return 0;
+     }
+     
+     if (dp[n][sum] != -1) {
+         return dp[n][sum];
+     }
+     
+     if (array[n-1] <= sum) {
+         return dp[n][sum] = answer(array, sum, n-1) + answer(array, sum - array[n-1], n);
+     }
+     
+     else {
+         return dp[n][sum] = answer(array, sum, n-1);
+     }
+ }
+
+long getWays(int n, vector<long> c) {
+    for(int i = 0; i < 1000; i++) {
+        for(int j = 0; j < 1000; j++) {
+            dp[i][j] = -1;
+        }
+    }
+    return answer(c, n, c.size());
+}
+
+```
+
+
+**Tabulation Method**
+
+```cpp
+
+vector<vector<long>> dp(1000, vector<long>(1000));
+ 
+ long answer(vector<long>& array, int sum, int n){
+     
+     for(int i = 0; i <= array.size(); i++) {
+         dp[i][0] = 1;
+     }
+     
+     for(int i = 1; i <= sum; i++) {
+         dp[0][i] = 0;
+     }
+     
+     
+     for(int i = 1; i <= array.size(); i++) {
+         for(int j = 1; j <= sum; j++) {
+             
+             if (array[i-1] <= j){
+                 dp[i][j] = dp[i-1][j] + dp[i][j - array[i-1]];
+             }
+             
+             else {
+                 dp[i][j] = dp[i-1][j];
+             }
+         }
+     }
+     
+     return dp[n][sum];
+ }
+
+long getWays(int n, vector<long> c) {
+    for(int i = 0; i < 1000; i++) {
+        for(int j = 0; j < 1000; j++) {
+            dp[i][j] = -1;
+        }
+    }
+    return answer(c, n, c.size());
+}
+
+```
+
+# Extra Sums
+
+#### [For the given array print all the possible permutations](https://leetcode.com/problems/permutations/)
+
+#### [Solution 1](https://www.youtube.com/watch?v=YK78FU5Ffjw&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=51)
+
+```cpp
+
+class Solution {
+private:
+    void recurPermute(vector<int>& ds, vector<int>& nums, vector<vector<int>>& ans, int freq[]) {
+    
+    // if ds == to num array then all numbers have been added to 
+    // the vector so push to final vector
+    if (ds.size() == nums.size()){
+        ans.push_back(ds);
+        return;
+    }
+    
+    for(int i = 0; i < nums.size(); i++) {
+        // iterate through the nums array 
+        // and check which element is not added yet
+        // if freq[i] != 0
+        if(!freq[i] ){
+            // add element to current vector
+            ds.push_back(nums[i]);
+            // mark it as added
+            freq[i] = 1;
+            
+            // now again call the recursive function
+            recurPermute(ds, nums, ans, freq);
+            
+            // unmark the element
+            freq[i] = 0;
+            // remove the element from the current array
+            ds.pop_back();
+        }
+    }
+    
+    
+}
+    
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+        
+        // for storing the final answer
+        vector<vector<int>> ans;
+        // for storing individual vector
+        vector<int> ds;
+        
+        // to keep track of which elements have been added
+        // based on their index
+        int freq[nums.size()];
+        
+        // initializing to zero
+        for(int i = 0; i < nums.size(); i++) freq[i] = 0;
+        
+        // calling the actual recursive function
+        recurPermute(ds, nums, ans, freq);
+        
+        return ans;
+    }
+};
+
+```
+
+#### [Solution 2 with better space complexity](https://youtu.be/f2ic2Rsc9pU?list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma)
+
+
+```cpp
+
+#include<bits/stdc++.h>
+using namespace std;
+
+// backtracking method
+void recurPermutations(int index, vector<int>& nums, vector<vector<int>>& answer) {
+
+    // if reached end of nums vector add nums to answer vector
+    if (index == nums.size()){
+        answer.push_back(nums);
+        return;
+    }
+
+    // traversing the nums array from index position
+    for(int i = index; i < nums.size(); i++) {
+
+        // swapping current position with index position
+        swap(nums[i], nums[index]);
+        // calling the method with next index
+        recurPermutations(index+1, nums, answer);
+
+        // swapping back to the original positions
+        swap(nums[i], nums[index]);
+    }
+}
+
+vector<vector<int>> permutations(vector<int>& nums) {
+
+    // for storing the answer;
+    vector<vector<int>> answer;
+    // for storing the starting point of loop
+    int index  = 0;
+
+    recurPermutations(index, nums, answer);
+
+    return answer;
+}
+
+
+int main() {
+
+    int n;
+    cin >> n;
+
+    vector<int> nums(n);
+
+    for(int i = 0; i < n; i++) cin >> nums[i];
+
+    vector<vector<int>> answer = permutations(nums);
+
+    for(int i = 0; i < answer.size(); i++) {
+        for(int j = 0; j < answer[0].size(); j++) {
+            cout << answer[i][j] ;
+        }
+        cout << endl;
+    }
+
+}
+
+```
+
