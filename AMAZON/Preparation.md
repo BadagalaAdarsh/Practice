@@ -670,6 +670,198 @@ vector<int>Solution::repeatedNumber (const vector < int >&arr) {
 }
 ```
 
+#### [Search in 2d Matrix](https://leetcode.com/problems/search-a-2d-matrix/)
+
+#### [Solution](https://leetcode.com/problems/search-a-2d-matrix/discuss/26220/Don't-treat-it-as-a-2D-matrix-just-treat-it-as-a-sorted-list)
+
+```cpp
+
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        int lo = 0;
+        if(!matrix.size()) return false;
+        int hi = (matrix.size() * matrix[0].size()) - 1;
+        
+        while(lo <= hi) {
+            int mid = (lo + (hi - lo) / 2);
+            if(matrix[mid/matrix[0].size()][mid % matrix[0].size()] == target) {
+                return true;
+            }
+            if(matrix[mid/matrix[0].size()][mid % matrix[0].size()] < target) {
+                lo = mid + 1;
+            }
+            else {
+                hi = mid - 1;
+            }
+        }
+        return false;
+    }
+};
+
+```
+
+#### [Pow(x,n)](https://leetcode.com/problems/powx-n/)
+
+#### [Solution](https://www.youtube.com/watch?v=l0YC3876qxg&list=PLgUwDviBIf0rPG3Ictpu74YWBQ1CaBkm2&index=15)
+
+```cpp
+
+class Solution {
+public:
+    double myPow(double x, int n) {
+        
+        double ans = 1.0;
+        
+        long long nn = n;
+        
+        // if given power is negative converting it to positive
+        if (nn < 0) nn = (long long)-1 * (long long) n;
+        
+        while(nn) {
+            
+            // if current power is odd
+            // multiply x to ans and decrease nn by one
+            if (nn%2) {
+                ans = ans * x;
+                nn--;
+            }
+            
+            // else multiply x with itself and reduce nn by half
+            else{
+                x = x * x;
+                nn /= 2;
+            }
+        }
+        
+        // if n was negative
+        if (n < 0 ) ans = (double)(1.0)/(double)(ans);
+        
+        return ans;       
+        
+    }
+};
+
+```
+
+#### [Majority Element](https://leetcode.com/problems/majority-element/)
+
+* Given an array nums of size n, return the majority element.
+* The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+
+
+#### [Video Solution](https://youtu.be/AoX3BPWNnoE?list=PLgUwDviBIf0rPG3Ictpu74YWBQ1CaBkm2)
+
+#### This algorithm is called Moore Voting Algorithm
+
+
+```cpp
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        
+        int count = 0;
+        int element = 0;
+        
+        for(int num: nums){
+            
+            if (count == 0){
+                element = num;
+            }
+            
+            if (num == element){
+                count++;
+            }
+            
+            else{
+                count--;
+            }
+        }
+        
+        return element;
+    }
+};
+
+```
+
+#### [Majority Element II](https://leetcode.com/problems/majority-element-ii/)
+
+* Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times.
+
+#### [Video Solution](https://www.youtube.com/watch?v=yDbkQd9t2ig&list=PLgUwDviBIf0rPG3Ictpu74YWBQ1CaBkm2&index=18)
+
+#### This is extended Moores Voting algorithm also called Boyers Moore Voting Algorithm
+
+```cpp
+
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+        
+        int sz = nums.size();
+        int num1 = -1, num2 = -1, count1 = 0, count2 = 0;
+        
+        for(int i = 0; i < sz; i++) {
+            
+            if (nums[i] == num1) {
+                count1++;
+            }
+            
+            else if (nums[i] == num2) {
+                count2++;
+            }
+            
+            else if (count1 == 0) {
+                num1 = nums[i];
+                count1++;
+            }
+            
+            else if (count2 == 0) {
+                num2 = nums[i];
+                count2++;
+            }
+            
+            else{
+                count1--;
+                count2--;
+            }
+        }
+        
+        vector<int> ans;
+        count1 = count2 = 0;
+        
+        for(int i = 0; i < sz; i++) {
+            if (nums[i] == num1){
+                count1++;
+            }
+            
+            else if (nums[i] == num2) {
+                count2++;
+            }
+        }
+        
+        if (count1 > sz/3) {
+            ans.push_back(num1);
+        }
+        
+        if (count2 > sz/3) {
+            ans.push_back(num2);
+        }
+        
+        return ans;
+    }
+};
+
+```
+
+
+
+
+
+
+# ###########################################################################
+
 # Dynamic Programming Adithya Verma
 
 
@@ -1450,6 +1642,191 @@ long getWays(int n, vector<long> c) {
 
 ```
 
+
+#### [Minimum Number of Coins Required to get the sum](https://leetcode.com/problems/coin-change/)
+
+
+##### Recursive Brute Force Solution
+
+```cpp
+
+class Solution {
+public:
+    int recursion(vector<int> wt, int w, int n)
+    {
+        if (n == 0 || w == 0)
+            return (w == 0) ? 0 : INT_MAX - 1;
+        
+        if (wt[n - 1] > w) 
+            return recursion(wt, w , n - 1);
+        else 
+            return min(recursion(wt, w, n - 1), 1 + recursion(wt, w - wt[n - 1], n));
+    }
+    
+    int coinChange(vector<int>& coins, int amount) 
+    {
+        int minCoins = recursion(coins, amount, coins.size());
+        return minCoins == INT_MAX - 1 ? -1 : minCoins;    
+    }
+};
+
+```
+
+##### Memoization 
+
+```cpp
+
+class Solution {
+public:
+    int dp[10000 + 1][12 + 1];
+    
+    int memoization(vector<int>& wt, int w, int n)
+    {
+        if (n == 0 || w == 0)
+            return (w == 0) ? 0 : INT_MAX - 1;
+        
+        if (dp[w][n] != -1)
+            return dp[w][n];
+			
+        if (wt[n - 1] > w) 
+            return dp[w][n] = memoization(wt, w, n - 1);
+        else 
+            return dp[w][n] = min(memoization(wt, w, n - 1), 1 + memoization(wt, w - wt[n - 1], n));
+    }
+    
+    int coinChange(vector<int>& coins, int amount) 
+    {
+        memset(dp, -1, sizeof(dp));
+        int minCoins = memoization(coins, amount, coins.size());
+        return minCoins == INT_MAX - 1 ? -1 : minCoins;    
+    }
+};
+
+```
+
+##### Tabulation using 2d Array
+
+```cpp
+
+class Solution {
+public:
+    int dp[12 + 1][10000 + 1];
+    
+    int tabulation(vector<int> wt, int w, int n)
+    {
+        for(int i = 0; i <= n; i++) {
+            for(int j = 0; j <= w; j++){
+                if (i == 0 || j == 0) {
+                    dp[i][j] = (j == 0) ? 0 : INT_MAX - 1;
+                }
+            }
+        }
+        
+        for(int i = 1; i < n+1; i++){
+            for(int j = 1; j < w+1; j++) {
+                
+                if (wt[i-1] <= j) {
+                    dp[i][j] = min(dp[i-1][j], 1 + dp[i][j-wt[i-1]]);
+                }
+                else{
+                    dp[i][j] = dp[i-1][j];
+                }
+            }
+        }
+
+        
+        return dp[n][w];
+    }
+    
+    int coinChange(vector<int>& coins, int amount) 
+    {
+        memset(dp, -1, sizeof(dp));
+        int minCoins = tabulation(coins, amount, coins.size());
+        return minCoins == INT_MAX - 1 ? -1 : minCoins;    
+    }
+};
+
+```
+
+
+
+##### Tabulation Method
+
+```cpp
+
+    int coinChange(vector<int>& coins, int amount) {
+        
+        vector<long> dp(amount+1, INT_MAX);
+        
+        dp[0] = 0;
+        
+        for(int i = 1; i <= amount; i++) {
+            // iterating through the coins
+            for(auto x: coins) {  
+                // if current sum - current coin is > 0 then current value is min of both               
+                if (i-x >= 0) {
+                    dp[i] = min(dp[i], dp[i-x] + 1);
+                }
+            }
+        }
+        
+        return dp[amount] == INT_MAX? -1: (int)dp[amount];
+        
+    }
+
+```
+
+#### Longest Common Subsequence Recursive
+
+##### [Solution](https://www.youtube.com/watch?v=4Urd0a0BNng&list=PL_z_8CaSLPWekqhdCPmFohncHwz8TY2Go&index=19)
+
+```cpp
+
+/* A Naive recursive implementation of LCS problem */
+#include <bits/stdc++.h>
+using namespace std;
+
+int max(int a, int b);
+
+/* Returns length of LCS for X[0..m-1], Y[0..n-1] */
+int lcs( char *X, char *Y, int m, int n )
+{
+	if (m == 0 || n == 0)
+		return 0;
+	if (X[m-1] == Y[n-1])
+		return 1 + lcs(X, Y, m-1, n-1);
+	else
+		return max(lcs(X, Y, m, n-1), lcs(X, Y, m-1, n));
+}
+
+/* Utility function to get max of 2 integers */
+int max(int a, int b)
+{
+	return (a > b)? a : b;
+}
+
+/* Driver code */
+int main()
+{
+	char X[] = "AGGTAB";
+	char Y[] = "GXTXAYB";
+	
+	int m = strlen(X);
+	int n = strlen(Y);
+	
+	cout<<"Length of LCS is "<< lcs( X, Y, m, n ) ;
+	
+	return 0;
+}
+
+// This code is contributed by rathbhupendra
+
+```
+
+
+
+
+
 # Extra Sums
 
 #### [For the given array print all the possible permutations](https://leetcode.com/problems/permutations/)
@@ -1539,7 +1916,7 @@ void recurPermutations(int index, vector<int>& nums, vector<vector<int>>& answer
         // swapping current position with index position
         swap(nums[i], nums[index]);
         // calling the method with next index
-        recurPermutations(index+1, nums, answer);
+        recurPermutations(index+1, nums, answer);   
 
         // swapping back to the original positions
         swap(nums[i], nums[index]);
