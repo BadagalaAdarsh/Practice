@@ -4,6 +4,8 @@
 
 #### [In Pascal's triangle, each number is the sum of the two numbers directly above it as shown:](https://leetcode.com/problems/pascals-triangle/)
 
+#### [Solution with better time for nth row](https://youtu.be/6FLvhQjZqvM?list=PLgUwDviBIf0rPG3Ictpu74YWBQ1CaBkm2&t=311)
+
 
 ```cpp
 /*
@@ -670,6 +672,94 @@ vector<int>Solution::repeatedNumber (const vector < int >&arr) {
 }
 ```
 
+
+#### [Inversion Of Array](https://www.geeksforgeeks.org/counting-inversions/)
+
+#### [Video Solution](https://www.youtube.com/watch?v=kQ1mJlwW-c0&t=0s)
+
+```cpp
+
+/* This funt merges two sorted arrays
+and returns inversion count in the arrays.*/
+int merge(int arr[], int temp[], int left, int mid,
+          int right)
+{
+    int i, j, k;
+    int inv_count = 0;
+ 
+    i = left; /* i is index for left subarray*/
+    j = mid; /* j is index for right subarray*/
+    k = left; /* k is index for resultant merged subarray*/
+    while ((i <= mid - 1) && (j <= right)) {
+        if (arr[i] <= arr[j]) {
+            temp[k++] = arr[i++];
+        }
+        else {
+            temp[k++] = arr[j++];
+ 
+            /* this is tricky -- see above
+            explanation/diagram for merge()*/
+            inv_count = inv_count + (mid - i);
+        }
+    }
+ 
+    /* Copy the remaining elements of left subarray
+(if there are any) to temp*/
+    while (i <= mid - 1)
+        temp[k++] = arr[i++];
+ 
+    /* Copy the remaining elements of right subarray
+       (if there are any) to temp*/
+    while (j <= right)
+        temp[k++] = arr[j++];
+ 
+    /*Copy back the merged elements to original array*/
+    for (i = left; i <= right; i++)
+        arr[i] = temp[i];
+ 
+    return inv_count;
+}
+ 
+
+/* An auxiliary recursive function
+  that sorts the input array and
+returns the number of inversions in the array. */
+int _mergeSort(int arr[], int temp[], int left, int right)
+{
+    int mid, inv_count = 0;
+    if (right > left) {
+        /* Divide the array into two parts and
+        call _mergeSortAndCountInv()
+        for each of the parts */
+        mid = (right + left) / 2;
+ 
+        /* Inversion count will be sum of
+        inversions in left-part, right-part
+        and number of inversions in merging */
+        inv_count += _mergeSort(arr, temp, left, mid);
+        inv_count += _mergeSort(arr, temp, mid + 1, right);
+ 
+        /*Merge the two parts*/
+        inv_count += merge(arr, temp, left, mid + 1, right);
+    }
+    return inv_count;
+}
+
+int main() {
+
+    int arr[] = {5, 3, 2, 4, 1};
+    int n = sizeof(arr)/sizeof(arr[0]);
+
+    int temp[n];
+    int ans = _mergeSort(arr, temp, 0, array_size - 1);
+
+    cout << "number of inversions are " << ans;
+    return 0;
+
+}
+
+```
+
 #### [Search in 2d Matrix](https://leetcode.com/problems/search-a-2d-matrix/)
 
 #### [Solution](https://leetcode.com/problems/search-a-2d-matrix/discuss/26220/Don't-treat-it-as-a-2D-matrix-just-treat-it-as-a-sorted-list)
@@ -855,12 +945,146 @@ public:
 
 ```
 
+#### [Unique Paths](https://leetcode.com/problems/unique-paths/)
+
+
+#### Recursive Solution (not optimal time complexity is exponential)
+
+```cpp
+
+int countPaths(int i, int j, int n, int m) {
+
+    if ( i== (n-1) && j == (m-1)) return 1;
+    if ( i >= n || j >= m) return 0;
+
+    else return countPaths( i+1, j) + countPaths(i, j+1);
+
+}
+
+```
+
+#### Using DP
+
+```cpp
+
+int countPaths(int i, int j, int n, int m, vector<vector<int>>& dp) {
+    if (i==(n-1) && j == (m-1)) return 1;
+    if (i >= n || j >= m) return 0;
+
+    if (dp[i][j] != -1) return dp[i][j];
+    else return dp[i][j] = countPaths(i+1, j, dp) + countPaths(i, j+1, dp);
+}
+
+```
+
+### [Most optimal Solution Using Combinatrics](https://www.youtube.com/watch?v=t_f0nwwdg5o&list=PLgUwDviBIf0rPG3Ictpu74YWBQ1CaBkm2&index=18)
+
+```cpp
+class Solution {
+public:
+    int uniquePaths(int m, int n) {
+        
+        // its a combinatrics solution
+        // answer nCr
+        
+        int N = n + m -2;
+        int r = m - 1;
+        double res = 1;
+        
+        for(int i = 1; i <= r; i++) {
+            res = res * ( N- r+ i) / i;
+        }
+        
+        return (int)res;
+        
+    }
+};
+```
+
+
+#### [Reverse Pairs](https://leetcode.com/problems/reverse-pairs/)
+
+* Given an integer array nums, return the number of reverse pairs in the array.
+
+* A reverse pair is a pair (i, j) where 0 <= i < j < nums.length and nums[i] > 2 * nums[j].
+
+#### [Nice blog to know about recurrence relation ships](https://leetcode.com/problems/reverse-pairs/discuss/97268/General-principles-behind-problems-similar-to-%22Reverse-Pairs%22)
+
+#### [Video Solution](https://youtu.be/S6rsAlj_iB4?list=PLgUwDviBIf0rPG3Ictpu74YWBQ1CaBkm2)
+
+```cpp
+
+
+class Solution {
+
+
+    int merge(vector<int>& nums, int low, int mid, int high) {
+        
+        int cnt = 0;
+        int j = mid + 1; 
+        for(int i = low;i<=mid;i++) {
+            while(j<=high && nums[i] > 2LL * nums[j]) {
+                j++;
+            }
+            cnt += (j - (mid+1));
+        }
+        vector<int> temp; 
+        int left = low, right = mid+1; 
+        while(left <= mid && right<=high) {
+            if(nums[left]<=nums[right]) {
+                temp.push_back(nums[left++]); 
+            }
+            else {
+                temp.push_back(nums[right++]); 
+            }
+        }
+        
+        // fill all the left part if left
+        while (left <= mid) {
+            temp.push_back(nums[left++]);
+        }
+        
+        // filling the right part
+        while(right <= high) {
+            temp.push_back(nums[right++]);
+        }
+        
+        // filling the nums array back
+        for(int i = low; i <= high; i++) {
+            nums[i] = temp[i - low];
+        }
+        
+        return cnt;
+    }
+    
+    
+    
+    int mergeSort(vector<int>& nums, int low, int high) {
+        
+        if(low>=high) return 0; 
+        int mid = (low + high) / 2;
+        int inv = mergeSort(nums, low, mid); 
+        inv += mergeSort(nums, mid+1, high); 
+        inv += merge(nums, low, mid, high); 
+        return inv; 
+    }
+
+public:
+    int reversePairs(vector<int>& nums) {
+        return mergeSort(nums, 0, nums.size() -1);
+    }
+};
+
+
+```
 
 
 
 
 
-# ###########################################################################
+
+<hr style="border:2px solid blue"> </hr>
+
 
 # Dynamic Programming Adithya Verma
 
