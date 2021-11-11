@@ -1075,11 +1075,799 @@ public:
     }
 };
 
+```
+
+#### [Two Sum](https://leetcode.com/problems/two-sum/)
+
+* Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+* You may assume that each input would have exactly one solution, and you may not use the same element twice.
+* You can return the answer in any order
+
+#### [Video Solution](https://www.youtube.com/watch?v=dRUpbt8vHpo&list=PLgUwDviBIf0rVwua0kKYlsS_ik_1lyVK_&index=2)
+
+
+```cpp
+
+class Solution {
+public:
+
+
+vector<int> twoSum(vector<int> &numbers, int target)
+{
+	unordered_map<int, int> hash;
+	vector<int> result;
+	for (int i = 0; i < numbers.size(); i++) {
+		int numberToFind = target - numbers[i];
+
+		if (hash.find(numberToFind) != hash.end()) {
+
+			result.push_back(hash[numberToFind]);
+			result.push_back(i);			
+			return result;
+		}
+
+            //number was not found. Put it in the map.
+		hash[numbers[i]] = i;
+	}
+	return result;
+}
+};
+
+```
+
+#### [4 Sum](https://leetcode.com/problems/4sum/)
+
+#### [Video Solution](https://www.youtube.com/watch?v=4ggF3tXIAp0&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=22)
+
+
+```cpp
+
+
+class Solution {
+public:
+    vector<vector<int>> fourSum(vector<int>& num, int target) {
+        vector<vector<int> > res;
+        
+        if (num.empty())
+            return res;
+        int n = num.size(); 
+        sort(num.begin(),num.end());
+    
+        for (int i = 0; i < n; i++) {
+        
+            int target_3 = target - num[i];
+        
+            for (int j = i + 1; j < n; j++) {
+            
+                int target_2 = target_3 - num[j];
+            
+                int front = j + 1;
+                int back = n - 1;
+            
+                while(front < back) {
+                
+                    int two_sum = num[front] + num[back];
+                
+                    if (two_sum < target_2) front++;
+                
+                    else if (two_sum > target_2) back--;
+                
+                    else {
+                    
+                        vector<int> quadruplet(4, 0);
+                        quadruplet[0] = num[i];
+                        quadruplet[1] = num[j];
+                        quadruplet[2] = num[front];
+                        quadruplet[3] = num[back];
+                        res.push_back(quadruplet);
+                    
+                        // Processing the duplicates of number 3
+                        while (front < back && num[front] == quadruplet[2]) ++front;
+                    
+                        // Processing the duplicates of number 4
+                        while (front < back && num[back] == quadruplet[3]) --back;
+                
+                    }
+                }
+                
+                // Processing the duplicates of number 2
+                while(j + 1 < n && num[j + 1] == num[j]) ++j;
+            }
+        
+            // Processing the duplicates of number 1
+            while (i + 1 < n && num[i + 1] == num[i]) ++i;
+        
+        }
+    
+        return res;
+    }
+};
+
+```
+
+#### [Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/)
+
+
+#### [Video Solution](https://youtu.be/qgizvmgeyUM?list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma)
+
+
+```cpp
+
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        
+        set<int> hashset;
+        
+        for(auto num: nums) {
+            hashset.insert(num);
+        }
+        
+        int longestStreak = 0;
+        
+        for(int num: nums) {
+            
+            // check for one less number
+            if (!hashset.count(num-1)) {
+                int currentNum = num;
+                int currentStreak = 1;
+                
+                while(hashset.count(currentNum + 1)) {
+                    currentNum += 1;
+                    currentStreak += 1;
+                }
+                
+                longestStreak = max(longestStreak, currentStreak);
+            }
+        }
+        
+        return longestStreak;
+    }
+};
 
 ```
 
 
+#### [Longest Sub Array with 0 sum](https://practice.geeksforgeeks.org/problems/largest-subarray-with-0-sum/1)
 
+
+
+```cpp
+
+int maxLen(int A[], int n)
+{
+    // Your code here
+    unordered_map<int,int> mpp; 
+    int maxi = 0;
+    int sum = 0; 
+    for(int i = 0;i<n;i++) {
+        sum += A[i]; 
+        if(sum == 0) {
+            maxi = i + 1; 
+        }
+        else {
+            if(mpp.find(sum) != mpp.end()) {
+                maxi = max(maxi, i - mpp[sum]); 
+            }
+            else {
+                mpp[sum] = i;
+            }
+        }
+        
+    }
+    return maxi; 
+}
+
+```
+
+
+#### [count sub arrays with XOR is k](https://www.interviewbit.com/problems/subarray-with-given-xor/)
+
+#### [video Solution](https://youtu.be/lO9R5CaGRPY?list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma)
+
+```cpp
+
+int Solution::solve(vector<int> &A, int B) {
+
+    map<int,int> freq;
+
+    int count = 0;
+    int xorr = 0;
+
+    for(auto it: A) {
+        xorr = xorr ^ it;
+
+        if (xorr == B) {
+            count++;
+        }
+
+        if (freq.find(xorr ^ B) != freq.end()) {
+            count += freq[xorr ^ B];
+        }
+
+        freq[xorr] += 1;
+    }
+
+    return count;
+}
+
+```
+
+#### [Longest substring without repeating](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
+
+#### [Video Solution](https://www.youtube.com/watch?v=qtVh-XEpsJo&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=26)
+
+```cpp
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        
+        set<char> visited;
+        
+        int left = 0, right =  0, n = s.size(), ans = 0;
+        
+        while(left < n && right < n) {
+            
+            if (visited.find(s[right]) == visited.end()) {
+                visited.insert(s[right]);
+                right++;
+                
+                ans = max(ans , right - left);
+            }
+            
+            else{
+                visited.erase(s[left]);
+                left++;
+            }
+        }
+        
+        return ans;
+    }
+};
+
+```
+
+#### [Reverse a linked list](https://leetcode.com/problems/reverse-linked-list/)
+
+ #### [Video Solution](https://youtu.be/iRtLEoL-r-g?list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma)
+
+ ```cpp
+
+ /**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* newHead = NULL;
+        
+        while(head != NULL) {
+            ListNode* next = head->next;
+            head->next = newHead;
+            newHead = head;
+            head = next;
+        }
+        
+        return  newHead;
+    }
+};
+
+```
+
+#### [Find middle of linked list](https://leetcode.com/problems/middle-of-the-linked-list/)
+
+#### [Video Solution](https://www.youtube.com/watch?v=sGdwSH8RK-o&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=28)
+
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        
+        ListNode* slow = head, *fast = head;
+        
+        while(fast && fast->next) {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        
+        return slow;
+    }
+};
+
+```
+
+
+#### [Merge Two sorted linked list](https://leetcode.com/problems/merge-two-sorted-lists/)
+
+#### [Video Solution](https://www.youtube.com/watch?v=Xb4slcp1U38&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=29)
+
+
+```cpp
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        
+        ListNode* res = new ListNode();
+        ListNode* temp = res;
+        
+        while(l1 != NULL && l2 != NULL) {
+            
+            if (l1->val < l2 ->val) {
+                res->next = l1;
+                res = res->next;
+                l1 = l1->next;
+            }
+            
+            else{
+                res->next = l2;
+                res = res->next ;
+                l2 = l2->next;
+            }
+        }
+        
+        while(l1 != NULL) {
+            res->next = l1;
+            res = res->next;
+            l1 = l1->next;
+        }
+        
+        while(l2 != NULL) {
+            res->next = l2;
+            res = res->next;
+            l2 = l2->next;
+        }
+        
+        return temp->next;
+    }
+};
+
+```
+
+#### Space optimised version (in place)
+
+```cpp
+
+struct ListNode{
+    int val;
+    ListNode *next;
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x): val(x), next(nullptr) {}
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+}
+
+class Solution{
+
+public:
+    ListNode* mergeTwoLists(ListNode *l1, ListNode *l2) {
+
+        if (l1 == NULL) return l2;
+        if (l2 == NULL) return l1;
+
+        if (l1->val > l2->val) std::swap(l1, l2);
+
+        ListNode* res = l1;
+
+        while(l1 != NULL && l2 != NULL) {
+
+            ListNode* temp = NULL;
+
+            while(l1 != NULL && l1->val <= l2->val) {
+                temp = l1;
+                l1 = l1->next;
+            }
+
+            temp->next = l2;
+            std::swap(l1, l2);
+        }
+
+        return res;
+    }
+};
+
+```
+
+
+#### [Remove Nth node from back of linked list](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
+
+
+#### [Video Solution](https://www.youtube.com/watch?v=Lhu3MsXZy-Q&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=30)
+
+
+```cpp
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        
+        ListNode* start = new ListNode();
+        start->next = head;
+        
+        ListNode* fast = start;
+        ListNode* slow = start;
+        
+        for(int i = 1; i <= n; i++) {
+            fast = fast->next;
+        }
+        
+        while(fast->next != NULL){
+            fast = fast->next;
+            slow = slow->next;
+        }
+        
+        slow->next = slow->next->next;
+        
+        return start->next;
+        
+    }
+};
+
+```
+
+
+#### [Add two numbers as linked list](https://leetcode.com/problems/add-two-numbers/)
+
+
+#### [video solution](https://youtu.be/LBVsXSMOIk4?list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma)
+
+```cpp
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        
+        ListNode* dummy = new ListNode();
+        ListNode* temp = dummy;
+        
+        int carry = 0;
+        
+        while(l1 != NULL || l2 != NULL || carry) {
+            
+            int sum = 0;
+            
+            if (l1 != NULL) {
+                sum += l1->val;
+                l1 = l1->next;
+            }
+            
+            if (l2 != NULL ){
+                sum += l2->val;
+                l2 = l2->next;
+            }
+            
+            sum += carry;
+            carry = sum / 10;
+            ListNode *node = new ListNode(sum % 10);
+            
+            temp->next = node;
+            temp = temp->next;
+            
+        }
+        
+        return dummy->next;
+        
+    }
+};
+
+```
+
+
+#### [Delete Node in linkedlist when pointer to that node is given (in order of 1 time)](https://leetcode.com/problems/delete-node-in-a-linked-list/)
+
+#### [Video Solution](https://youtu.be/icnp4FJdZ_c?list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma)
+
+
+```cpp
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    void deleteNode(ListNode* node) {
+     
+        node->val = node->next->val;
+        node->next = node->next->next;
+    }
+};
+
+```
+
+
+#### [Find intersection point of two linkedlist](https://leetcode.com/problems/intersection-of-two-linked-lists/)
+
+#### [Video Solution](https://www.youtube.com/watch?v=u4FWXfgS8jw&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=33)
+
+
+```cpp
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        
+        if (headA == NULL || headB == NULL ) return NULL;
+        
+        ListNode* a = headA;
+        ListNode* b = headB;
+        
+        // if a & b have different lengths then we will stop loop after second iteration
+        while( a!= b) {
+            
+            // for the end of first iteration, we just reset the pointer to the head of 
+            // another linked list
+            
+            a = a==NULL? headB : a->next;
+            b = b==NULL ? headA : b->next;
+        }
+        
+        return a;
+        
+    }
+};
+
+```
+
+#### [Detect cycle in linkedlist](https://leetcode.com/problems/linked-list-cycle/)
+
+#### [Video solution](https://www.youtube.com/watch?v=354J83hX7RI&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=34)
+
+
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        
+        if (head == NULL || head->next == NULL) return false;
+        
+        ListNode* fast = head;
+        ListNode* slow =  head;
+        
+        while(fast->next && fast->next->next) {
+            fast = fast->next->next;
+            slow = slow->next;
+            
+            if (fast == slow){
+                return true;
+            }
+        }
+        
+        return false;
+    }
+};
+
+```
+
+#### [Reverse a LinkedList in groups of size k.](https://leetcode.com/problems/reverse-nodes-in-k-group/)
+
+#### [Video solution must watch again](https://youtu.be/Of0HPkk3JgI?list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma)
+
+
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        
+        if(head == NULL || k == 1) return head;
+        
+        ListNode* dummy = new ListNode();
+        dummy->next = head;
+        
+        ListNode* cur = dummy, *nex = dummy, *pre = dummy;
+        
+        int count = 0;
+        
+        while(cur->next != NULL) {
+            cur = cur->next;
+            count++;
+        }
+        
+        while(count >= k) {
+            
+            cur = pre->next;
+            nex = cur->next;
+            
+            for(int i = 1; i < k; i++) {
+                
+                cur->next = nex->next;
+                nex->next = pre->next;
+                pre->next = nex;
+                nex = cur->next;
+            }
+            
+            pre = cur;
+            count -= k;
+        }
+        
+        return dummy->next;
+        
+    }
+};
+```
+
+#### [Check if a linked list is palindrome or not](https://leetcode.com/problems/palindrome-linked-list/)
+
+#### [Video Solution](https://youtu.be/-DtNInqFUXs?list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma)
+
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        
+        if (head == NULL || head->next == NULL) return true;
+        
+        ListNode* slow = head;
+        ListNode* fast = head;
+        
+        while(fast->next != NULL && fast->next->next != NULL){
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        
+        slow->next = reverseList(slow->next);
+        slow = slow->next;
+        
+        while(slow != NULL) {
+            if (head->val != slow->val) {
+                return false;
+            }
+            
+            head = head->next;
+            slow = slow->next;
+        }
+        
+        return true;
+      
+    }
+    
+    ListNode* reverseList(ListNode* head) {
+        ListNode* pre = NULL;
+        ListNode* next = NULL;
+        
+        while(head != NULL ) {
+            next = head->next;
+            head->next = pre;
+            pre = head;
+            head = next;
+        }
+        
+        return pre;
+    }
+};
+```
+
+
+#### [Find the starting point of the cycle in the linked list](https://leetcode.com/problems/linked-list-cycle-ii/)
+
+
+#### [Video Solution](https://youtu.be/QfbOhn0WZ88?list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma)
+
+```cpp
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        
+        if (head == NULL || head->next == NULL) return NULL;
+        
+        ListNode* slow = head;
+        ListNode* fast = head;
+        ListNode* entry = head;
+        
+        while(fast->next && fast->next->next) {
+            slow = slow->next;
+            fast = fast->next->next;
+            
+            if (slow == fast) {
+                while(slow != entry) {
+                    slow = slow->next;
+                    entry = entry->next;
+                }
+                return entry;
+            }            
+            
+        }
+        return NULL;
+    }
+};
+
+```
 
 
 
