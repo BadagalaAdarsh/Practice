@@ -2180,6 +2180,237 @@ public:
 
 ```
 
+#### [N meetings in one room](https://www.geeksforgeeks.org/find-maximum-meetings-in-one-room/)
+
+#### [Video Solution](https://www.youtube.com/watch?v=II6ziNnub1Q&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=46)
+
+```cpp
+
+struct meeting {
+    int start;
+    int end;
+    int pos; 
+}; 
+bool comparator(struct meeting m1, meeting m2) 
+{ 
+    if (m1.end < m2.end) return true; 
+    else if(m1.end > m2.end) return false; 
+    else if(m1.pos < m2.pos) return true; 
+    return false; 
+} 
+void maxMeetings(int s[], int e[], int n) {
+    struct meeting meet[n]; 
+    for(int i = 0;i<n;i++) {
+        meet[i].start = s[i], meet[i].end = e[i], meet[i].pos = i+1; 
+    }
+    
+    sort(meet, meet+n, comparator); 
+    
+    vector<int> answer;
+    
+    int limit = meet[0].end; 
+    answer.push_back(meet[0].pos); 
+    
+    for(int i = 1;i<n;i++) {
+        if(meet[i].start > limit) {
+            limit = meet[i].end; 
+            answer.push_back(meet[i].pos); 
+        }
+    }
+    for(int i = 0;i<answer.size();i++) {
+        cout << answer[i] << " "; 
+    }
+    
+}
+
+```
+
+#### [Minimum platforms needed](https://practice.geeksforgeeks.org/problems/minimum-platforms-1587115620/1#)
+
+#### [Video Solution](https://youtu.be/dxVcMDI7vyI?list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma)
+
+
+```cpp
+
+int findPlatform(int arr[], int dep[], int n)
+{
+	sort(arr, arr+n); 
+	sort(dep, dep+n); 
+	
+	int plat_needed = 1, result = 1; 
+    int i = 1, j = 0; 
+ 
+    while (i < n && j < n) { 
+        if (arr[i] <= dep[j]) { 
+            plat_needed++; 
+            i++; 
+        } 
+  
+        else if (arr[i] > dep[j]) { 
+            plat_needed--; 
+            j++; 
+        } 
+ 
+        if (plat_needed > result) 
+            result = plat_needed; 
+    } 
+  
+    return result; 
+}
+
+```
+
+#### [Job Sequencing Problem](https://practice.geeksforgeeks.org/problems/job-sequencing-problem-1587115620/1#)
+#### [Video Solution](https://www.youtube.com/watch?v=LjPx4wQaRIs&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=48)
+
+```cpp
+
+// Prints minimum number of platforms reqquired 
+// This function is used for sorting all jobs according to profit 
+bool comparison(Job a, Job b) 
+{ 
+     return (a.profit > b.profit); 
+} 
+pair<int,int> JobScheduling(Job arr[], int n) 
+{ 
+    
+    sort(arr, arr + n, comparison); 
+    int maxi = arr[0].dead;
+    for(int i = 1;i<n;i++) {
+        maxi = max(maxi, arr[i].dead); 
+    }
+    
+    int slot[maxi + 1];   
+  
+    for (int i=0; i<=maxi; i++) 
+        slot[i] = -1; 
+        
+    int countJobs = 0, jobProfit = 0;
+  
+    for (int i=0; i<n; i++) 
+    { 
+       for (int j=arr[i].dead; j>0; j--) 
+       { 
+          if (slot[j]==-1) 
+          { 
+            slot[j] = i; 
+            countJobs++; 
+            jobProfit+=arr[i].profit;
+            break; 
+          } 
+       } 
+    } 
+    
+    return make_pair(countJobs, jobProfit); 
+} 
+
+```
+
+#### [Fractional Knapsack](https://practice.geeksforgeeks.org/problems/fractional-knapsack-1587115620/1)
+#### [Video Solution](https://www.youtube.com/watch?v=F_DDzYnxO14&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=49)
+
+
+```cpp
+
+bool comp(Item a, Item b) {
+    double r1 = (double)a.value / (double)a.weight;
+    double r2 = (double)b.value / (double)b.weight;
+    return r1 > r2; 
+}
+// function to return fractionalweights
+double fractionalKnapsack(int W, Item arr[], int n)
+{
+    // Your code here
+    
+    sort(arr, arr + n, comp); 
+    
+    int curWeight = 0; 
+    double finalvalue = 0.0; 
+ 
+    
+    for (int i = 0; i < n; i++) {
+       
+        if (curWeight + arr[i].weight <= W) {
+            curWeight += arr[i].weight;
+            finalvalue += arr[i].value;
+        }
+ 
+
+        else {
+            int remain = W - curWeight;
+            finalvalue += (arr[i].value / (double)arr[i].weight) * (double)remain;
+            break;
+        }
+    }
+ 
+    return finalvalue;
+    
+}
+
+```
+
+
+#### [Find minimum number of coins that make a given value](https://www.geeksforgeeks.org/find-minimum-number-of-coins-that-make-a-change/)
+
+#### [Video Solution](https://www.youtube.com/watch?v=mVg9CfJvayM&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=48)
+
+#### [Video of aditya varma which used 2d array but easy to understand as you know this algo earlier](https://www.youtube.com/watch?v=I-l6PBeERuc)
+
+```cpp
+
+// A Dynamic Programming based C++ program to find minimum of coins
+// to make a given change V
+#include<bits/stdc++.h>
+using namespace std;
+
+// m is size of coins array (number of different coins)
+int minCoins(int coins[], int m, int V)
+{
+	// table[i] will be storing the minimum number of coins
+	// required for i value. So table[V] will have result
+	int table[V+1];
+
+	// Base case (If given value V is 0)
+	table[0] = 0;
+
+	// Initialize all table values as Infinite
+	for (int i=1; i<=V; i++)
+		table[i] = INT_MAX;
+
+	// Compute minimum coins required for all
+	// values from 1 to V
+	for (int i=1; i<=V; i++)
+	{
+		// Go through all coins smaller than i
+		for (int j=0; j<m; j++)
+		if (coins[j] <= i)
+		{
+			int sub_res = table[i-coins[j]];
+			if (sub_res != INT_MAX && sub_res + 1 < table[i])
+				table[i] = sub_res + 1;
+		}
+	}
+
+	if(table[V]==INT_MAX)
+		return -1;
+
+	return table[V];
+}
+
+// Driver program to test above function
+int main()
+{
+	int coins[] = {9, 6, 5, 1};
+	int m = sizeof(coins)/sizeof(coins[0]);
+	int V = 11;
+	cout << "Minimum coins required is "
+		<< minCoins(coins, m, V);
+	return 0;
+}
+```
+
+
+
 
 
 
