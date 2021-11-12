@@ -1869,6 +1869,113 @@ public:
 
 ```
 
+#### [Flattening of a linkedlist](https://practice.geeksforgeeks.org/problems/flattening-a-linked-list/1)
+
+#### [Video Solution](https://www.youtube.com/watch?v=ysytSSXpAI0&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=39)
+
+
+```cpp
+
+Node* mergeTwoLists(Node* a, Node* b) {
+    
+    Node *temp = new Node(0);
+    Node *res = temp; 
+    
+    // below code is just merge sort applied on two linked list
+    while(a != NULL && b != NULL) {
+        if(a->data < b->data) {
+            temp->bottom = a; 
+            temp = temp->bottom; 
+            a = a->bottom; 
+        }
+        else {
+            temp->bottom = b;
+            temp = temp->bottom; 
+            b = b->bottom; 
+        }
+    }
+    
+    if(a) temp->bottom = a; 
+    else temp->bottom = b; 
+    
+    return res -> bottom; 
+    
+}
+Node *flatten(Node *root)
+{
+   
+        if (root == NULL || root->next == NULL) 
+            return root; 
+  
+        // recur for list on right 
+        root->next = flatten(root->next); 
+  
+        // now merge 
+        root = mergeTwoLists(root, root->next); 
+  
+        // return the root 
+        // it will be in turn merged with its left 
+        return root; 
+}
+
+```
+
+#### [Rotate a linked list](https://leetcode.com/problems/rotate-list/description/)
+
+#### [Video Solution](https://youtu.be/9VPm6nEbVPA?list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma)
+
+
+```cpp
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* rotateRight(ListNode* head, int k) {
+        // edge cases 
+        if (head == NULL || head->next == NULL || k == 0) return head;
+        
+        // compute the length
+        ListNode *cur = head;
+        int len = 1;
+        while (cur->next ) { 
+            cur = cur->next;
+            len++;
+        }
+        
+        // go till that node
+        cur->next = head;
+        k = k % len; 
+        k = len - k;
+        while (k--) cur = cur->next;
+        
+        // make the node head and break connection 
+        head = cur->next;
+        cur->next = NULL;
+        
+        
+        return head; 
+    }
+};
+
+```
+
+
+
+
+
+
+
+
+
 
 
 <hr style="border:2px solid blue"> </hr>
