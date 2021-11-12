@@ -1968,6 +1968,217 @@ public:
 
 ```
 
+#### [Copy List with Random Pointer](https://leetcode.com/problems/copy-list-with-random-pointer/)
+
+#### [Video Solution](https://www.youtube.com/watch?v=VNf6VynfpdM)
+
+```cpp
+
+/*
+// Definition for a Node.
+class Node {
+public:
+    int val;
+    Node* next;
+    Node* random;
+    
+    Node(int _val) {
+        val = _val;
+        next = NULL;
+        random = NULL;
+    }
+};
+*/
+
+class Solution {
+public:
+    Node* copyRandomList(Node* head) {
+        Node *iter = head; 
+          Node *front = head;
+
+          // First round: make copy of each node,
+          // and link them together side-by-side in a single list.
+          while (iter != NULL) {
+            front = iter->next;
+
+            Node *copy = new Node(iter->val);
+            iter->next = copy;
+            copy->next = front;
+
+            iter = front;
+          }
+
+          // Second round: assign random pointers for the copy nodes.
+          iter = head;
+          while (iter != NULL) {
+            if (iter->random != NULL) {
+              iter->next->random = iter->random->next;
+            }
+            iter = iter->next->next;
+          }
+
+          // Third round: restore the original list, and extract the copy list.
+          iter = head;
+          Node *pseudoHead = new Node(0);
+          Node *copy = pseudoHead;
+
+          while (iter != NULL) {
+            front = iter->next->next;
+
+            // extract the copy
+            copy->next = iter->next;
+
+            // restore the original list
+            iter->next = front;
+              
+            copy = copy -> next; 
+            iter = front;
+          }
+
+          return pseudoHead->next;
+    }
+};
+```
+
+#### [3 Sum](https://leetcode.com/problems/3sum/)
+
+#### [Video Solution](https://www.youtube.com/watch?v=onLoX6Nhvmg&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=42)
+
+```cpp
+
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& num) {
+        vector<vector<int>> res; 
+        sort(num.begin(), num.end()); 
+        
+        // moves for a
+        for (int i = 0; i < (int)(num.size())-2; i++) {
+            
+            if (i == 0 || (i > 0 && num[i] != num[i-1])) {
+                
+                int lo = i+1, hi = (int)(num.size())-1, sum = 0 - num[i];
+                
+                while (lo < hi) {
+                    if (num[lo] + num[hi] == sum) {
+                        
+                        vector<int> temp; 
+                        temp.push_back(num[i]); 
+                        temp.push_back(num[lo]); 
+                        temp.push_back(num[hi]); 
+                        res.push_back(temp);
+                        
+                        while (lo < hi && num[lo] == num[lo+1]) lo++;
+                        while (lo < hi && num[hi] == num[hi-1]) hi--;
+                        
+                        lo++; hi--;
+                    } 
+                    else if (num[lo] + num[hi] < sum) lo++;
+                    else hi--;
+               }
+            }
+        }
+        return res;
+    }
+};
+
+```
+
+
+
+#### [Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/)
+
+#### [Video Solution](https://youtu.be/m18Hntz4go8?list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma)
+
+```cpp
+
+
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        
+        int n = height.size(); 
+        int left=0; int right=n-1;
+        int res=0;
+        int maxleft=0, maxright=0;
+        
+        while(left<=right){
+            
+            if(height[left]<=height[right]){
+
+                if(height[left]>=maxleft) maxleft=height[left];
+                else res+=maxleft-height[left];
+                
+                left++;
+            }
+            else{
+
+                if(height[right]>=maxright) maxright= height[right];
+                else res+=maxright-height[right];
+                
+                right--;
+            }
+        }
+        return res;
+    }
+};
+
+```
+
+
+#### [Remove Duplicate from sorted array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/)
+
+#### [Video Solution](https://www.youtube.com/watch?v=Fm_p9lJ4Z_8&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=44)
+
+```cpp
+
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        if (nums.size() == 0) 
+            return 0;
+        
+        int i = 0;
+        
+        for (int j = 1; j < nums.size(); j++) {
+            if (nums[j] != nums[i]) {
+                i++;
+                nums[i] = nums[j];
+            }
+        }
+        
+        return i + 1;
+    }
+};
+
+```
+
+#### [Max Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones/)
+
+
+```cpp
+
+
+class Solution {
+public:
+    int findMaxConsecutiveOnes(vector<int>& nums) {
+        int cnt = 0;
+        int maxi = 0;
+        for(int i = 0;i<nums.size();i++) {
+            if(nums[i] == 1) {
+                cnt++; 
+            }
+            else {
+                cnt = 0; 
+            }
+            
+            maxi = max(maxi, cnt); 
+        }
+        return maxi; 
+    }
+};
+
+```
 
 
 
