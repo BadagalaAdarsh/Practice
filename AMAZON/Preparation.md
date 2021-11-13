@@ -2437,6 +2437,302 @@ int main()
 }
 ```
 
+#### [Subset Sums](https://practice.geeksforgeeks.org/problems/subset-sums2234/1#)
+#### [Video Solution](https://www.youtube.com/watch?v=rYkfBRtMJr8&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=54)
+
+
+```cpp
+
+
+public: 
+    void func(int ind, int sum,vector<int> &arr, int N, vector<int> &sumSubset) {
+        if(ind == N) {
+            sumSubset.push_back(sum); 
+            return; 
+        }
+        
+        // pick the element 
+        func(ind + 1, sum + arr[ind], arr, N, sumSubset); 
+        
+        // Do-not pick the element
+        func(ind + 1, sum, arr, N, sumSubset);
+    }
+public:
+    vector<int> subsetSums(vector<int> arr, int N)
+    {
+        vector<int> sumSubset; 
+        func(0, 0, arr, N, sumSubset);
+        sort(sumSubset.begin(), sumSubset.end());
+        return sumSubset;
+    }
+
+```
+
+
+#### [Create all posibble subsets](https://leetcode.com/problems/subsets/)
+
+#### My solution using basic recursion and backtracking
+
+```cpp
+class Solution {
+private:
+    void function(int start, int end, vector<int>& nums, vector<int>& temp, vector<vector<int>>& ans) {
+        
+        if(start == end) {
+            ans.push_back(temp);
+            return;
+        }
+        
+        temp.push_back(nums[start]);
+        function(start+1, end, nums, temp, ans);
+        temp.pop_back();
+        function(start+1, end, nums, temp, ans);
+        
+    }
+    
+public:
+    vector<vector<int>> subsets(vector<int>& nums) {
+        
+        vector<vector<int>> ans;
+        
+        vector<int> temp;
+        function(0, nums.size(), nums, temp, ans);
+        
+        return ans;
+    }
+};
+
+```
+
+#### Recursion using for loop
+
+```cpp
+
+class Solution {
+public:
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>> subs;
+        vector<int> sub;
+        subsets(nums, 0, sub, subs);
+        return subs;
+    }
+private:
+    void subsets(vector<int>& nums, int i, vector<int>& sub, vector<vector<int>>& subs) {
+        subs.push_back(sub);
+        for (int j = i; j < nums.size(); j++) {
+            sub.push_back(nums[j]);
+            subsets(nums, j + 1, sub, subs);
+            sub.pop_back();
+        }
+    }
+};
+
+```
+
+
+#### [subset II print only unique subsets](https://leetcode.com/problems/subsets-ii/)
+
+#### [Video Solution](https://youtu.be/RIn3gOkbhQE?list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma)
+
+```cpp
+
+class Solution {
+    
+private:
+    void findSubsets(int start, vector<int>& nums, vector<int>& ds, vector<vector<int>>& ans){
+        ans.push_back(ds);
+        
+        for(int i = start; i < nums.size(); i++){
+            
+            if (i!= start && (nums[i] == nums[i-1])) continue;
+            
+            ds.push_back(nums[i]);
+            findSubsets(i+1, nums, ds, ans);
+            ds.pop_back();
+        }
+    }
+public:
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        vector<vector<int>> ans;
+        vector<int> ds;
+        
+        sort(nums.begin(), nums.end());
+        findSubsets(0, nums, ds, ans);
+        
+        return ans;
+    }
+};
+
+```
+
+#### [Combination Sum](https://leetcode.com/problems/combination-sum/)
+#### [Video Solution](https://youtu.be/OyZFFqQtu98?list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma)
+
+
+```cpp
+
+class Solution {
+    
+private:
+    void getCombinations(int start, vector<int>& candidates, int target, vector<int>& ds, vector<vector<int>>& ans){
+        
+        if (target == 0){
+            ans.push_back(ds);
+            return;
+        }
+        
+        if (start == candidates.size()){
+            
+            return;
+        }
+        
+        if (candidates[start] <= target){
+            ds.push_back(candidates[start]);
+            getCombinations(start, candidates, target - candidates[start], ds, ans);
+            ds.pop_back();
+        }
+        
+        getCombinations(start+1, candidates, target, ds, ans);
+    }
+    
+public:
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> ans;
+        vector<int> ds;
+        
+        getCombinations(0, candidates, target, ds, ans);
+        
+        return ans;
+    }
+};
+
+```
+
+#### [Combination Sum II](https://leetcode.com/problems/combination-sum-ii/)
+#### [Video Solution](https://youtu.be/G1fRTGRxXU8?list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma)
+
+```cpp
+class Solution {
+    public: 
+    void findCombination(int ind, int target, vector<int> &arr, vector<vector<int>> &ans, vector<int>&ds) {
+        if(target==0) {
+            ans.push_back(ds);
+            return;
+        }        
+        for(int i = ind;i<arr.size();i++) {
+            if(i>ind && arr[i]==arr[i-1]) continue; 
+            if(arr[i]>target) break; 
+            ds.push_back(arr[i]);
+            findCombination(i+1, target - arr[i], arr, ans, ds); 
+            ds.pop_back(); 
+        }
+    }
+public:
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        sort(candidates.begin(), candidates.end());
+        vector<vector<int>> ans; 
+        vector<int> ds; 
+        findCombination(0, target, candidates, ans, ds); 
+        return ans; 
+    }
+};
+```
+
+#### [Palindrome Partitining](https://leetcode.com/problems/palindrome-partitioning/)
+#### [Video Solution](https://www.youtube.com/watch?v=WBgsABoClE0&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=51)
+
+```cpp
+
+class Solution {
+private:
+    bool isPalindrome(string s, int start, int end) {
+        while(start <= end) {
+            if(s[start++] != s[end--]){
+                return false;
+            }
+        }
+        
+        return true;
+    }
+    
+void func(int index, string s, vector<string> &path, 
+              vector<vector<string> > &res) {
+        
+         if(index == s.size()) {
+            res.push_back(path);
+            return;
+            }
+        for(int i = index; i < s.size(); i++) {
+            if (isPalindrome(s,index, i)){
+                path.push_back(s.substr(index, i - index + 1));
+                func(i+1, s, path, res);
+                path.pop_back();
+            }
+        }
+    }
+    
+public:
+    vector<vector<string>> partition(string s) {
+        
+        vector<vector<string>> res;
+        vector<string> path;
+        
+        func(0, s, path, res);
+        return res;
+    }
+};
+
+```
+
+#### [k-th permutation sequence](https://leetcode.com/problems/permutation-sequence/)
+#### [Video Solution](https://www.youtube.com/watch?v=wT7gcXLYoao&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=55)
+
+
+```cpp
+
+class Solution {
+public:
+    string getPermutation(int n, int k) {
+        int fact = 1;
+        vector<int> numbers;
+        
+        // finding factorial only upto n-1 not n
+        // do remember this
+        for(int i = 1; i < n; i++){
+            fact = fact * i;
+            numbers.push_back(i);
+        }
+        
+        
+        numbers.push_back(n);
+        
+        string ans = "";
+        
+        k = k - 1;
+        while (true) {
+            ans = ans + to_string(numbers[k/fact]);
+            numbers.erase(numbers.begin() + k/fact);
+            
+            if(numbers.size() == 0){
+                break;
+            }
+            
+            k = k%fact;
+            fact = fact / numbers.size();
+        }
+        
+        return ans;
+    }
+};
+
+```
+
+
+        
+
+
+
+
 
 
 
