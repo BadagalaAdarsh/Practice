@@ -2727,8 +2727,417 @@ public:
 
 ```
 
+#### [Print all permutations of array or string](https://leetcode.com/problems/permutations/)
+#### [Video Solution](https://www.youtube.com/watch?v=f2ic2Rsc9pU&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=53)
 
+```cpp
+
+class Solution {
+public:
+    
+    void recur(int index, vector<int>& nums, vector<vector<int>>& answer) {
         
+        if (index == nums.size()) {
+            answer.push_back(nums);
+            return;
+        }
+        
+        for(int i = index; i < nums.size(); i++) {
+            
+            swap(nums[index], nums[i]);
+            recur(index + 1, nums, answer);
+            swap(nums[index], nums[i]);
+        }
+    }
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> answer;
+        int index = 0;
+        recur(index, nums, answer);
+        
+        return answer;
+    }
+};
+
+```
+
+#### [n queens problem](https://leetcode.com/problems/n-queens/)
+#### [Video Soluton](https://www.youtube.com/watch?v=i05Ju7AftcM&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=57)
+
+
+```cpp
+class Solution {
+public:
+    std::vector<std::vector<std::string> > solveNQueens(int n) {
+        std::vector<std::vector<std::string> > res;
+        std::vector<std::string> nQueens(n, std::string(n, '.'));
+        solveNQueens(res, nQueens, 0, n);
+        return res;
+    }
+private:
+    void solveNQueens(std::vector<std::vector<std::string> > &res, std::vector<std::string> &nQueens, int row, int &n) {
+        if (row == n) {
+            res.push_back(nQueens);
+            return;
+        }
+        for (int col = 0; col != n; ++col)
+            if (isValid(nQueens, row, col, n)) {
+                nQueens[row][col] = 'Q';
+                solveNQueens(res, nQueens, row + 1, n);
+                nQueens[row][col] = '.';
+            }
+    }
+    bool isValid(std::vector<std::string> &nQueens, int row, int col, int &n) {
+        //check if the column had a queen before.
+        for (int i = 0; i != row; ++i)
+            if (nQueens[i][col] == 'Q')
+                return false;
+        //check if the 45° diagonal had a queen before.
+        for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; --i, --j)
+            if (nQueens[i][j] == 'Q')
+                return false;
+        //check if the 135° diagonal had a queen before.
+        for (int i = row - 1, j = col + 1; i >= 0 && j < n; --i, ++j)
+            if (nQueens[i][j] == 'Q')
+                return false;
+        return true;
+    }
+};
+
+```
+
+#### [Sudoku Solver](https://leetcode.com/problems/sudoku-solver/)
+#### [Video Solution](https://www.youtube.com/watch?v=FWAIf_EVUKE&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=58)
+
+```cpp
+class Solution {
+public:
+    bool isValid(vector<vector<char>>& board, int row, int col, char c) {
+    // row check
+    for(int i = 0; i < 9; i++) 
+		if(board[i][col] == c) 
+			return false;
+	// col check
+    for(int i = 0; i < 9; i++) 
+		if(board[row][i] == c) 
+			return false;
+    // box check
+    int x0 = (row/3) * 3, y0 = (col/3) * 3;
+    for(int i = 0; i < 3; i++) {
+        for(int j = 0; j < 3; j++) {
+            if(board[x0 + i][y0 + j] == c) return false;
+        }
+    }
+    return true;
+}
+    
+    bool solve(vector<vector<char>>& board, int row, int col){
+        
+        if (row == 9) return true;
+        if (col == 9) return solve(board, row + 1, 0);
+        
+        if(board[row][col] != '.') return solve(board, row, col + 1);
+        
+        for(char c = '1'; c <= '9'; c++){
+            
+            if (isValid(board, row, col, c)){
+                board[row][col] = c;
+                
+                if (solve(board, row, col + 1)) {
+                    return true;
+                }
+                
+                board[row][col] = '.';
+            }        
+        }
+        return false;
+    }
+    void solveSudoku(vector<vector<char>>& board) {
+        
+        solve(board, 0, 0);
+    }
+};
+
+```
+
+#### [M Coloring Problem](https://practice.geeksforgeeks.org/problems/m-coloring-problem-1587115620/1#)
+#### [Video Solution](https://www.youtube.com/watch?v=wuVwUK25Rfc&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=60)
+
+
+```cpp
+bool isSafe(int node, int color[], bool graph[101][101], int n, int col) {
+    for(int k = 0;k<n;k++) {
+        if(k != node && graph[k][node] == 1 && color[k] == col) {
+            return false; 
+        }
+    }
+    return true; 
+}
+bool solve(int node, int color[], int m, int N, bool graph[101][101]) {
+    if(node == N) {
+        return true; 
+    }
+    
+    for(int i = 1;i<=m;i++) {
+        if(isSafe(node, color, graph, N, i)) {
+            color[node] = i;
+            if(solve(node+1, color, m, N, graph)) return true; 
+            color[node] = 0; 
+        }
+        
+    }
+    return false; 
+}
+
+//Function to determine if graph can be coloured with at most M colours such
+//that no two adjacent vertices of graph are coloured with same colour.
+bool graphColoring(bool graph[101][101], int m, int N)
+{
+    int color[N] = {0};
+    if(solve(0,color,m,N,graph)) return true; 
+    return false; 
+}
+```
+
+#### [Rat in a Maze](https://practice.geeksforgeeks.org/problems/rat-in-a-maze-problem/1)
+#### [Video Solution](https://youtu.be/bLGZhJlt4y0?list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma)
+
+```cpp
+void solve(int i, int j, vector<vector<int>>& a, int n, vector<string>& ans, string move, vector<vector<bool>>& vis){
+    
+    if(i == n-1 && j == n - 1){
+        ans.push_back(move);
+        return;
+    }
+    
+    // downward
+    if (i+1 < n && !vis[i+1][j] && a[i+1][j] == 1){
+        vis[i][j] = true;
+        solve(i+1, j, a, n, ans, move + 'D', vis);
+        vis[i][j] = false;
+    }
+    
+    // left
+    if(j-1 >= 0 && !vis[i][j-1] && a[i][j-1] == 1){
+        vis[i][j] = true;
+        solve(i, j - 1, a, n, ans, move + 'L', vis);
+        vis[i][j] = false;
+    }
+    
+    // right
+    if( j+1 < n && !vis[i][j+1] && a[i][j+1] == 1 ){
+        vis[i][j] = true;
+        solve(i, j+1, a, n, ans, move + 'R', vis);
+        vis[i][j] = false;
+    }
+    
+    // upward
+    if(i-1 >= 0 && !vis[i-1][j] && a[i-1][j] == 1){
+        vis[i][j] = true;
+        solve(i-1, j, a, n, ans, move + 'U', vis);
+        vis[i][j] = false;
+    }
+}
+
+class Solution{
+    public:
+    vector<string> findPath(vector<vector<int>> &m, int n) {
+        // Your code goes here
+        vector<string> ans;
+        
+        vector<vector<bool>> vis(n, vector<bool>(n, false));
+        if (m[0][0] == 1) solve(0, 0, m, n, ans, "", vis);
+        
+        return ans;
+    }
+};
+```
+
+#### [Word break problem usign backtracking](https://www.geeksforgeeks.org/word-break-problem-using-backtracking/)
+#### [Geeks for geeks solution](https://www.geeksforgeeks.org/word-break-problem-using-backtracking/)
+
+```cpp
+
+// A recursive program to print all possible
+// partitions of a given string into dictionary
+// words
+#include <iostream>
+using namespace std;
+
+/* A utility function to check whether a word
+is present in dictionary or not. An array of
+strings is used for dictionary. Using array
+of strings for dictionary is definitely not
+a good idea. We have used for simplicity of
+the program*/
+int dictionaryContains(string &word)
+{
+	string dictionary[] = {"mobile","samsung","sam","sung",
+							"man","mango", "icecream","and",
+							"go","i","love","ice","cream"};
+	int n = sizeof(dictionary)/sizeof(dictionary[0]);
+	for (int i = 0; i < n; i++)
+		if (dictionary[i].compare(word) == 0)
+			return true;
+	return false;
+}
+
+// Prototype of wordBreakUtil
+void wordBreakUtil(string str, int size, string result);
+
+// Prints all possible word breaks of given string
+void wordBreak(string str)
+{
+	// Last argument is prefix
+	wordBreakUtil(str, str.size(), "");
+}
+
+// Result store the current prefix with spaces
+// between words
+void wordBreakUtil(string str, int n, string result)
+{
+	//Process all prefixes one by one
+	for (int i=1; i<=n; i++)
+	{
+		// Extract substring from 0 to i in prefix
+		string prefix = str.substr(0, i);
+
+		// If dictionary contains this prefix, then
+		// we check for remaining string. Otherwise
+		// we ignore this prefix (there is no else for
+		// this if) and try next
+		if (dictionaryContains(prefix))
+		{
+			// If no more elements are there, print it
+			if (i == n)
+			{
+				// Add this element to previous prefix
+				result += prefix;
+				cout << result << endl;
+				return;
+			}
+			wordBreakUtil(str.substr(i, n-i), n-i,
+								result + prefix + " ");
+		}
+	}	
+}
+
+//Driver Code
+int main()
+{
+
+	// Function call
+	cout << "First Test:\n";
+	wordBreak("iloveicecreamandmango");
+
+	cout << "\nSecond Test:\n";
+	wordBreak("ilovesamsungmobile");
+	return 0;
+}
+
+```
+
+#### [Word break using DP](https://www.geeksforgeeks.org/word-break-problem-dp-32/)
+#### above link has both question and solution of geeks for geeks
+
+## Do read this again because you have not learnt this (Leet code 139)
+
+```cpp
+// A Dynamic Programming based program to test whether a given string can
+// be segmented into space separated words in dictionary
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+/* A utility function to check whether a word is present in dictionary or not.
+An array of strings is used for dictionary. Using array of strings for
+dictionary is definitely not a good idea. We have used for simplicity of
+the program*/
+int dictionaryContains(string word)
+{
+	string dictionary[] = {"mobile","samsung","sam","sung","man","mango",
+						"icecream","and","go","i","like","ice","cream"};
+	int size = sizeof(dictionary)/sizeof(dictionary[0]);
+	for (int i = 0; i < size; i++)
+		if (dictionary[i].compare(word) == 0)
+		return true;
+	return false;
+}
+
+// Returns true if string can be segmented into space separated
+// words, otherwise returns false
+bool wordBreak(string str)
+{
+	int size = str.size();
+	if (size == 0) return true;
+
+	// Create the DP table to store results of subroblems. The value wb[i]
+	// will be true if str[0..i-1] can be segmented into dictionary words,
+	// otherwise false.
+	bool wb[size+1];
+	memset(wb, 0, sizeof(wb)); // Initialize all values as false.
+
+	for (int i=1; i<=size; i++)
+	{
+		// if wb[i] is false, then check if current prefix can make it true.
+		// Current prefix is "str.substr(0, i)"
+		if (wb[i] == false && dictionaryContains( str.substr(0, i) ))
+			wb[i] = true;
+
+		// wb[i] is true, then check for all substrings starting from
+		// (i+1)th character and store their results.
+		if (wb[i] == true)
+		{
+			// If we reached the last prefix
+			if (i == size)
+				return true;
+
+			for (int j = i+1; j <= size; j++)
+			{
+				// Update wb[j] if it is false and can be updated
+				// Note the parameter passed to dictionaryContains() is
+				// substring starting from index 'i' and length 'j-i'
+				if (wb[j] == false && dictionaryContains( str.substr(i, j-i) ))
+					wb[j] = true;
+
+				// If we reached the last character
+				if (j == size && wb[j] == true)
+					return true;
+			}
+		}
+	}
+
+	/* Uncomment these lines to print DP table "wb[]"
+	for (int i = 1; i <= size; i++)
+		cout << " " << wb[i]; */
+
+	// If we have tried all prefixes and none of them worked
+	return false;
+}
+
+// Driver program to test above functions
+int main()
+{
+	wordBreak("ilikesamsung")? cout <<"Yes\n": cout << "No\n";
+	wordBreak("iiiiiiii")? cout <<"Yes\n": cout << "No\n";
+	wordBreak("")? cout <<"Yes\n": cout << "No\n";
+	wordBreak("ilikelikeimangoiii")? cout <<"Yes\n": cout << "No\n";
+	wordBreak("samsungandmango")? cout <<"Yes\n": cout << "No\n";
+	wordBreak("samsungandmangok")? cout <<"Yes\n": cout << "No\n";
+	return 0;
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
