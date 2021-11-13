@@ -791,6 +791,34 @@ public:
 
 ```
 
+#### Java code easy to understand
+
+```java
+
+public class Solution {
+        public boolean searchMatrix(int[][] matrix, int target) {
+            if (matrix == null || matrix.length == 0) {
+                return false;
+            }
+            int start = 0, rows = matrix.length, cols = matrix[0].length;
+            int end = rows * cols - 1;
+            while (start <= end) {
+                int mid = (start + end) / 2;
+                if (matrix[mid / cols][mid % cols] == target) {
+                    return true;
+                } 
+                if (matrix[mid / cols][mid % cols] < target) {
+                    start = mid + 1;
+                } else {
+                    end = mid - 1;
+                }
+            }
+            return false;
+        }
+    }
+    
+   ```
+
 #### [Pow(x,n)](https://leetcode.com/problems/powx-n/)
 
 #### [Solution](https://www.youtube.com/watch?v=l0YC3876qxg&list=PLgUwDviBIf0rPG3Ictpu74YWBQ1CaBkm2&index=15)
