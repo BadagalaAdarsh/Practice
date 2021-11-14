@@ -3752,6 +3752,1125 @@ int main()
 
 ```
 
+#### Implementation of stack using arrays
+
+```cpp
+
+int array[5];
+int top = -1;
+
+void push(x) {
+    array[++top] = x;
+}
+
+void pop(){
+    top--;
+}
+
+int top(){
+    return array[top];
+}
+
+int size(){
+    return top+1;
+}
+
+bool isEmpty(){
+
+    return top == -1;
+}
+
+```
+
+#### Implement Queue using arrays
+
+```cpp
+
+int array[max_size];
+
+void push(x){
+    if (count == max_size) return;
+    array[rear % n] = x;
+    rear++;
+    count++;
+}
+
+
+void pop() {
+    if (count == 0) return;
+
+    array[front % n] = -1;
+    front++;
+    count--;
+}
+
+int top(){
+    
+    if (count == 0) return -1;
+    return array[front%n];
+}
+
+int size() {
+    return count;
+}
+
+```
+
+#### [Implement stack using single queue](https://leetcode.com/problems/implement-stack-using-queues/)
+#### [Video Solution](https://www.youtube.com/watch?v=jDZQKzEtbYQ&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=75)
+
+```cpp
+
+class MyStack {
+public:
+    queue<int> q;
+    MyStack() {
+        
+    }
+    
+    void push(int x) {
+        q.push(x);
+        
+        for(int i = 0; i < q.size() -1; i++) {
+            q.push(q.front());
+            q.pop();
+        }
+    }
+    
+    int pop() {
+        int x = q.front();
+        q.pop();
+        return x;
+    }
+    
+    int top() {
+        return q.front();
+    }
+    
+    bool empty() {
+        return q.size() == 0;
+    }
+};
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * MyStack* obj = new MyStack();
+ * obj->push(x);
+ * int param_2 = obj->pop();
+ * int param_3 = obj->top();
+ * bool param_4 = obj->empty();
+ */
+ ```
+
+ #### [Implement queue using stacks](https://leetcode.com/problems/implement-queue-using-stacks/)
+ #### [Video Solution](https://www.youtube.com/watch?v=3Et9MrMc02A&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=75)
+
+```cpp
+class MyQueue {
+public:
+stack<int> input, output;
+MyQueue() {
+    
+}
+
+void push(int x) {
+    input.push(x);
+    
+}
+
+int pop() {
+    if(!output.empty()) {
+        int x = output.top();
+        output.pop();
+        return x;
+    }
+    
+    while(!input.empty()){
+        output.push(input.top());
+        input.pop();
+    }
+    
+    int x = output.top();
+    output.pop();
+    return x;
+}
+
+int peek() {
+    if(!output.empty()){
+        return output.top();
+    }
+    
+    while(!input.empty()){
+        output.push(input.top());
+        input.pop();
+    }
+    
+    return output.top();
+}
+
+bool empty() {
+    
+    if(input.empty() && output.empty()) return true;
+    return false;
+}
+};
+
+/**
+* Your MyQueue object will be instantiated and called as such:
+* MyQueue* obj = new MyQueue();
+* obj->push(x);
+* int param_2 = obj->pop();
+* int param_3 = obj->peek();
+* bool param_4 = obj->empty();
+*/
+``` 
+
+#### [Valid parenthesis](https://leetcode.com/problems/valid-parentheses/)
+
+
+```cpp
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char> paren;
+        for (char& c : s) {
+            switch (c) {
+                case '(': 
+                case '{': 
+                case '[': paren.push(c); break;
+                case ')': if (paren.empty() || paren.top()!='(') return false; else paren.pop(); break;
+                case '}': if (paren.empty() || paren.top()!='{') return false; else paren.pop(); break;
+                case ']': if (paren.empty() || paren.top()!='[') return false; else paren.pop(); break;
+                default: ; // pass
+            }
+        }
+        return paren.empty() ;
+    }
+};
+```
+#### [next greater element](https://leetcode.com/problems/next-greater-element-i/)
+#### [video solution](https://www.youtube.com/watch?v=Du881K7Jtk8&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=76)
+
+```cpp
+class Solution {
+public:
+    vector<int> nextGreaterElement(vector<int>& findNums, vector<int>& nums) {
+        stack<int> s;
+        unordered_map<int, int> m;
+        for (int n : nums) {
+            while (s.size() && s.top() < n) {
+                m[s.top()] = n;
+                s.pop();
+            }
+            s.push(n);
+        }
+        vector<int> ans;
+        for (int n : findNums) ans.push_back(m.count(n) ? m[n] : -1);
+        return ans;
+    }
+};
+```
+
+#### [Sort a stack](https://www.youtube.com/watch?v=MOGBRkkOhkY)
+#### above link has the solution not the link to the question
+
+```cpp
+// C++ program to sort a stack using recursion
+#include <iostream>
+using namespace std;
+
+// Stack is represented using linked list
+struct stack {
+	int data;
+	struct stack* next;
+};
+
+// Utility function to initialize stack
+void initStack(struct stack** s) { *s = NULL; }
+
+// Utility function to check if stack is empty
+int isEmpty(struct stack* s)
+{
+	if (s == NULL)
+		return 1;
+	return 0;
+}
+
+// Utility function to push an item to stack
+void push(struct stack** s, int x)
+{
+	struct stack* p = (struct stack*)malloc(sizeof(*p));
+
+	if (p == NULL) {
+		fprintf(stderr, "Memory allocation failed.\n");
+		return;
+	}
+
+	p->data = x;
+	p->next = *s;
+	*s = p;
+}
+
+// Utility function to remove an item from stack
+int pop(struct stack** s)
+{
+	int x;
+	struct stack* temp;
+
+	x = (*s)->data;
+	temp = *s;
+	(*s) = (*s)->next;
+	free(temp);
+
+	return x;
+}
+
+// Function to find top item
+int top(struct stack* s) { return (s->data); }
+
+// Recursive function to insert an item x in sorted way
+void sortedInsert(struct stack** s, int x)
+{
+	// Base case: Either stack is empty or newly inserted
+	// item is greater than top (more than all existing)
+	if (isEmpty(*s) or x > top(*s)) {
+		push(s, x);
+		return;
+	}
+
+	// If top is greater, remove the top item and recur
+	int temp = pop(s);
+	sortedInsert(s, x);
+
+	// Put back the top item removed earlier
+	push(s, temp);
+}
+
+// Function to sort stack
+void sortStack(struct stack** s)
+{
+	// If stack is not empty
+	if (!isEmpty(*s)) {
+		// Remove the top item
+		int x = pop(s);
+
+		// Sort remaining stack
+		sortStack(s);
+
+		// Push the top item back in sorted stack
+		sortedInsert(s, x);
+	}
+}
+
+// Utility function to print contents of stack
+void printStack(struct stack* s)
+{
+	while (s) {
+		cout << s->data << " ";
+		s = s->next;
+	}
+	cout << "\n";
+}
+
+// Driver code
+int main(void)
+{
+	struct stack* top;
+
+	initStack(&top);
+	push(&top, 30);
+	push(&top, -5);
+	push(&top, 18);
+	push(&top, 14);
+	push(&top, -3);
+
+	cout << "Stack elements before sorting:\n";
+	printStack(top);
+
+	sortStack(&top);
+	cout << "\n";
+
+	cout << "Stack elements after sorting:\n";
+	printStack(top);
+
+	return 0;
+}
+
+// This code is contributed by SHUBHAMSINGH10
+```
+
+#### below code is more understandable in python
+
+```python
+
+# Python program to sort a stack using recursion
+
+# Recursive method to insert element in sorted way
+
+
+def sortedInsert(s, element):
+
+	# Base case: Either stack is empty or newly inserted
+	# item is greater than top (more than all existing)
+	if len(s) == 0 or element > s[-1]:
+		s.append(element)
+		return
+	else:
+
+		# Remove the top item and recur
+		temp = s.pop()
+		sortedInsert(s, element)
+
+		# Put back the top item removed earlier
+		s.append(temp)
+
+# Method to sort stack
+
+
+def sortStack(s):
+
+	# If stack is not empty
+	if len(s) != 0:
+
+		# Remove the top item
+		temp = s.pop()
+
+		# Sort remaining stack
+		sortStack(s)
+
+		# Push the top item back in sorted stack
+		sortedInsert(s, temp)
+
+# Printing contents of stack
+
+
+def printStack(s):
+	for i in s[::-1]:
+		print(i, end=" ")
+	print()
+
+
+# Driver Code
+if __name__ == '__main__':
+	s = []
+	s.append(30)
+	s.append(-5)
+	s.append(18)
+	s.append(14)
+	s.append(-3)
+
+	print("Stack elements before sorting: ")
+	printStack(s)
+
+	sortStack(s)
+
+	print("\nStack elements after sorting: ")
+	printStack(s)
+
+# This code is contributed by Muskan Kalra.
+```
+
+
+#### [Find previous smaller element](https://www.interviewbit.com/problems/nearest-smaller-element/)
+
+### if you want next smaller element run loop from 0
+### if there is no case like cirucalar array then you can only run loop upto n instead of 2n
+
+```cpp
+
+vector<int> Solution::prevSmaller(vector<int> &A) {
+
+    int n = A.size();
+    vector<int> ans(n);
+    stack<pair<int,int>> st;
+
+    for(int i = 2*n-1; i >= 0; i--) {
+        int next = A[i%n];
+
+        if (st.empty()){
+            st.push({next, i%n});
+            continue;
+        }
+
+        while(!st.empty() && st.top().first > next) {
+            ans[st.top().second ] = next;
+            st.pop();
+        }
+
+        st.push({next, i%n});
+    }
+
+    while( !st.empty()){
+        ans[st.top().second] = -1;
+        st.pop();
+    }
+
+    return ans;
+}
+```
+
+#### [LRU Cache](https://leetcode.com/problems/lru-cache/)
+#### [Video Solution](https://youtu.be/xDEuM5qa0zg?list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma)
+
+#### Errichto version
+
+```cpp
+
+class LRUCache {
+    
+private:
+    unordered_map<int,int> value; // keeping existing elements
+    queue<int> accessed;
+    unordered_map<int,int> cnt_in_queue;
+    int capacity;
+    
+    void add_to_q(int key) {
+        accessed.push(key);
+        cnt_in_queue[key]++;
+    }
+    
+public:
+    LRUCache(int given_capacity) {
+        capacity = given_capacity;
+    }
+    
+    int get(int key) {
+        auto it = value.find(key);
+        
+        if(it == value.end()) {
+            return -1;
+        }
+        
+        add_to_q(key);
+        
+        return it->second; // return value[key] but this is bit slower
+    }
+    
+    void put(int key, int v) {
+        
+        if((int) value.size() < capacity) {
+            value[key] = v;
+            add_to_q(key);
+            return;
+        }
+        
+        auto it = value.find(key);
+        if (it != value.end()) {
+            it->second = v;
+            add_to_q(key);
+            return;
+        }
+        
+        while(true) {
+            int candidate = accessed.front();
+            accessed.pop();
+            
+            if(--cnt_in_queue[candidate] == 0) {
+                value.erase(candidate);
+                break;
+            }
+        }
+        value[key] = v;
+        add_to_q(key);
+    }
+};
+
+```
+
+
+#### Striver Version
+
+```cpp
+
+class LRUCache {
+public:
+    
+    class node{
+        public:
+            int key;
+            int val;
+            node* next;
+            node* prev;
+            node(int _key, int _val) {
+                key = _key;
+                val = _val;
+            }
+    };
+    
+    node* head = new node(-1, -1);
+    node* tail = new node(-1, -1);
+    
+    int cap;
+    unordered_map<int, node*> m;
+    
+    
+    LRUCache(int capacity) {
+        cap = capacity;
+        head->next = tail;
+        tail->prev = head;
+    }
+    
+    void addnode(node* newnode){
+        node* temp = head->next;
+        newnode->next = temp;
+        newnode->prev = head;
+        
+        head->next = newnode;
+        temp->prev = newnode;
+    }
+    
+    void deletenode(node* delnode){
+        node* delprev = delnode->prev;
+        node* delnext = delnode->next;
+        
+        delprev->next = delnext;
+        delnext->prev = delprev;
+    }
+    
+    int get(int key_){
+        
+        if(m.find(key_) != m.end()) {
+            
+            node* resnode = m[key_];
+            int res = resnode->val;
+            
+            m.erase(key_);
+            
+            deletenode(resnode);
+            addnode(resnode);
+            
+            m[key_] = head->next;
+            
+            return res;
+        
+        }
+        
+        return -1;
+    }
+    
+//     int get(int key) {
+        
+//     }
+    
+    void put(int key_, int value) {
+        
+        // just in case if it is previosly existed we have to delete it
+        // both from map and double linked list
+        if(m.find(key_) != m.end()) {
+            node* existnode =   m[key_];
+            m.erase(key_);
+            deletenode(existnode);
+        }
+        
+        if(m.size() == cap) {
+            m.erase(tail->prev->key);
+            deletenode(tail->prev);
+        }
+        
+        addnode(new node(key_, value));
+        m[key_] = head->next;
+        
+        
+    }
+};
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache* obj = new LRUCache(capacity);
+ * int param_1 = obj->get(key);
+ * obj->put(key,value);
+ */
+ ```
+
+#### [ (LFU) Least Frequently Used Cache](https://leetcode.com/problems/lfu-cache/)
+#### [Video Solution](https://www.youtube.com/watch?v=0PSB9y8ehbk)
+
+#### [Explanation for below is code is in the comment section](https://leetcode.com/problems/lfu-cache/discuss/94516/Concise-C%2B%2B-O(1)-solution-using-3-hash-maps-with-explanation)
+
+
+```cpp
+
+class LFUCache {
+public:
+    LFUCache(int capacity) {
+        this -> capacity = capacity;
+        size = 0;
+    }
+    
+    int get(int key) {
+        if (values.find(key) == values.end()) {
+            return -1;
+        }
+        update(key);
+        return values[key].first;
+    }
+    
+    void put(int key, int value) {
+        if (!capacity) {
+            return;
+        }
+        if (values.find(key) != values.end()) {
+            values[key].first = value;
+            update(key);
+        } else {
+            if (size == capacity) {
+                int evict = keys[lfu].front();
+                keys[lfu].pop_front();
+                values.erase(evict);
+                iters.erase(evict);
+            } else {
+                size++;
+            }
+            values[key] = {value, 1};
+            keys[1].push_back(key);
+            iters[key] = --keys[1].end();
+            lfu = 1;
+        }
+    }
+private:
+    int capacity, size, lfu = 0;
+    unordered_map<int, list<int>> keys;
+    unordered_map<int, pair<int, int>> values;
+    unordered_map<int, list<int>::iterator> iters;
+    
+    void update(int key) {
+        int freq = values[key].second;
+        auto iter = iters[key];
+        values[key].second++;
+        keys[freq].erase(iter);
+        keys[freq + 1].push_back(key);
+        iters[key] = --keys[freq + 1].end();
+        if (keys[lfu].empty()) {
+            lfu++;
+        }
+    }
+};
+
+```
+
+#### [Largest Rectangle in Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/)
+#### [Two pass solution](https://youtu.be/X0X6G-eWgQ8?list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma)
+
+
+#### Two pass code
+
+```cpp
+
+class Solution {
+public:
+    int largestRectangleArea(vector<int>& heights) {
+        int n = heights.size();
+        stack<int> st;
+        
+        int leftsmall[n], rightsmall[n];
+        
+        for(int i = 0; i < n; i++) {
+            while(!st.empty() && heights[st.top()] >= heights[i]){
+                st.pop();
+            }
+            
+            if(st.empty()) leftsmall[i] = 0;
+            else leftsmall[i] = st.top() + 1;
+            
+            st.push(i);
+        }
+        
+        //clearing the stack to reuse
+        while(!st.empty()) st.pop();
+        
+        for(int i = n-1; i >= 0; i--) {
+            while(!st.empty() && heights[st.top()] >=  heights[i]) {
+                st.pop();
+            }
+            
+            if(st.empty()) rightsmall[i] = n-1;
+            else rightsmall[i] = st.top() - 1;
+            
+            st.push(i);
+        }
+        
+        int maxA = 0;
+        
+        for(int i = 0; i < n; i++) {
+            maxA = max(maxA, heights[i] * (rightsmall[i] - leftsmall[i] + 1));
+        }
+        
+        return maxA;
+        
+    }
+};
+
+
+```
+
+#### [One pass solution](https://www.youtube.com/watch?v=jC_cWLy7jSI&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=83)
+
+```cpp
+class Solution {
+public:
+    int largestRectangleArea(vector<int>& heights) {
+        stack<int> st;
+        int maxA = 0;
+        
+        int n = heights.size();
+        
+        for(int i = 0; i <= n; i++) {
+            
+            while(!st.empty() && (i == n || heights[st.top()] >= heights[i])){
+                int height = heights[st.top()];
+                st.pop();
+                
+                int width;
+                if (st.empty()) width = i;
+                else width = i - st.top() - 1;
+                maxA = max(maxA, width * height);
+            }
+            
+            st.push(i);
+        }
+        return maxA;
+    }
+};
+
+```
+
+
+#### [Sliding Windows Maximum](https://leetcode.com/problems/sliding-window-maximum/)
+#### [Video Solution](https://youtu.be/CZQGRp93K4k?list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma)
+
+```cpp
+
+class Solution {
+public:
+    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+        
+        deque<int> dq;
+        vector<int> ds;
+        
+        for(int i = 0; i < nums.size(); i++){
+            // removing out of bounds
+            if(!dq.empty() && dq.front() == i-k ) dq.pop_front();
+            
+            
+            while(!dq.empty() && nums[dq.back()] < nums[i])
+                dq.pop_back();
+            
+            dq.push_back(i);
+            
+            if(i >= k-1) ds.push_back(nums[dq.front()]);
+        }
+        return ds;
+    }
+};
+
+```
+#### [Implement Min stack](https://leetcode.com/problems/min-stack/)
+#### [Video Solution](https://youtu.be/V09NfaGf2ao)
+
+#### Using 2N space complexity that is stack of pairs
+
+```cpp
+class MinStack {
+public:
+    stack<pair<int,int>> st;
+    MinStack() {
+        
+    }
+    
+    void push(int val) {
+        if(st.empty()){
+            st.push({val, val});
+        }
+        else{
+            st.push({val, min(val, st.top().second)});
+        }
+    }
+    
+    void pop() {
+        st.pop();
+    }
+    
+    int top() {
+       return st.top().first; 
+    }
+    
+    int getMin() {
+        return st.top().second;
+    }
+};
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack* obj = new MinStack();
+ * obj->push(val);
+ * obj->pop();
+ * int param_3 = obj->top();
+ * int param_4 = obj->getMin();
+ */
+ ```
+
+ #### [ORder of N approach in space](https://www.youtube.com/watch?v=V09NfaGf2ao)
+ #### if ele < min then ele = 2* ele - min (this is the main point to remeber)
+
+
+```cpp
+class MinStack {
+    stack<long long>st;
+    long long mini;
+public:
+    MinStack() {
+        while(st.empty() == false) st.pop();
+        mini = INT_MAX;
+    }
+    
+    void push(int value) {
+        long long val = value;
+        if (st.empty()){
+            mini = val;
+            st.push(val);
+        }
+        else{
+            if(val < mini){
+                st.push(2 * val * 1LL - mini);
+                mini =val;
+            }
+            
+            else{
+                st.push(val);
+            }
+        }
+    }
+    
+    void pop() {
+        if(st.empty()) return;
+        
+        long long el = st.top();
+        st.pop();
+        
+        if(el < mini){
+            mini = 2 * mini - el;
+        }
+        
+    }
+    
+    int top() {
+        if(st.empty()) return -1;
+        
+        long long el = st.top();
+        if(el < mini) return mini;
+        return el;
+    }
+    
+    int getMin() {
+        return mini;
+    }
+};
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack* obj = new MinStack();
+ * obj->push(val);
+ * obj->pop();
+ * int param_3 = obj->top();
+ * int param_4 = obj->getMin();
+ */
+
+ ```
+
+#### [Rotten Oranges](https://leetcode.com/problems/rotting-oranges/)
+#### [Video solution](https://youtu.be/pUAPcVlHLKA)
+
+
+```cpp
+
+class Solution {
+public:
+    int orangesRotting(vector<vector<int>>& grid) {
+        
+        vector<int> dir = {-1,0,1,0,-1};
+        
+        int m = grid.size();
+        int n = grid[0].size();
+        
+        queue<pair<int,int>> q;
+        
+        int fresh = 0;
+        
+        // pushing all the rotten oranges
+        for(int i = 0; i < m; i++) {
+            for(int j = 0; j < n; j++) {
+                if (grid[i][j] == 2) {
+                    q.push({i,j});
+                }
+                
+                if (grid[i][j] == 1) {
+                    fresh++;
+                }
+            }
+        }
+        
+        int ans = -1;
+        
+        while(!q.empty()){
+            
+            int sz = q.size();
+            
+            while(sz--) {
+                
+                pair<int,int> p = q.front();
+                q.pop();
+                
+                for(int i = 0; i < 4; i++) {
+                    int r = p.first + dir[i];
+                    int c = p.second + dir[i+1];
+                    
+                    if (r >= 0&& r < m && c >= 0 && c < n && grid[r][c] == 1) {
+                        grid[r][c] = 2;
+                        q.push({r,c});
+                        fresh--;
+                    }
+                }
+            }
+            ans++;
+        }
+        
+        if (fresh > 0) return -1;
+        
+        if (ans == -1) return 0;
+        
+        return ans;
+    }
+};
+```
+
+#### [Online stock span](https://leetcode.com/problems/online-stock-span/)
+#### [Blog Solution](https://leetcode.com/problems/online-stock-span/discuss/636856/Single-stack-explanation-with-Diagram)
+#### this is similar to next greater element in the left of array just a slight variation of it
+
+
+```cpp
+
+class StockSpanner {
+public:
+    stack<pair<int,int>> sk;
+    StockSpanner() {    }
+    
+    int next(int price) {
+	
+        int ct = 1;
+        while(sk.size() and sk.top().first <= price)    // as shown in during Dry run on sample input
+				ct+=sk.top().second , sk.pop();            // we add count of poped element's count
+				
+        sk.push({price , ct});
+        return ct;
+    }
+};
+
+```
+
+#### [Find maximum of minimum of all window sizes](https://www.geeksforgeeks.org/find-the-maximum-of-minimums-for-every-window-size-in-a-given-array/)
+#### both the question and answer
+#### this is similar to next smaller or greater which uses stack
+
+
+```cpp
+// An efficient C++ program to find
+// maximum of all minimums of
+// windows of different sizes
+#include <iostream>
+#include<stack>
+using namespace std;
+
+void printMaxOfMin(int arr[], int n)
+{
+// Used to find previous and next smaller
+	stack<int> s;
+
+	// Arrays to store previous and next smaller
+	int left[n+1];
+	int right[n+1];
+
+	// Initialize elements of left[] and right[]
+	for (int i=0; i<n; i++)
+	{
+		left[i] = -1;
+		right[i] = n;
+	}
+
+	// Fill elements of left[] using logic discussed on
+	// https://www.geeksforgeeks.org/next-greater-element/
+	for (int i=0; i<n; i++)
+	{
+		while (!s.empty() && arr[s.top()] >= arr[i])
+			s.pop();
+
+		if (!s.empty())
+			left[i] = s.top();
+
+		s.push(i);
+	}
+
+	// Empty the stack as stack is
+// going to be used for right[]
+	while (!s.empty())
+		s.pop();
+
+	// Fill elements of right[] using same logic
+	for (int i = n-1 ; i>=0 ; i-- )
+	{
+		while (!s.empty() && arr[s.top()] >= arr[i])
+			s.pop();
+
+		if(!s.empty())
+			right[i] = s.top();
+
+		s.push(i);
+	}
+
+	// Create and initialize answer array
+	int ans[n+1];
+	for (int i=0; i<=n; i++)
+		ans[i] = 0;
+
+	// Fill answer array by comparing minimums of all
+	// lengths computed using left[] and right[]
+	for (int i=0; i<n; i++)
+	{
+		// length of the interval
+		int len = right[i] - left[i] - 1;
+
+		// arr[i] is a possible answer for this length
+		// 'len' interval, check if arr[i] is more than
+		// max for 'len'
+		ans[len] = max(ans[len], arr[i]);
+	}
+
+	// Some entries in ans[] may not be filled yet. Fill
+	// them by taking values from right side of ans[]
+	for (int i=n-1; i>=1; i--)
+		ans[i] = max(ans[i], ans[i+1]);
+
+	// Print the result
+	for (int i=1; i<=n; i++)
+		cout << ans[i] << " ";
+}
+
+// Driver program
+int main()
+{
+	int arr[] = {10, 20, 30, 50, 10, 70, 30};
+	int n = sizeof(arr)/sizeof(arr[0]);
+	printMaxOfMin(arr, n);
+	return 0;
+}
+
+```
+
+#### [the celebrity problem](https://leetcode.com/problems/find-the-celebrity/)
+#### well it is locked 
+#### [find the problem and solution here in GFG](https://www.geeksforgeeks.org/the-celebrity-problem/)
+
+
 
 
 
