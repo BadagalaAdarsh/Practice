@@ -4872,6 +4872,286 @@ int main()
 
 
 
+## Above has no solutoin done you can find in the blog as it is not that much important i have not placed it here
+
+#### [Reverse words in a string](https://leetcode.com/problems/reverse-words-in-a-string/)
+
+
+```cpp
+class Solution {
+public:
+    string reverseWords(string s) {
+        vector<string> array;
+        
+        string str = "";
+        for(int i = 0; i < s.size(); i++) {
+            if (s[i] == 32) {
+                array.push_back(str);
+                str = "";
+            }
+            else{
+                str += s[i];
+            }
+        }
+        
+        array.push_back(str);
+        
+        string answer="";
+        
+        for(int i = array.size() - 1; i >= 1; i++) {
+            answer += array[i];
+            
+            answer += " ";
+        }        
+        
+        answer += array[0];
+        
+        return answer;
+    }
+};
+```
+### we can also approach above problem without taking extra space as reverse the whole string first then reverse word by word
+
+
+#### [Longest palindromic substring](https://leetcode.com/problems/longest-palindromic-substring/)
+
+```cpp
+
+class Solution {
+public:
+    pair<int,int> getstring(string& s, int center1, int center2){
+        
+       
+        
+        int left = center1, right = center2;
+        
+        while(left >= 0 && right <= (int)s.length() && s[left] == s[right]){
+            left--;
+            right++;
+        }
+        
+        
+        return {++left, --right};
+        
+    }
+    
+    string longestPalindrome(string s) {
+        
+        
+        pair<int, int> answer (0,0);
+        
+        for(int i = 0; i < (int)s.length(); i++){
+            pair<int,int> even = getstring(s, i, i+1);
+            pair<int,int> odd = getstring(s, i , i);
+            cout << "even" << even.first << even.second << " " << "odd" << odd.first << odd.second << " " << s[i] << endl;
+            answer = (even.second - even.first > odd.second - odd.first) ? (answer.second- answer.first > even.second - even.first ? answer : even) : (answer.second - answer.first > odd.second - odd.first ? answer : odd);
+        }
+        
+        cout << "final answer is " << answer.first << " " << answer.second;
+        
+        return s.substr(answer.first, answer.second - answer.first + 1);
+        
+    }
+};
+```
+
+#### [Roman to Integer](https://leetcode.com/problems/roman-to-integer/)
+
+```cpp
+
+class Solution {
+public:
+    int romanToInt(string s) {
+        
+        unordered_map<char,int> values = {
+            {'M', 1000},
+            {'D', 500},
+            {'C', 100},
+            {'L', 50},
+            {'X', 10},
+            {'V', 5},
+            {'I', 1}
+    };
+        int answer = 0;
+        int prev = 0;
+        
+        for(int i = (int)s.length() -1; i >=0; i--) {
+        
+            int curr = values[s[i]];
+            
+            if (curr >= prev){
+                answer += curr;
+            }
+            
+            else {
+                answer -= curr;
+            }
+            
+            prev = curr;
+        }
+        
+        return answer;
+        
+    }
+};
+
+```
+
+#### [String to integer atoi](https://leetcode.com/problems/string-to-integer-atoi/)
+#### [Video solution](https://youtu.be/2I9XO8jwZCA)
+
+```cpp
+class Solution {
+public:
+    int myAtoi(string s) {
+        
+        int result = 0; // for storing the result
+        int i = 0; // pointing to current character
+        int sign = 1;
+        
+        // trimming all the spaces
+        while(s[i] == ' ') i++;
+        
+        if(s[i] == '-') {
+            sign = -1;
+            i++;
+        }
+        
+        while(s[i]) {
+            if (!(s[i] - '0' >= 0 && s[i] -'0' <= 9)){
+                return -1;
+            }
+            
+            result = result * 10 + s[i] - '0';
+            i++;
+        }
+        
+        return result * sign;
+    }
+};
+```
+
+#### [Longest Common Prefix](https://leetcode.com/problems/longest-common-prefix/)
+
+```cpp
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& str) {
+        
+        int n = str.size();
+        
+        if (n == 0) return "";
+        
+        sort(str.begin(), str.end());
+        
+        string a = str[0];
+        string b = str[n-1];
+        
+        string answer = "";
+        
+        for(int i = 0; i < a.size(); i++) {
+            if(a[i] == b[i]){
+                answer += a[i];
+            }
+            
+            else{
+                return answer;
+            }
+        }
+        
+        return answer;
+    }
+};
+```
+
+####  [Rabin Carp Algorithm](https://leetcode.com/problems/repeated-string-match/discuss/416144/Rabin-Karp-algorithm-C%2B%2B-implementation)
+#### [Video Explanation](https://youtu.be/BQ9E-2umSWc)
+
+```cpp
+/* Following program is a C++ implementation of Rabin Karp 
+Algorithm given in the CLRS book */
+#include <bits/stdc++.h> 
+using namespace std; 
+
+// d is the number of characters in the input alphabet 
+#define d 256 
+
+/* pat -> pattern 
+	txt -> text 
+	q -> A prime number 
+*/
+void search(char pat[], char txt[], int q) 
+{ 
+	int M = strlen(pat); 
+	int N = strlen(txt); 
+	int i, j; 
+	int p = 0; // hash value for pattern 
+	int t = 0; // hash value for txt 
+	int h = 1; 
+
+	// The value of h would be "pow(d, M-1)%q" 
+	for (i = 0; i < M - 1; i++) 
+		h = (h * d) % q; 
+
+	// Calculate the hash value of pattern and first 
+	// window of text 
+	for (i = 0; i < M; i++) 
+	{ 
+		p = (d * p + pat[i]) % q; 
+		t = (d * t + txt[i]) % q; 
+	} 
+
+	// Slide the pattern over text one by one 
+	for (i = 0; i <= N - M; i++) 
+	{ 
+
+		// Check the hash values of current window of text 
+		// and pattern. If the hash values match then only 
+		// check for characters on by one 
+		if ( p == t ) 
+		{ 
+			/* Check for characters one by one */
+			for (j = 0; j < M; j++) 
+			{ 
+				if (txt[i+j] != pat[j]) 
+					break; 
+			} 
+
+			// if p == t and pat[0...M-1] = txt[i, i+1, ...i+M-1] 
+			if (j == M) 
+				cout<<"Pattern found at index "<< i<<endl; 
+		} 
+
+		// Calculate hash value for next window of text: Remove 
+		// leading digit, add trailing digit 
+		if ( i < N-M ) 
+		{ 
+			t = (d*(t - txt[i]*h) + txt[i+M])%q; 
+
+			// We might get negative value of t, converting it 
+			// to positive 
+			if (t < 0) 
+			t = (t + q); 
+		} 
+	} 
+} 
+
+/* Driver code */
+int main() 
+{ 
+	char txt[] = "GEEKS FOR GEEKS"; 
+	char pat[] = "GEEK"; 
+	int q = 101; // A prime number 
+	search(pat, txt, q); 
+	return 0; 
+} 
+```
+
+
+
+## Above one is a blog (above algoirthms is a searching/matching pattern in the text using hash function)
+
+
 
 
 
