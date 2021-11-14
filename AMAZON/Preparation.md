@@ -3619,7 +3619,138 @@ int main() {
 
 ```
 
+#### [Check if a number is power of 2 or not is order of 1 time](https://leetcode.com/problems/power-of-two/)
 
+```cpp
+
+class Solution {
+public:
+    bool isPowerOfTwo(int n) {
+        
+        if (n<=0) return false;
+        
+        return n && !(n & (n-1));
+        
+    }
+};
+
+```
+
+#### [Count total set bits](https://leetcode.com/problems/counting-bits/)
+
+```cpp
+class Solution {
+public:
+    vector<int> countBits(int n) {
+        
+        vector<int> ans;
+        
+        for(int i = 0; i <= n; i++) ans.push_back(__builtin_popcount(i));
+        
+        return ans;
+    }
+};
+```
+
+
+#### [Divide integers without using division (/) operator](https://leetcode.com/problems/divide-two-integers/)
+
+#### [Video Solution](https://youtu.be/htX69j1jf5U)
+
+
+```cpp
+
+    int divide(int A, int B) {
+        if (A == INT_MIN && B == -1) return INT_MAX;
+        int a = abs(A), b = abs(B), res = 0, x = 0;
+        while (a - b >= 0) {
+            for (x = 0; a - (b << x << 1) >= 0; x++);
+            res += 1 << x;
+            a -= b << x;
+        }
+        return (A > 0) == (B > 0) ? res : -res;
+    }
+
+```
+
+#### other method is
+
+```cpp
+
+    int divide(int A, int B) {
+        if (A == INT_MIN && B == -1) return INT_MAX;
+        int a = abs(A), b = abs(B), res = 0;
+        for (int x = 31; x >= 0; x--)
+            if ((signed)((unsigned)a >> x) - b >= 0)
+                res += 1 << x, a -= b << x;
+        return (A > 0) == (B > 0) ? res : -res;
+    }
+
+
+```
+## Very Very important
+#### [For the given string find all the possible subsequence using powerset](https://practice.geeksforgeeks.org/problems/power-set4302/1#)
+
+#### [Video Solution](https://www.youtube.com/watch?v=b7AYbpM5YrE&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=68)
+
+```cpp
+
+vector<string> AllPossibleStrings(string s){
+		    int n = s.size(); 
+		    vector<string> ans; 
+		    for(int num = 0; num < (1 << n); num++) {
+		        string sub = ""; 
+		        for(int i = 0;i<n;i++) {
+		            if(num & (1<<i)) {
+		                sub += s[i];
+		            }
+		        }
+		        if(sub.size() > 0)
+		            ans.push_back(sub);
+		    }
+		    sort(ans.begin(), ans.end()); 
+		    return ans; 
+		}
+```
+
+#### [Calculate square of a number without using *, / or pow](https://www.geeksforgeeks.org/calculate-square-of-a-number-without-using-and-pow/)
+
+```cpp
+// Square of a number using bitwise operators
+#include <bits/stdc++.h>
+using namespace std;
+
+int square(int n)
+{
+	// Base case
+	if (n == 0)
+		return 0;
+
+	// Handle negative number
+	if (n < 0)
+		n = -n;
+
+	// Get floor(n/2) using right shift
+	int x = n >> 1;
+
+	// If n is odd
+	if (n & 1)
+		return ((square(x) << 2) + (x << 2) + 1);
+	else // If n is even
+		return (square(x) << 2);
+}
+
+// Driver Code
+int main()
+{
+	// Function calls
+	for (int n = 1; n <= 5; n++)
+		cout << "n = " << n << ", n^2 = " << square(n)
+			<< endl;
+	return 0;
+}
+
+```
 
 
 
