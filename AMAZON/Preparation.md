@@ -5146,10 +5146,313 @@ int main()
 	return 0; 
 } 
 ```
-
-
-
 ## Above one is a blog (above algoirthms is a searching/matching pattern in the text using hash function)
+
+
+#### [Z function](https://leetcode.com/problems/implement-strstr/)
+
+```cpp
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+                
+        int m = haystack.size(), n = needle.size();
+        
+        // if needle is empty string then it is present in 0th index itself
+        if(needle.size() == 0) return 0;
+        
+        // if haystack is empty then needle is not present at all
+        if(haystack.size() == 0) return -1;
+        
+        for(int i = 0; i <= m - n; i++) {
+            int j = 0;
+            
+            for( ; j < n; j++) {
+                if (haystack[i + j] != needle[j]) {
+                    break;
+                }
+            }
+            
+            if(j==n){
+                return i;
+            }
+        }
+        return -1;
+    }
+};
+``` 
+
+#### [KMP algorithm](https://youtu.be/lhhqbGH7Pao)
+
+```cpp
+
+class Solution {
+    
+private:
+    vector<int> prefix_array(string s){
+        int n = s.size();
+        vector<int> answer(n);
+        
+        answer[0] = 0;
+        
+        for(int i = 1; i < n; i++) {
+            int j = answer[i-1];
+            
+            while(j > 0 && s[i] != s[j])
+                j = answer[j-1];
+            
+            if(s[i] == s[j])
+                j++;
+            
+            answer[i] = j;
+        }
+        
+        return answer;
+    }
+public:
+    int strStr(string haystack, string needle) {
+        
+        
+        int m = haystack.size(), n = needle.size();
+        
+        if(needle.size() == 0) return 0;
+        
+        if(haystack.size() == 0) return -1;
+        
+        vector<int> prefix = prefix_array(needle);
+        
+        
+        int pos = -1;
+        int i = 0, j = 0;
+        
+        while(i < haystack.size()) {
+            
+            if(haystack[i] == needle[j]){
+                j++;
+                i++;
+            }
+            else{
+                if(j!=0) {
+                    j = prefix[j-1];
+                }
+                else{
+                    i++;
+                }
+            }
+            
+            if (j == needle.size()){
+                pos = i - needle.size();
+                return pos;
+            }
+                
+        }
+        return -1;
+    }
+};
+
+```
+
+#### [Minimum characters required to make a strng palindromic](https://www.interviewbit.com/problems/minimum-characters-required-to-make-a-string-palindromic/)
+
+#### [BLOG OF GFG FOR LOGIC](https://www.geeksforgeeks.org/minimum-characters-added-front-make-string-palindrome/)
+
+#### main logic is reverse the given string concat with itself by adding a special character in between
+#### then calculate prefix array for that
+#### final answer will be last value is string size minus last value in the prefix array
+
+
+#### [DP solutino of Aditya verma](https://www.youtube.com/watch?v=AEcRW4ylm_c)
+
+### there is a DP solution too but for now i have gone with KMP as the time is Order of n and space is n
+### for preix array
+
+
+```cpp
+
+vector<int> prefix_array(string s){
+
+    int n = s.size();
+
+    vector<int> ans(n);
+
+    ans[0] = 0;
+
+    for(int i = 1; i < n; i++) {
+
+        int j = ans[i-1];
+
+        while(j > 0 && s[i] != s[j])
+            j = ans[j-1];
+
+        if(s[i] == s[j])
+            j++;
+        ans[i] = j;
+    }
+
+    return ans;
+}
+
+
+int Solution::solve(string A) {
+
+    string reverse_string = A;
+    reverse(reverse_string.begin(), reverse_string.end());
+
+    string concat =  A + "$" + reverse_string;
+
+    vector<int> prefix = prefix_array(concat);
+
+    return A.size() - prefix.back();
+}
+
+``` 
+
+#### [Check if given 2 string are anagram or not](https://leetcode.com/problems/valid-anagram/)
+
+```cpp
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        sort(s.begin(),s.end());
+        sort(t.begin(), t.end());
+        return  s == t ;
+    }
+};
+
+```
+
+#### above of nlogn solution as it is sorting below is order of n solution
+
+```cpp
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        if (s.length() != t.length()) return false;
+        int n = s.length();
+        int counts[26] = {0};
+        for (int i = 0; i < n; i++) { 
+            counts[s[i] - 'a']++;
+            counts[t[i] - 'a']--;
+        }
+        for (int i = 0; i < 26; i++)
+            if (counts[i]) return false;
+        return true;
+    }
+};
+```
+
+
+#### [count and say](https://leetcode.com/problems/count-and-say/)
+#### [To understand question clearly read this you will also find the answer here in python](https://leetcode.com/problems/count-and-say/discuss/201832/It's-a-good-question-let-me-explain-it)
+
+#### trace the function again adarsh, you don't know the complete intuition yet
+
+```cpp
+
+class Solution {
+private:
+    string count(string s){
+        char c = s[0];
+        
+        int count = 1;
+        
+        string result = "";
+        
+        for(int i = 1; i < s.size(); i++) {
+            if (s[i] == c){
+                count++;
+            }
+            else{
+                result = result + to_string(count) + c;
+                c = s[i];
+                count = 1;
+            }
+        }
+        
+        result = result + to_string(count) + c;
+        
+        return result;
+    }
+    
+public:
+    string countAndSay(int n) {
+        if (n == 1) 
+            return "1";
+        
+        return count(countAndSay(n-1));
+    }
+};
+```
+
+#### iterative version of the code
+
+```cpp
+
+class Solution {
+public:
+    string countAndSay(int n) {
+        string result = "1",current;
+        while(--n){
+            current = "";
+            for(int i=0;i<result.size();i++){
+                int count = 1;
+                while(i < result.size()-1 && result[i] == result[i+1]){
+                    count++;
+                    i++;
+                }
+                current +=  to_string(count) + result[i] ;
+            }
+            result = current;
+        }
+        return result;
+    }
+};
+```
+
+#### [Compare version numbers](https://leetcode.com/problems/compare-version-numbers/)
+
+#### [Solution in leetcode blog](https://leetcode.com/problems/compare-version-numbers/discuss/50767/My-2ms-easy-solution-with-CC%2B%2B)
+
+```cpp
+
+class Solution {
+public:
+    int compareVersion(string version1, string version2) {
+        int i = 0; 
+        int j = 0;
+        int n1 = version1.size(); 
+        int n2 = version2.size();
+
+        int num1 = 0;
+        int num2 = 0;
+        while(i<n1 || j<n2)
+        {
+            while(i<n1 && version1[i]!='.'){
+                num1 = num1*10+(version1[i]-'0');
+                i++;
+            }
+
+            while(j<n2 && version2[j]!='.'){
+                num2 = num2*10+(version2[j]-'0');;
+                j++;
+            }
+
+            if(num1>num2) return 1;
+            else if(num1 < num2) return -1;
+
+            num1 = 0;
+            num2 = 0;
+            i++;
+            j++;
+        }
+
+        return 0;
+    }
+};
+
+```
+
+
 
 
 
