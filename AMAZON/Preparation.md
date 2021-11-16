@@ -6056,6 +6056,110 @@ private:
 #### [Balanced binary tree](https://leetcode.com/problems/balanced-binary-tree/)
 #### [video solution](https://youtu.be/Yt50Jfbd8Po?list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk)
 
+```cpp
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    bool isBalanced(TreeNode* root) {
+        return dfsHeight(root) != -1;
+    }
+    
+    
+    int dfsHeight(TreeNode* root){
+        if(root == NULL) return 0;
+        
+        int leftHeight = dfsHeight(root->left);
+        if (leftHeight == -1) return -1;
+        
+        int rightHeight = dfsHeight(root->right);
+        if(rightHeight == -1) return -1;
+        
+        if(abs(leftHeight - rightHeight) > 1) return -1;
+        
+        return max(leftHeight, rightHeight) + 1;
+        
+    }
+};
+
+```
+
+
+#### [Lowest common ancestor in a binary tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/)
+#### [video solution](https://youtu.be/_-QHfMDde90?list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk)
+
+```cpp
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        // base case 
+        if(root == NULL || root == p || root == q) {
+            return root;
+        }
+        
+        TreeNode* left = lowestCommonAncestor(root->left, p, q);
+        TreeNode* right = lowestCommonAncestor(root->right,p, q);
+        
+        if(left == NULL){
+            return right;
+        }
+        
+        else if (right == NULL){
+            return left;   
+        }
+        
+        else{
+            return root;
+        }
+    }
+};
+```
+
+#### [check if two trees are identical or not](https://leetcode.com/problems/same-tree/)
+#### [Video solution](https://www.youtube.com/watch?v=BhuvF_-PWS0&list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk&index=19)
+
+```cpp
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        
+        if(p == NULL || q == NULL)
+            return (p == q);
+        
+        return (p->val == q->val) && isSameTree(p->left,q->left) && isSameTree(p->right, q->right);
+    }
+};
+```
 
 
 
