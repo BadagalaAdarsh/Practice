@@ -6002,6 +6002,59 @@ public:
 
 ```
 
+#### [Height or maximum depth of the binary tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/)
+#### [Video solution](https://youtu.be/eD3tmO66aBA?list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk)
+
+
+```cpp
+
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        if(root == NULL) return 0; 
+        
+        int lh = maxDepth(root->left); 
+        int rh = maxDepth(root->right); 
+        
+        return 1 + max(lh, rh); 
+    }
+}; 
+
+
+```
+
+#### [Diameter of the binary tree](https://leetcode.com/problems/diameter-of-binary-tree/)
+#### It is the longest path between any two nodes
+#### It may pass through the root but it is not mandatory to pass the pass from root in order to consider it as diameter
+
+#### [video Solution](https://youtu.be/Rezetez59Nk?list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk)
+
+```cpp
+
+class Solution {
+public:
+    int diameterOfBinaryTree(TreeNode* root) {
+        int diameter = 0;
+        height(root, diameter);
+        return diameter;
+    }
+private:
+    int height(TreeNode* node, int& diameter) {
+        if (!node) {
+            return 0;
+        }
+        int lh = height(node->left, diameter);
+        int rh = height(node->right, diameter);
+        diameter = max(diameter, lh + rh);
+        return 1 + max(lh, rh);
+    }
+};
+
+
+```
+
+#### [Balanced binary tree](https://leetcode.com/problems/balanced-binary-tree/)
+#### [video solution](https://youtu.be/Yt50Jfbd8Po?list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk)
 
 
 
@@ -7069,7 +7122,7 @@ public:
         
         return ans;
     }
-};
+}; 
 
 ```
 
