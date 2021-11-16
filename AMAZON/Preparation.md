@@ -6161,6 +6161,393 @@ public:
 };
 ```
 
+#### [Binary tree maximum path sum](https://leetcode.com/problems/binary-tree-maximum-path-sum/)
+#### [Video solution](https://youtu.be/WszrfSwMz58?list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk)
+
+
+```cpp
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    int maxPathSum(TreeNode* root) {
+        int maxi = INT_MIN;
+        maxPathDown(root, maxi);
+        return maxi;
+    }
+    
+    int maxPathDown(TreeNode* node, int& maxi){
+        if(node == NULL) return 0;
+        
+        // get sum of both left and right sub tree
+        // if negative sum is there or nodes are there ignore them and take them as zero
+        int left = max(0, maxPathDown(node->left, maxi));
+        int right = max(0, maxPathDown(node->right, maxi));
+        
+        // update maximum
+        maxi = max(maxi, left + right + node->val);
+        
+        return max(left, right) + node->val;
+    }
+};
+
+
+```
+
+
+## Construct a unique binary trees from the given traversals
+#### [Video solution](https://youtu.be/9GMECGQgWrQ?list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk)
+
+#### we cannot construct a unique binary tree with only preorder and postorder because for the given sequence we can have multiple binary trees which satisfies the conditions
+
+#### we can construct a unique binary tree using inorder & preorder and we can also construct a binary tree using inorder & postorder
+
+#### something like inorder is very very important inorder to construct a unique binary tree because it gives a clear cut idea that what is on the left of the root and 
+#### what is on the right of the root which is really important to create a unique binary tree
+
+
+
+
+
+
+#### [construct binary tree from inorder and preorder](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
+#### [Video solution](https://youtu.be/aZNaLrVebKQ?list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk)
+
+```cpp
+
+class Solution {
+public:
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        map<int, int> inMap; 
+
+        for(int i = 0; i < inorder.size(); i++) {
+            inMap[inorder[i]] = i;
+        }
+
+        TreeNode* root = buildTree(preorder, 0, preorder.size() - 1, inorder, 0, inorder.size() - 1, inMap);
+        return root;
+    }
+   TreeNode* buildTree(vector<int>& preorder, int preStart, int preEnd, vector<int>& inorder, int inStart, int inEnd, map<int, int> &inMap) {
+        if(preStart > preEnd || inStart > inEnd) return NULL;
+
+        TreeNode* root = new TreeNode(preorder[preStart]);
+        int inRoot = inMap[root->val];
+        int numsLeft = inRoot - inStart;
+
+        root->left = buildTree(preorder, preStart + 1, preStart + numsLeft, inorder, inStart, inRoot - 1, inMap);
+        root->right = buildTree(preorder, preStart + numsLeft + 1, preEnd, inorder, inRoot + 1, inEnd, inMap);
+
+        return root;
+    }
+};
+
+```
+
+
+
+#### [construct binary tree from inroder and postorder](https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/)
+#### [video solution](https://youtu.be/LgLRTaEMRVc?list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk)
+
+```cpp
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+        
+        if(inorder.size() != postorder.size()) {
+            return NULL;
+        }
+        
+        map<int,int> hm;
+        
+        for(int i = 0; i < inorder.size(); i++) {
+            hm[inorder[i]] = i;
+        }
+        
+        return buildTree(inorder, 0, inorder.size() - 1, postorder, 0, postorder.size() - 1, hm);
+    }
+    
+private:
+    TreeNode* buildTree(vector<int>& inorder, int is, int ie, vector<int>& postorder, int ps, int pe, map<int,int>& hm){
+        
+        if(ps > pe || is > ie) return NULL;
+        
+        TreeNode* root = new TreeNode(postorder[pe]);
+        
+        int inRoot = hm[postorder[pe]];
+        int numsLeft = inRoot - is;
+        
+        root->left = buildTree(inorder, is, inRoot - 1, postorder, ps, ps+numsLeft -1, hm);
+        root->right = buildTree(inorder, inRoot+1, ie, postorder, ps+numsLeft, pe-1, hm);
+        
+        return root;
+    }
+};
+
+```
+
+
+#### [Symmetric Tree](https://leetcode.com/problems/symmetric-tree/)
+#### [video solution](https://youtu.be/nKggNAiEpBE?list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk)
+
+```cpp
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    bool isSymmetric(TreeNode* root) {
+        
+        return root == NULL || isSymmetricHelp(root->left, root->right);
+    }
+    
+    bool isSymmetricHelp(TreeNode* left, TreeNode* right){
+        
+        if(left == NULL || right == NULL){
+            return left == right;
+        }
+        
+        if(left->val != right->val) return false;
+        
+        return isSymmetricHelp(left->left, right->right) && isSymmetricHelp(left->right, right->left);
+    }
+};
+
+```
+
+#### [Flatten a binary tree to linked list](https://leetcode.com/problems/flatten-binary-tree-to-linked-list/)
+#### [video solutoin](https://youtu.be/sWf7k1x9XR4?list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk)
+
+#### basic code version of the solution is
+
+```cpp
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode *prev = NULL;
+
+    void flatten(TreeNode* root) {
+        
+        if(root == NULL){
+            return;
+        }
+        
+        flatten(root->right);
+        flatten(root->left);
+        
+        root->right = prev;
+        root->left = NULL;
+        
+        prev = root;
+    }
+};
+
+```
+
+#### Stack based approach
+
+```cpp
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    void flatten(TreeNode* root) {
+        
+        stack<TreeNode*> st;
+        
+        if (root == NULL) return;
+        
+        st.push(root);
+        
+        while(!st.empty()) {
+            
+            TreeNode* cur = st.top();
+            st.pop();
+            
+            if( cur->right){
+                st.push(cur->right);
+            }
+            
+            if(cur->left ){
+                st.push(cur->left);
+            }
+            
+            if(!st.empty()){
+                cur->right = st.top();
+            }
+            
+            cur->left = NULL;
+        }
+
+        
+    }
+};
+
+```
+
+
+#### Moores traversal with order of 1 space
+
+```cpp
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    void flatten(TreeNode* root) {
+        TreeNode* cur = root;
+		while (cur)
+		{
+			if(cur->left)
+			{
+				TreeNode* pre = cur->left;
+				while(pre->right)
+				{
+					pre = pre->right;
+				}
+				pre->right = cur->right;
+				cur->right = cur->left;
+				cur->left = NULL;
+			}
+			cur = cur->right;
+		}
+    }
+};
+
+
+```
+
+#### [Mirror of a binary tree](https://practice.geeksforgeeks.org/problems/mirror-tree/1)
+
+
+```cpp
+
+void mirror(struct Node* node) {
+    // code here
+    if(node == NULL) return;
+    
+    
+    struct Node *temp;
+    
+    mirror(node->left);
+    mirror(node->right);
+    
+    temp = node->left;
+    node->left = node->right;
+    node->right = temp;
+    
+    
+    
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -7164,11 +7551,11 @@ int main()
 
 
 
-# Extra Sums
+    # Extra Sums
 
-#### [For the given array print all the possible permutations](https://leetcode.com/problems/permutations/)
+    #### [For the given array print all the possible permutations](https://leetcode.com/problems/permutations/)
 
-#### [Solution 1](https://www.youtube.com/watch?v=YK78FU5Ffjw&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=51)
+    #### [Solution 1](https://www.youtube.com/watch?v=YK78FU5Ffjw&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=51)
 
 ```cpp
 
