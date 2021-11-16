@@ -228,7 +228,7 @@ mid++
 
 arr[mid] == 2:
 swap(arr[mid], arr[high])
-high–;
+highâ€“;
 The array formed after these steps will be a sorted array.
 
 This algorithm is also called as **Dutch National flag algorithm** 
@@ -865,7 +865,7 @@ public:
 #### [Majority Element](https://leetcode.com/problems/majority-element/)
 
 * Given an array nums of size n, return the majority element.
-* The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+* The majority element is the element that appears more than âŒŠn / 2âŒ‹ times. You may assume that the majority element always exists in the array.
 
 
 #### [Video Solution](https://youtu.be/AoX3BPWNnoE?list=PLgUwDviBIf0rPG3Ictpu74YWBQ1CaBkm2)
@@ -905,7 +905,7 @@ public:
 
 #### [Majority Element II](https://leetcode.com/problems/majority-element-ii/)
 
-* Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times.
+* Given an integer array of size n, find all elements that appear more than âŒŠ n/3 âŒ‹ times.
 
 #### [Video Solution](https://www.youtube.com/watch?v=yDbkQd9t2ig&list=PLgUwDviBIf0rPG3Ictpu74YWBQ1CaBkm2&index=18)
 
@@ -2791,11 +2791,11 @@ private:
         for (int i = 0; i != row; ++i)
             if (nQueens[i][col] == 'Q')
                 return false;
-        //check if the 45° diagonal had a queen before.
+        //check if the 45Â° diagonal had a queen before.
         for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; --i, --j)
             if (nQueens[i][j] == 'Q')
                 return false;
-        //check if the 135° diagonal had a queen before.
+        //check if the 135Â° diagonal had a queen before.
         for (int i = row - 1, j = col + 1; i >= 0 && j < n; --i, ++j)
             if (nQueens[i][j] == 'Q')
                 return false;
@@ -5454,6 +5454,577 @@ public:
 
 
 
+#### [Binary Tree Representation in cpp direct video](https://youtu.be/ctCpP0RFDFc?list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk)
+
+```cpp
+
+
+struct Node{
+    int data;
+    struct Node* left;
+    struct Node* right;
+
+    Node(int val) {
+        data = val;
+        left = NULL;
+        right = NULL;
+    }
+}
+
+// for creating the tree
+
+int main(){
+
+    struct Node* root = new Node(1);
+
+    root->left = new Node(2);
+    root->right = new Node(3);
+
+    root->left->right = new Node(5);
+}
+
+
+```
+
+
+#### [Inoder Traversal of the binary tree](https://leetcode.com/problems/binary-tree-inorder-traversal/)
+#### [video solution for recursive code](https://www.youtube.com/watch?v=Z_NEgBgbRVI&list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk&index=7)
+
+#### Recursive code
+
+```cpp
+
+void inorder(node){
+
+    if (node == NULL) 
+        return;
+
+    inorder(node->left);
+    print(node->data);
+    inorder(node->right);
+}
+
+```
+
+#### Inorder to return the array we can code as below
+
+```cpp
+
+class Solution {
+private:
+    void inorder(TreeNode* root, vector<int>& answer){
+        if(root == NULL) {
+            return;
+        }
+        
+        inorder(root->left, answer);
+        answer.push_back(root->val);
+        inorder(root->right, answer);
+    }
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> answer;
+        
+        inorder(root, answer);
+        
+        return answer;
+    }
+};
+
+```
+
+
+#### [Video solution for the iterative version](https://www.youtube.com/watch?v=lxTGsVXjwvM&list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk&index=12)
+
+```cpp
+
+
+vector<int> inorderTraversal(TreeNode* root) {
+
+    stack<TreeNode*> st;
+
+    TreeNode* node = root;
+    vector<int> inorder;
+
+    while(true) {
+        if(node != NULL) {
+            st.push(node);
+            node = node->left;
+        }
+
+        else{
+            if(st.empty() == true) break;
+            node = st.top();
+            st.pop();
+            inorder.push_back(node->val);
+            node = node->right;
+        }
+    }
+    
+    return inorder;
+}
+```
+
+#### this version of traversal is called Morris traversal is uses a concept called threaded binary tree
+#### [Video solution for morris traversal](https://youtu.be/80Zug6D1_r4?list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk)
+
+```cpp
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        
+        vector<int> inorder;
+        TreeNode* cur= root;
+        
+        while(cur != NULL) {
+            if(cur->left == NULL) {
+                inorder.push_back(cur->val);
+                cur = cur->right;
+            }
+            
+            else{
+                // go to left and go to right most guy
+                TreeNode* prev = cur->left;
+                
+                while(prev->right && prev->right != cur){
+                    prev = prev->right;
+                }
+                
+                if(prev->right == NULL){
+                    prev->right = cur;
+                    cur = cur->left;
+                }
+                else{
+                    prev->right = NULL;
+                    inorder.push_back(cur->val);
+                    cur = cur->right;
+                }
+            }
+        }
+        
+        return inorder;
+    }
+};
+
+```
+
+#### [Preorder traversal of the binary tree](https://leetcode.com/problems/binary-tree-preorder-traversal/)
+
+
+#### Recursive code for the preorder traversal
+
+```cpp
+class Solution {
+    
+private:
+        void preorder(TreeNode* root, vector<int>& answer){
+        if(root == NULL) {
+            return;
+        }
+        answer.push_back(root->val);
+        preorder(root->left, answer);
+        preorder(root->right, answer);
+    }
+public:
+    vector<int> preorderTraversal(TreeNode* root) {
+        vector<int> answer;
+        
+        preorder(root, answer);
+        return answer;
+    }
+};
+```
+
+
+#### Iterative code for the preorder
+
+
+```cpp
+
+
+class Solution {
+
+public:
+    vector<int> preorderTraversal(TreeNode* root) {
+        vector<int> answer;
+        
+        if(root==NULL) return answer;
+        
+        stack<TreeNode*> st;
+        
+        st.push(root);
+        
+        while(!st.empty()){
+            
+            TreeNode* cur = st.top();
+            answer.push_back(cur->val);
+            st.pop();
+            
+            if(cur->right != NULL){
+                st.push(cur->right);
+            }
+            
+            if(cur->left != NULL){
+                st.push(cur->left);
+            }
+        }
+        
+        return answer;
+    }
+};
+
+
+```
+
+
+#### Morris traversal for preorder
+
+```cpp
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    vector<int> preorderTraversal(TreeNode* root) {
+        
+        vector<int> preorder;
+        TreeNode* cur= root;
+        
+        while(cur != NULL) {
+            if(cur->left == NULL) {
+                preorder.push_back(cur->val);
+                cur = cur->right;
+            }
+            
+            else{
+                // go to left and go to right most guy
+                TreeNode* prev = cur->left;
+                
+                while(prev->right && prev->right != cur){
+                    prev = prev->right;
+                }
+                
+                // push into the vector when the thread is connected for last right to the current node
+                if(prev->right == NULL){
+                    prev->right = cur;
+                    preorder.push_back(cur->val);
+                    cur = cur->left;
+                }
+                else{
+                    prev->right = NULL;
+                    cur = cur->right;
+                }
+            }
+        }
+        
+        return preorder;
+    }
+};
+```
+
+
+#### [Post order traversal](https://leetcode.com/problems/binary-tree-postorder-traversal/submissions/)
+#### Recursive approach for postorder traversal
+
+```cpp
+class Solution {
+private:
+    void postorder(TreeNode* root, vector<int>& answer){
+        if(root == NULL){
+            return;
+        }
+        
+        postorder(root->left, answer);
+        postorder(root->right, answer);
+        answer.push_back(root->val);
+    }
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int> answer;
+        
+        postorder(root, answer);
+        return answer;
+    }
+};
+```
+
+
+#### [Left view / Right view of a binary tree](https://practice.geeksforgeeks.org/problems/left-view-of-binary-tree/1)
+#### [video solution](https://www.youtube.com/watch?v=KV4mRzTjlAk&list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk&index=26)
+
+```cpp
+
+class Solution{
+
+    vector<int> rightSideVide(TreeNode* root) {
+        vector<int> res;
+
+        recursion(root, 0, res);
+
+        return res;
+    }
+
+
+    void recursion(TreeNode* root, int level, vector<int>& res){
+
+        if(root == NULL) return;
+        if(res.size() == level) res.push_back(root->val);
+        recursion(root->right, level+1, res);
+        recursion(root->left, level+1, res);
+
+        // for left view of the binary tree only the last recursion calls are swapped
+    }
+};
+
+```
+
+
+#### Vertical order traversal of a binary tree
+#### [Video Solution](https://youtu.be/q_a6lpbKJdw?list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk)
+
+```cpp
+
+class Solution {
+public:
+    vector<vector<int>> verticalTraversal(TreeNode* root) {
+
+        map<int, map<int, multiset<int>>> nodes;
+        queue<pair<TreeNode*, pair<int,int>>> todo;
+
+        todo.push({root, {0,0}});
+
+        while(!todo.empty()){
+
+            auto p = todo.front();
+            todo.pop();
+
+            TreeNode* node = p.first;
+            int x = p.second.first;
+            int y = p.second.second;
+
+            nodes[x][y].insert(node->val);
+
+            if(node->left){
+                todo.push({node->left, {x-1, y+1}});
+            }
+
+            if(node->right){
+                todo.push({node->right, {x+1, y+1}});
+            }
+        }
+
+        vector<vector<int>> ans;
+        for(auto p: nodes) {
+            vector<int> col;
+            for(auto q: p.second){
+                col.insert(col.end(), q.second.begin(), q.second.end());
+            }
+            ans.push_back(col);
+        }
+        return ans;
+    }
+};
+
+
+```
+
+
+#### [Bottom view of the binary treee](https://practice.geeksforgeeks.org/problems/bottom-view-of-binary-tree/1)
+#### [video solution](https://www.youtube.com/watch?v=0FtVY6I4pB8&list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk&index=25)
+
+#### the main logic behind this question is we have to do first the vertical order traversal and on every vertical line we need to print the last node
+#### if there are multiple go with the right one or as per the interviewer
+
+```cpp
+
+class Solution {
+  public:
+    vector <int> bottomView(Node *root) {
+        vector<int> ans; 
+        if(root == NULL) return ans; 
+
+        map<int,int> mpp; 
+        queue<pair<Node*, int>> q; 
+
+        q.push({root, 0}); 
+
+        while(!q.empty()) {
+            auto it = q.front(); 
+            q.pop(); 
+
+            Node* node = it.first; 
+            int line = it.second; 
+            mpp[line] = node->data; 
+            
+            if(node->left != NULL) {
+                q.push({node->left, line-1}); 
+            }
+            if(node->right != NULL) {
+                q.push({node->right, line + 1}); 
+            }
+            
+        }
+        
+        for(auto it : mpp) {
+            ans.push_back(it.second); 
+        }
+        return ans;  
+    }
+};
+
+
+
+```
+
+
+#### [Top view of a binary tree](https://practice.geeksforgeeks.org/problems/top-view-of-binary-tree/1_)
+#### [video solution](https://www.youtube.com/watch?v=Et9OCDNvJ78&list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk&index=23)
+
+```cpp
+
+
+class Solution
+{
+    public:
+    //Function to return a list of nodes visible from the top view 
+    //from left to right in Binary Tree.
+    vector<int> topView(Node *root)
+    {
+        vector<int> ans; 
+        if(root == NULL) return ans; 
+        map<int,int> mpp; 
+        queue<pair<Node*, int>> q; 
+        q.push({root, 0}); 
+        while(!q.empty()) {
+            auto it = q.front(); 
+            q.pop(); 
+            Node* node = it.first; 
+            int line = it.second; 
+            if(mpp.find(line) == mpp.end()) mpp[line] = node->data; 
+            
+            if(node->left != NULL) {
+                q.push({node->left, line-1}); 
+            }
+            if(node->right != NULL) {
+                q.push({node->right, line + 1}); 
+            }
+            
+        }
+        
+        for(auto it : mpp) {
+            ans.push_back(it.second); 
+        }
+        return ans; 
+    }
+
+};
+
+
+```
+
+#### [Zig Zag or spiral traversal of a tree](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/)
+#### [video solution](https://www.youtube.com/watch?v=3OXWEdlIGl4&list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk&index=21)
+
+```cpp
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        vector<vector<int>> result;
+        
+        if(root == NULL) return result;
+        
+        queue<TreeNode*> nodesQueue;
+        nodesQueue.push(root);
+        
+        bool leftToRight = true;
+        
+        while(! nodesQueue.empty()){
+            
+            int size = nodesQueue.size();
+            vector<int> row(size);
+            
+            for(int i = 0; i < size; i++) {
+                TreeNode* node = nodesQueue.front();
+                nodesQueue.pop();
+                
+                //find the position to fill nodes value
+                int index = (leftToRight) ? i : size - 1 - i;
+                row[index] =  node->val;
+                
+                if(node->left){
+                    nodesQueue.push(node->left);
+                }
+                if(node->right){
+                    nodesQueue.push(node->right);
+                }
+            }
+            
+            //after this level
+            leftToRight = !leftToRight;
+            result.push_back(row);
+        }
+        
+        return result;
+    }
+};
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -6566,4 +7137,3 @@ int main() {
 }
 
 ```
-
