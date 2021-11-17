@@ -6494,12 +6494,212 @@ void mirror(struct Node* node) {
     
     temp = node->left;
     node->left = node->right;
-    node->right = temp;
-    
-    
+    node->right = temp;    
     
 }
+
 ```
+
+#### [Populate next right pointer of each node](https://leetcode.com/problems/populating-next-right-pointers-in-each-node/)
+#### [Blog solution](https://leetcode.com/problems/populating-next-right-pointers-in-each-node/discuss/37503/C%2B%2B-IterativeRecursive)
+
+
+```cpp
+
+/*
+// Definition for a Node.
+class Node {
+public:
+    int val;
+    Node* left;
+    Node* right;
+    Node* next;
+
+    Node() : val(0), left(NULL), right(NULL), next(NULL) {}
+
+    Node(int _val) : val(_val), left(NULL), right(NULL), next(NULL) {}
+
+    Node(int _val, Node* _left, Node* _right, Node* _next)
+        : val(_val), left(_left), right(_right), next(_next) {}
+};
+*/
+
+class Solution {
+public:
+    Node* connect(Node* root) {
+        
+        if(root == NULL) return root;
+        
+        Node* pre = root;
+        Node* cur = NULL;
+        
+        while(pre->left){
+            cur = pre;
+            
+            while(cur){
+                cur->left->next = cur->right;
+                
+                if(cur->next) cur->right->next = cur->next->left;
+                
+                cur = cur->next;
+            }
+            
+            pre = pre->left;
+        }
+        
+        return root;
+    }
+};
+
+```
+
+#### [Search in a binary search tree](https://leetcode.com/problems/search-in-a-binary-search-tree/)
+#### [video solution](https://youtu.be/KcNt6v_56cc?list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk)
+
+```cpp
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* searchBST(TreeNode* root, int val) {
+        
+        while(root != NULL && root->val != val){
+            root = val< root->val ? root->left : root->right;
+        }
+        return root;
+    }
+};
+```
+
+#### [convert sorted array to binary search tree](https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/)
+#### [blog solution](https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/discuss/35242/16-ms-C%2B%2B-solution)
+
+```cpp
+class Solution {
+    TreeNode* sortedArrayToBST(vector<int>& nums, int start, int end){
+        if(end<=start) return NULL; 
+        int midIdx=(end+start)/2;
+        TreeNode* root=new TreeNode(nums[midIdx]);
+        root->left=sortedArrayToBST(nums, start, midIdx);
+        root->right=sortedArrayToBST(nums, midIdx+1,end);
+        return root;
+    }
+public:
+    TreeNode* sortedArrayToBST(vector<int>& nums) {
+        return sortedArrayToBST(nums, 0,nums.size());
+    }
+};
+```
+
+#### [check if a binary tree is BST or not](https://leetcode.com/problems/validate-binary-search-tree/)
+#### [video solution](https://www.youtube.com/watch?v=f-sj7I5oXEI&list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk&index=47)
+
+```cpp
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        
+        return isValidBST(root, INT_MIN, INT_MAX);
+    }
+    
+    bool isValidBST(TreeNode* root, long long minVal, long long maxVal){
+        
+        if(root == NULL)   return true;
+        
+        if(root->val >= maxVal || root->val <= minVal) return false;
+        
+        return isValidBST(root->left, minVal, root->val) && isValidBST(root->right, root->val, maxVal);
+    }
+    
+    
+};
+
+```
+
+#### [Lowest Common Ancestor in Binary Search Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/)
+#### [video solution](https://www.youtube.com/watch?v=cX_kPV_foZc&list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk&index=48)
+
+```cpp
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+            
+        if(root == NULL) return NULL;
+        
+        int curr = root->val;
+        
+        if (curr < p->val && curr < q->val){
+            return lowestCommonAncestor(root->right, p, q);
+        }
+        
+        if(curr > p->val && curr > q->val) {
+            return lowestCommonAncestor(root->left, p, q);
+        }
+        
+        return root;
+    }
+};
+
+
+```
+
+#### Inorder Successor and predessor in BST the problem is in premium that is why i am not attaching the link
+
+```cpp
+
+class Solution {
+public:
+    TreeNode* inorderSuccessor(TreeNode* root, TreeNode* p) {
+        TreeNode* successor = NULL;
+        
+        while (root != NULL) {
+            
+            if (p->val >= root->val) {
+                root = root->right;
+            } else {
+                successor = root;
+                root = root->left;
+            }
+        }
+        
+        return successor;
+    }
+};
+
+```
+
+
 
 
 
