@@ -6700,11 +6700,121 @@ public:
 ```
 
 
+#### [Floor in BST](https://www.codingninjas.com/codestudio/problems/floor-from-bst_920457?source=youtube&campaign=Striver_Tree_Videos&utm_source=youtube&utm_medium=affiliate&utm_campaign=Striver_Tree_Videos)
+#### for the given value find the value in the tree which is smaler than or equal to the given value
+#### [video solution](https://youtu.be/xm_W1ub-K-w?list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk)
+
+```cpp
+
+
+int floorBST(TreeNode<int>* root, int key) {
+
+    int floor = -1;
+    while(root){
+
+        if(root->val == key) {
+            floor = root->val;
+            return floor;
+        }
+
+        if(key > root->val){
+            floor = root->val;
+            root = root->right;
+        }
+
+        else{
+            root = root->left;
+        }
+    }
+}
 
 
 
+```
+
+#### [Ceil in BST](https://www.codingninjas.com/codestudio/problems/ceil-from-bst_920464?source=youtube&campaign=Striver_Tree_Videos&utm_source=youtube&utm_medium=affiliate&utm_campaign=Striver_Tree_Videos)
+
+#### [video solution](https://youtu.be/KSsk8AhdOZA?list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk)
+
+```cpp
+
+ int findCeil(BinaryTreeNode<int> *root, int key){
+
+	int ceil = -1; 
+    while (root) {
+
+        if (root->data == key) {
+            ceil = root->data;
+            return ceil;
+        }
+ 
+        if (key > root->data) {
+            root = root->right;
+        }
+        else {
+            ceil = root->data; 
+            root = root->left;
+        }
+    }
+    return ceil; 
+}
+
+```
+
+#### [Find kth smallest in BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/)
+#### [Video solutoin](https://youtu.be/9TJYWh0adfk?list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk)
+
+#### kth largest is also same logic as kth smallest 
+#### find the total nodes and kth largest will be n-kth smallest
+#### do inorder traversal and maintain the counter thats it
+
+```cpp
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    int kthSmallest(TreeNode* root, int k) {
+        stack<TreeNode*> st;
+        
+        TreeNode* node = root;
+        
+        int count = 0;
+        
+        while(true){
+            
+            if(node != NULL){
+                st.push(node);
+                node = node->left;
+            }
+            
+            else{
+                if(st.empty()){
+                    break;
+                }
+                
+                node = st.top();
+                st.pop();
+                count++;
+                
+                if(count == k) return node->val;
+                node = node->right;
+            }
+        }
+        return -1;
+    }
+};
 
 
+```
 
 
 
