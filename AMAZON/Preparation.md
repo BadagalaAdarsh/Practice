@@ -6817,6 +6817,65 @@ public:
 ```
 
 
+#### [Binary Search Tree Iterator](https://leetcode.com/problems/binary-search-tree-iterator/submissions/)
+#### [Video Solution](https://youtu.be/D2jMcmxU4bs?list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk)
+
+
+```cpp
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class BSTIterator {
+private:
+    stack<TreeNode*> myStack;
+public:
+    BSTIterator(TreeNode* root) {
+        pushAll(root);
+    }
+    
+    int next() {
+        TreeNode* tempNode = myStack.top();
+        myStack.pop();
+        pushAll(tempNode->right);
+        return tempNode->val;
+    }
+    
+    bool hasNext() {
+        return !myStack.empty();
+    }
+private:
+    void pushAll(TreeNode* node){
+        for( ;  node != NULL; myStack.push(node), node = node->left);
+    }
+};
+
+/**
+ * Your BSTIterator object will be instantiated and called as such:
+ * BSTIterator* obj = new BSTIterator(root);
+ * int param_1 = obj->next();
+ * bool param_2 = obj->hasNext();
+ */
+
+
+
+```
+
+
+#### [Check if there are a pair of numbers in the BST whose sum is K](https://leetcode.com/problems/two-sum-iv-input-is-a-bst/)
+#### [Video Solution](https://youtu.be/ssL3sHwPeb4?list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk)
+
+
+
+
 
 
 
