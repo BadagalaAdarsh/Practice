@@ -6869,9 +6869,81 @@ private:
 
 ```
 
+# from here watch strivers video again 
+# due to lack of internet i am trying to learn from discussions
 
 #### [Check if there are a pair of numbers in the BST whose sum is K](https://leetcode.com/problems/two-sum-iv-input-is-a-bst/)
 #### [Video Solution](https://youtu.be/ssL3sHwPeb4?list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk)
+
+```cpp
+
+class Solution {
+public:
+    bool findTarget(TreeNode* root, int k) {
+        return dfs(root, root, k);
+    }
+    
+    bool dfs(TreeNode* root, TreeNode* cur, int k){
+        if (cur == NULL) return false;
+        
+        return search(root, cur, k - cur->val) || dfs(root, cur->left, k) || dfs(root, cur->right, k);
+    }
+    
+    bool search(TreeNode* root, TreeNode* cur, int value) {
+            
+        if(root == NULL) return false;
+        return (root->val == value) && (root != cur) 
+            || (root->val < value) && search(root->right, cur, value) 
+                || (root->val > value) && search(root->left, cur, value);
+    }
+};
+
+```
+
+#### [Maximum sum BST in binary tree](https://leetcode.com/problems/maximum-sum-bst-in-binary-tree/)
+#### [blog solution](https://leetcode.com/problems/maximum-sum-bst-in-binary-tree/discuss/990802/C%2B%2B-Recursive-faster-than-99-with-explanation)
+
+
+```cpp
+
+class Solution {
+    struct S {
+        bool isBST;
+        int minVal, maxVal, sum;
+    };
+    
+    S helper(TreeNode *node, int &res) {
+        if (!node) {
+            return { true, INT_MAX, INT_MIN, 0 };
+        }
+        S l = helper(node->left, res);
+        S r = helper(node->right, res);
+        if (l.isBST && r.isBST && l.maxVal < node->val && r.minVal > node->val) {
+            int sum = l.sum + r.sum + node->val;
+            res = max(res, sum);
+            return { true, min(l.minVal, node->val), max(r.maxVal, node->val), sum };
+        } else {
+            return { false, 0, 0, 0 };
+        }
+    }
+public:
+    int maxSumBST(TreeNode* root) {
+        int res = 0;
+        helper(root, res);
+        return res;
+    }
+};
+
+```
+
+#### [Serialize and deserialize binary tree](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/)
+#### [Video Solution](https://www.youtube.com/watch?v=-YbXySKJsX8&list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk&index=37)
+
+
+
+
+
+
 
 
 
