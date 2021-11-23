@@ -58,6 +58,31 @@ int main() {
 ;
 ```
 
+
+#### for directly nth row one can use the formula nCr
+#### that is for 5th row it will be 4C0 4C1 4C2 4C3 4C4
+```cpp
+
+int res = 1;
+
+// below i have assmed n = 5 that is for 5th row
+
+for(int i = 0; i < 5; i++) {
+
+    if (i == 0) {
+        cout << 1 << " ";
+        continue;
+    }
+
+    res *= (n-i);
+    res /= i;
+
+    cout << res << " " ;
+}
+
+
+```
+
 #### [Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.](https://leetcode.com/problems/next-permutation/)
 
 #### If such an arrangement is not possible, it must rearrange it as the lowest possible order (i.e., sorted in ascending order).
