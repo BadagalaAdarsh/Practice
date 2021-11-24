@@ -1,6 +1,6 @@
-# My Amazon Preparation
+# My Amazon Preparation 
 
-## Coding Questions
+## Coding Questions and Answers
 
 #### [In Pascal's triangle, each number is the sum of the two numbers directly above it as shown:](https://leetcode.com/problems/pascals-triangle/)
 
