@@ -6964,6 +6964,142 @@ public:
 #### [Serialize and deserialize binary tree](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/)
 #### [Video Solution](https://www.youtube.com/watch?v=-YbXySKJsX8&list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk&index=37)
 
+```cpp
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Codec {
+public:
+
+    // Encodes a tree to a single string.
+    string serialize(TreeNode* root) {
+        
+        if(!root) return "";
+        
+        string s = "";
+        
+        queue<TreeNode*> q;
+        q.push(root);
+        
+        while(!q.empty()) {
+            TreeNode* curNode = q.front();
+            q.pop();
+            
+            if(curNode == NULL) s.append("#,");
+            else s.append(to_string(curNode->val) + ',');
+            
+            if(curNode != NULL) {
+                q.push(curNode->left);
+                q.push(curNode->right);
+            }
+        }
+        return s;
+        
+    }
+
+    // Decodes your encoded data to tree.
+    TreeNode* deserialize(string data) {
+        
+        if(data.size() == 0) return NULL;
+        stringstream s(data); 
+        string str;
+        // extract data from s to str upto comma ,
+        getline(s, str, ',');
+        TreeNode* root = new TreeNode(stoi(str));
+        
+        queue<TreeNode*> q;
+        q.push(root);
+        
+        while(!q.empty()) {
+            
+            TreeNode* node = q.front();
+            q.pop();
+            
+            getline(s, str, ',');
+            if(str == "#") {
+                node->left = NULL;
+            }
+            
+            else{
+                TreeNode* leftNode = new TreeNode(stoi(str));
+                node->left = leftNode;
+                q.push(leftNode);
+            }
+            
+            getline(s, str, ',');
+            if(str == "#") {
+                node->right = NULL;
+            }
+            
+            else{
+                TreeNode* rightNode = new TreeNode(stoi(str));
+                node->right = rightNode;
+                q.push(rightNode);
+            }
+        }
+        
+        return root;
+        
+    }
+};
+
+// Your Codec object will be instantiated and called as such:
+// Codec ser, deser;
+// TreeNode* ans = deser.deserialize(ser.serialize(root));
+
+```
+
+#### Largest BST in Binary Tree
+#### [Video Solution](https://youtu.be/X0oXMdtUDwo)
+
+```cpp
+
+class NodeValue{
+public:
+    int maxNode, minNode, maxSize;
+
+    NodeValue(int minNode, int maxNode, int maxSize) {
+        this->maxNode = maxNode;
+        this->minNode = minNode;
+        this->maxSize = maxSize;
+    }
+
+};
+
+class Solution{
+
+private:
+    NodeValue largestBSTSubtreeHelper(TreeNode* root) {
+
+        if(!root) {
+            return NodeValue(INT_MAX, INT_MIN, 0);
+        }
+
+        auto left = largestBSTSubtreeHelper(root->left);
+        auto right = largestBSTSubtreeHelper(root->right);
+
+        if(left.maxNode < root->val && root->val < right.minNode) {
+            return NodeValue(min(root->val, left.minNode) , max(root->val, right.maxNode), left.maxSize + right.maxSize + 1);
+        }
+
+        return NodeValue(INT_MIN, INT_MAX, max(left.maxSize, right.maxSize));
+    }
+public:
+    int largestBSTSubtree(TreeNode* root) {
+        return largestBSTSubtreeHelper(root).maxSize;
+    }
+};
+
+```
+ 
+ 
 
 
 
