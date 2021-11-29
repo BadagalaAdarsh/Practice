@@ -7061,34 +7061,48 @@ public:
 
 ```cpp
 
-class NodeValue{
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class NodeValue {
 public:
     int maxNode, minNode, maxSize;
-
+    
     NodeValue(int minNode, int maxNode, int maxSize) {
         this->maxNode = maxNode;
         this->minNode = minNode;
         this->maxSize = maxSize;
     }
-
 };
 
-class Solution{
-
+class Solution {
 private:
     NodeValue largestBSTSubtreeHelper(TreeNode* root) {
-
-        if(!root) {
+        // An empty tree is a BST of size 0.
+        if (!root) {
             return NodeValue(INT_MAX, INT_MIN, 0);
         }
-
+        
+        // Get values from left and right subtree of current tree.
         auto left = largestBSTSubtreeHelper(root->left);
         auto right = largestBSTSubtreeHelper(root->right);
-
-        if(left.maxNode < root->val && root->val < right.minNode) {
-            return NodeValue(min(root->val, left.minNode) , max(root->val, right.maxNode), left.maxSize + right.maxSize + 1);
+        
+        // Current node is greater than max in left AND smaller than min in right, it is a BST.
+        if (left.maxNode < root->val && root->val < right.minNode) {
+            // It is a BST.
+            return NodeValue(min(root->val, left.minNode), max(root->val, right.maxNode), 
+                            left.maxSize + right.maxSize + 1);
         }
-
+        
+        // Otherwise, return [-inf, inf] so that parent can't be valid BST
         return NodeValue(INT_MIN, INT_MAX, max(left.maxSize, right.maxSize));
     }
 public:
@@ -7099,6 +7113,166 @@ public:
 
 ```
  
+
+#### [Binary Tree to linked list](https://leetcode.com/problems/flatten-binary-tree-to-linked-list/)
+#### [Video solution](https://www.youtube.com/watch?v=sWf7k1x9XR4)
+
+#### 1st approach
+
+```cpp
+
+TreeNode* prev = NULL;
+
+flatten(TreeNode* node) {
+
+    if(node == NULL) 
+        return;
+
+    flatten(node->right);
+    flatten(node->left);
+
+    node->right = prev;
+    node->left = NULL;
+
+    prev = node;
+}
+
+```
+
+#### 2nd approach
+
+```cpp
+
+st.push(root);
+
+while( !st.empty()){
+    
+    cur = st.top();
+    st.pop();
+
+    if(cur->right)
+        st.push(cur->right);
+    
+    if(cur->left)
+        st.push(cur->left);
+
+    if(!st.empty())
+        cur->right = st.top();
+
+    cur->left = NULL;
+}
+
+```
+
+#### 3rd approach using Morris traversal
+
+```cpp
+
+TreeNode* cur = root;
+while(cur != NULL) {
+    if(cur->left != NULL) {
+        prev = cur->left;
+        
+        while( prev->right) 
+            prev = prev->right;
+
+        prev->right = cur->right;
+        cur->right = cur->left;
+
+    }
+
+    cur = cur->right;
+}
+
+```
+
+## Morris traversal for inorder
+## this is just for my practice
+
+```cpp
+
+vector<int> getInorder(TreeNode* root){
+
+    vector<int> inorder;
+
+    TreeNode* cur = root;
+
+    while(cur != NULL){
+
+        if(cur->left == NULL) {
+            inorder.push_back(cur-val);
+            cur = cur->right;
+        }
+
+        else{
+            TreeNode* prev = cur->left;
+
+            while(prev->right && prev->right != cur) {
+                prev = prev->right;
+            }
+
+            if(prev->right == NULL) {
+                prev->right = cur;
+                cur = cur->left;
+            }
+
+            else{
+                prev->right = NULL;
+                inorder.push_back(cur->val);
+                cur = cur->right;
+            }
+        }
+    }
+
+    return inorder;
+}
+
+
+```
+
+## for preorder using morris traversal
+
+```cpp
+
+vector<int> preorder(TreeNode* root){
+
+    vector<int> preorder;
+    TreeNode* cur = root;
+
+    while(cur != NULL) {
+
+        if(cur->left == NULL){
+            preorder.push_back(cur->val);
+            cur = cur->right;
+        }
+
+        else{
+
+            TreeNode* prev = cur->left;
+
+            while(prev->right != NULL && prev->right != cur) {
+                prev = prev->right;
+            }
+
+
+            if(prev->right == NULL){
+                prev->right = cur;
+                preorder.push_back(cur->val);
+                cur = cur->left;
+            }
+
+            else{
+                prev->right = NULL;
+                cur = cur->right;
+            }
+        }
+    }
+
+    return preorder;
+}
+
+```
+
  
 
 
