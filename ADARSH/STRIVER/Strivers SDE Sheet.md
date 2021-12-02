@@ -7273,12 +7273,195 @@ vector<int> preorder(TreeNode* root){
 
 ```
 
+#### [Find median of data stream of running numbers](https://leetcode.com/problems/find-median-from-data-stream/)
+#### [video solution of anuj bhayya](https://www.youtube.com/watch?v=Yv2jzDzYlp8)
  
 
+```cpp
+class MedianFinder {
+private:
+    priority_queue<int> firstQ; // max_heap for the first half
+    priority_queue<int, std::vector<int>, std::greater<int>> secQ; // min heap for the second half
+public:
+//     MedianFinder() {
+        
+//     }
+    
+    void addNum(int num) {
+        
+        if(firstQ.empty() || (firstQ.top() > num))  {
+            firstQ.push(num); // if it belongs to smaller half
+        }
+        
+        else{
+            secQ.push(num);
+        }
+        
+        if(firstQ.size() > (secQ.size() + 1)) {
+            secQ.push(firstQ.top());
+            firstQ.pop();
+        }
+        
+        else if(firstQ.size() + 1 < secQ.size()) {
+            firstQ.push(secQ.top());
+            secQ.pop();
+        }
+    }
+    
+    double findMedian() {
+        if(firstQ.size() == secQ.size()) return firstQ.empty()?0:( (firstQ.top()+secQ.top())/2.0);
+        else return (firstQ.size() > secQ.size())? firstQ.top():secQ.top(); 
+    }
+};
+
+/**
+ * Your MedianFinder object will be instantiated and called as such:
+ * MedianFinder* obj = new MedianFinder();
+ * obj->addNum(num);
+ * double param_2 = obj->findMedian();
+ */
+ ```
+
+#### [Kth largest element in the stream](https://leetcode.com/problems/kth-largest-element-in-a-stream/)
+#### [Solution blog](https://leetcode.com/problems/kth-largest-element-in-a-stream/discuss/150609/C%2B%2B-super-easy-28ms-solution-beats-100!)
+#### [Video solution](https://www.youtube.com/watch?v=j48e8ac7r20)
 
 
+```cpp
+class KthLargest {
+private:
+    priority_queue<int, vector<int>, greater<int>> pq;
+    int size;
+public:
+    KthLargest(int k, vector<int>& nums) {
+        size = k;
+        for(int i = 0; i < nums.size(); i++) {
+            pq.push(nums[i]);
+            
+            if(pq.size() > k) pq.pop();
+        }
+        
+    }
+    
+    int add(int val) {
+        pq.push(val);
+        
+        if(pq.size() > size)
+            pq.pop();
+        return pq.top();
+    }
+};
+
+/**
+ * Your KthLargest object will be instantiated and called as such:
+ * KthLargest* obj = new KthLargest(k, nums);
+ * int param_1 = obj->add(val);
+ */
+ ```
 
 
+#### [Distinct numbers in a window](https://www.interviewbit.com/problems/distinct-numbers-in-window/)
+#### [blog solution github](https://github.com/cruxrebels/InterviewBit/blob/master/HeapsAndMaps/DistinctNumbersInWindow.cpp)
+
+
+```cpp
+/*
+You are given an array of N integers, A1, A2 ,…, AN and an integer K. Return the of count of distinct numbers in all windows of size K.
+
+Formally, return an array of size N-K+1 where i’th element in this array contains number of distinct elements in sequence Ai, Ai+1 ,…, Ai+k-1.
+
+Note:
+- If K > N, return empty array.
+
+For example,
+
+A=[1, 2, 1, 3, 4, 3] and K = 3
+
+All windows of size K are
+
+[1, 2, 1]
+[2, 1, 3]
+[1, 3, 4]
+[3, 4, 3]
+
+So, we return an array [2, 3, 3, 2].
+
+https://www.interviewbit.com/problems/distinct-numbers-in-window/
+*/
+
+vector<int> Solution::dNums(vector<int> &A, int B) {
+    auto n = A.size();
+    vector<int> res;
+    //if (B>n)              // This check will also work
+    //    return res;
+    assert(B<=n);   // if false then write a error message to stdout & calls abort
+    
+    unordered_map<int, int> m;
+    for (auto i = 0; i<n; ++i)
+    {
+        ++m[A[i]];
+        
+        if (i-B+1>=0)
+        {
+            res.emplace_back(m.size());
+            --m[A[i-B+1]];
+            if (m[A[i-B+1]] == 0)
+                m.erase(A[i-B+1]);
+        }
+    }
+    return res;
+    
+    // More verbose solution
+    /*for (auto i = 0; i<B; ++i)
+    {
+        if (m[A[i]] == 0)
+            ++c;
+        m[A[i]] += 1;
+    }
+    res.emplace_back(c);
+    
+    for (auto i = B; i<n; ++i)
+    {
+        if (m[A[i-B]] == 1)
+            --c;
+        m[A[i-B]] -= 1;
+        
+        if (m[A[i]] == 0)
+            ++c;
+        m[A[i]] += 1;
+        res.emplace_back(c);
+    }
+    return res;*/
+}
+
+```
+
+
+#### [kth largest element in the array](https://leetcode.com/problems/kth-largest-element-in-an-array/)
+#### [blog solution](https://leetcode.com/problems/kth-largest-element-in-an-array/discuss/60294/Solution-explained)
+
+
+#### heap based solution
+
+```cpp
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        priority_queue<int> pq;
+        
+        for(int i = 0; i < nums.size(); i++) {
+            pq.push(-1 * nums[i]);
+            
+            if(pq.size() > k) {
+                pq.pop();
+            }
+        }
+        
+        return -1 * pq.top();
+    }
+};
+
+```
 
 
 
