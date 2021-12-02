@@ -7463,6 +7463,114 @@ public:
 
 ```
 
+#### using partial sort in cpp
+
+```cpp
+
+int findKthLargest(vector<int>& nums, int k) {
+
+    partial_sort(nums.begin() , nums.begin() + nums.size() - k + 1, nums.end());
+    return nums[nums.size() - k];
+
+}
+
+// or we can do as below
+
+int findKthLargest(vector<int>& nums, int k){
+
+    partial_sort(nums.begin(), nums.begin() + k, nums.end(), greater<int>());
+    return nums[k-1];
+
+}
+
+```
+
+#### using modified quick sort also known as quick select
+
+```cpp
+
+int findKthLargest(vector<int>& nums, int k) {
+
+    int left = 0, right = nums.size() - 1, index = 0;
+    while(1) {
+
+        index = partition(nums, left, right);
+        if(index == k-1) break;
+
+        else if(index < k-1) left = index + 1;
+        else right = index - 1;
+    }
+
+    return nums[index];
+}
+
+int partition(vector<int>& nums, int left, int right) { // hoare partition
+
+    int pivot = nums[left], l = left+1, r = right;
+
+    while(l <= r) {
+        if (nums[l] < pivot && nums[r] > pivot ) swap(nums[l++], nums[r--]);
+
+        if(nums[l] >= pivot) ++l;
+        if(nums[r] <= pivot) --r;
+    }
+
+    swap(nums[left], nums[r]);
+    return r;
+}
+
+
+```
+
+#### [Flood fill algorithm](https://leetcode.com/problems/flood-fill/)
+#### [video solution](https://youtu.be/aehEcTEPtCs)
+
+```cpp
+
+class Solution {
+public:
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+        if(image[sr][sc] != newColor) 
+            dfs(image, sr, sc, image[sr][sc], newColor);
+        
+        return image;
+    }
+    
+private:
+    void dfs(vector<vector<int>>& image, int i, int j, int oldColor, int newColor) {
+        
+        int n = image.size(), m = image[0].size();
+        
+        if(isNotOk(i, j, n, m, oldColor, newColor, image))
+            return;
+        
+        image[i][j] = newColor;
+        dfs(image, i + 1, j, oldColor, newColor);
+        dfs(image, i - 1, j, oldColor, newColor);
+        dfs(image, i, j + 1, oldColor, newColor);
+        dfs(image, i, j - 1, oldColor, newColor)
+        
+    }
+    
+    bool isNotOk(int i, int j, int n, int m, int oldColor, int newColor, vector<vector<int>>& image){
+        
+        if(i >= n || i < 0 || j >= m || j < 0 )
+            return true;
+        
+        if(image[i][j] != oldColor || image[i][j] == newColor) 
+            return true;
+        
+        return false;
+    }
+};
+
+```
+
+
+
+
+
+
 
 
 
