@@ -7880,6 +7880,107 @@ public:
 
 
 
+#### Topological Sorting using DFS
+#### [Video Solution](https://www.youtube.com/watch?v=Yh6EFazXipA&list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw&index=13)
+
+```cpp
+
+class Solution{
+
+private:
+    void findTopoSort(int node, vector<int>& vis, stack<int>& st, vector<int> adj[]){
+
+        vis[node] = 1;
+
+        for(auto it: adj[node]) {
+            if(!vis[it]) {
+                findTopoSort(it, vis, st, adj);
+            }
+        }
+
+        // after completion of the dfs traversal just push the node into the stack
+        st.push(node);
+    }
+
+
+public:
+    vector<int> toposort(int N, vector<int> adj[]) {
+
+        stack<int> st;
+        vector<int> vis(N, 0);
+
+        for(int  i = 0; i < N; i++) {
+            if(!vis[i]) {
+                findTopoSort(i, vis, st, adj);
+            }
+        }
+
+        vector<int> topo;
+
+        while(!st.empty()) {
+            topo.push_back(st.top());
+            st.pop();
+        }
+
+        return topo;
+    }
+};
+
+```
+
+
+#### Topological sorting using BFS (Kahns' algorithm)
+#### [Video Solution](https://www.youtube.com/watch?v=rZv_jHZva34&list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw&index=14)
+
+
+```cpp
+
+class Solution{
+
+public:
+    vector<int> topoSort(int N, vector<int> adj[]) {
+
+        queue<int> q;
+        vector<int> indegree(N, 0);
+
+        for(int i = 0; i < N; i++) {
+            for(auto it: adj[i]){
+                indegree[it]++;
+            }
+        }
+
+        for(int i = 0; i < N; i++) {
+            if( indegree[i] == 0) {
+                q.push(i);
+            }
+        }
+
+        vector<int> topo;
+
+        while(!q.empty()){
+            int node = q.front();
+            q.pop();
+            topo.push_back(node);
+
+            for(auto it: adj[node]) {
+                indegree[it]--;
+
+                if(indegree[it] == 0) {
+                    q.push(it);
+                }
+            }
+        }
+
+        return topo;
+    }
+};
+
+```
+
+
+
+
+
 
 
 
