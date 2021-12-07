@@ -7566,8 +7566,313 @@ private:
 
 ```
 
+#### [clone a graph](https://leetcode.com/problems/clone-graph/)
+#### [Video solutoin](https://youtu.be/S931KMpiKmQ)
+
+```cpp
 
 
+/*
+// Definition for a Node.
+class Node {
+public:
+    int val;
+    vector<Node*> neighbors;
+    Node() {
+        val = 0;
+        neighbors = vector<Node*>();
+    }
+    Node(int _val) {
+        val = _val;
+        neighbors = vector<Node*>();
+    }
+    Node(int _val, vector<Node*> _neighbors) {
+        val = _val;
+        neighbors = _neighbors;
+    }
+};
+*/
+
+class Solution {
+public:
+    Node* cloneGraph(Node* node) {
+        
+        if(node == NULL)
+            return node;
+        
+        unordered_map<int, Node*> visited;
+        
+        return clone_node(node, visited);
+        
+    }
+    
+    Node* clone_node(Node* node, unordered_map<int, Node*> & visited){
+        Node* new_node = new Node(node->val);
+        
+        visited.insert({node->val, new_node});
+        
+        for(Node* n: node->neighbors){
+            auto it = visited.find(n->val);
+            
+            if(it == visited.end()){
+                Node* cn = clone_node(n, visited);
+                new_node->neighbors.push_back(cn);
+            }
+            else{
+                new_node->neighbors.push_back(it->second);
+            }
+        }
+        
+        return new_node;
+    }
+};
+
+```
+
+#### [DFS](https://practice.geeksforgeeks.org/problems/depth-first-traversal-for-a-graph/1)
+#### [video solution](https://youtu.be/uDWljP2PGmU?list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw)
+
+
+```cpp
+
+class Solution {
+
+    void dfs(int node, vector<int>& vis, vector<int> adj[], vector<int>& answer) {
+        
+        answer.push_back(node);
+        vis[node] = 1;
+        
+        for(auto it: adj[node]) {
+            if(!vis[it]) {
+                dfs(it, vis, adj, answer);
+            }
+        }
+    }
+  public:
+    // Function to return a list containing the DFS traversal of the graph.
+    vector<int> dfsOfGraph(int V, vector<int> adj[]) {
+        // Code here
+        vector<int> answer;
+        vector<int> vis(V, 0);
+        
+        for(int i = 0; i < V; i++) {
+            if(!vis[i]) {
+                dfs(i, vis, adj, answer);
+            }
+        }
+        
+        return answer;
+    }
+};
+```
+
+
+
+#### [BFS](https://practice.geeksforgeeks.org/problems/bfs-traversal-of-graph/1)
+#### [Video solution](https://www.youtube.com/watch?v=UeE67iCK2lQ&list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw&index=7)
+
+```cpp
+
+class Solution {
+public:
+	vector<int>bfsOfGraph(int V, vector<int> adj[]){
+	    vector<int> bfs; 
+	    vector<int> vis(V, 0); 
+	    queue<int> q; 
+	    q.push(0); 
+	    vis[0] = 1; 
+	    while(!q.empty()) {
+	        int node = q.front();
+	        q.pop(); 
+	        bfs.push_back(node); 
+	        
+	        for(auto it : adj[node]) {
+	            if(!vis[it]) {
+	                q.push(it); 
+	                vis[it] = 1; 
+	            }
+	        }
+	    }
+	    
+	    return bfs; 
+	}
+};
+
+```
+
+#### Detect a cycle in undirected graph using BFS
+#### [Video Solution](https://www.youtube.com/watch?v=A8ko93TyOns&list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw&index=9)
+
+```cpp
+
+class Solution{
+
+private:
+    bool checkForCycle(int s, int V, vector<int> adj[], vector<int>& visited) {
+
+        queue<pair<int,int>> q;
+
+        visited[s] = true;
+        q.push({s, -1});
+
+        while( !q.empty()) {
+
+            int node = q.front().first;
+            int parent = q.front().second;
+
+            q.pop();
+
+            for(auto it: adj[node]) {
+                if(!visited[it]) {
+                    visited[it] = true;
+                    q.push({it, node});
+                }
+                else if (parent != it) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+public:
+    bool isCycle(int V, vector<int> adj[]) {
+
+        vector<int> vis(V+1, 0);
+
+        for(int i = 1; i <= V; i++) {
+            if (!vis[i]){
+                if (checkForCycle(i, V  , adj, vis)) return true;
+            }
+        }
+
+        return false;
+    }
+};
+
+```
+
+#### Cycle detection using DFS
+#### [Video Solution](https://youtu.be/Y9NFqI6Pzd4?list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw)
+
+```cpp
+
+class Solution{
+
+private:
+    bool checkForCycle(int node, int parent, vector<int>& vis, vector<int> adj[]) {
+
+        vis[node] = true;
+
+        for(auto it: adj[node]) {
+            if (vis[it] == 0) {
+                if( checkForCycle(it , node, vis, adj)) return true;
+            }
+            else if( it != parent) return true;
+        }
+        return false;
+    }
+
+public:
+    bool isCycle(int V, vector<int> adj[]){
+
+        vector<int> vis(V+1,0);
+
+        for(int i = 1; i <= V; i++) {
+            if (!vis[i]) {
+                if (checkForCycle(i, -1, vis, adj)) return true;
+            }
+        }
+
+        return false;
+    }
+};
+
+// driver code
+
+int main() {
+
+    int test;
+    cin >> test;
+
+    while(test--) {
+        int V, E;
+        cin >> V >> E;
+
+        vector<int> adj[V];
+
+        for(int i = 0; i < E; i++) {
+            int u, v;
+            cin >> u >> v;
+            
+            adj[u].push_back(v);
+            adj[v].push_back(u);
+        }
+
+        Solution obj;
+
+        bool ans = obj.isCycle(V, adj);
+
+        if (ans)
+            cout << "1" << endl;
+        else
+            cout << "0" << endl;
+    }
+}
+
+```
+
+#### [Cycle detection in directed graph using DFS](https://leetcode.com/problems/course-schedule/)
+#### [Video solution](https://www.youtube.com/watch?v=uzVUw90ZFIg&list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw&index=13)
+
+```cpp
+
+class Solution{
+
+private:
+    bool checkCycle(int node, vector<int> adj[], int vis[], int dfsvis[]) {
+
+        vis[node] = 1;
+        dfsvis[node] = 1;
+
+        for(auto it: adj[node]) {
+            if(!vis[it]) {
+                if ( checkCycle(it, adj, vis, dfsvis) ) 
+                    return true;
+            }
+            
+            else if (dfsvis[it]) 
+                return true;
+        }
+
+        dfsvis[node] = 0;
+        return false;
+    }
+
+public:
+    bool isCyclic(int N, vector<int> adj[]) {
+        int vis[N], dfsvis[N];
+        memset(vis, 0, sizeof vis);
+        memset(dfsvis, 0, sizeof dfsvis);
+
+        for(int i = 0; i < N; i++){
+            if(!vis[i]) {
+                if (checkCycle(i, adj, vis, dfsvis)){
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+};
+
+```
+
+#### [Detect cycle in Directed Graph using BFS(kahns' algorithm)](https://leetcode.com/problems/course-schedule/)
+#### [Video solution](https://www.youtube.com/watch?v=V6GxfKDyLBM&list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw&index=15)
 
 
 
