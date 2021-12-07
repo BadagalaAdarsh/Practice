@@ -7874,10 +7874,55 @@ public:
 #### [Detect cycle in Directed Graph using BFS(kahns' algorithm)](https://leetcode.com/problems/course-schedule/)
 #### [Video solution](https://www.youtube.com/watch?v=V6GxfKDyLBM&list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw&index=15)
 
+### This just a slight modification of the topological sort using BFS
+### Go through it first and then come to this problem
 
+```cpp
 
+class Solution{
 
+public:
 
+    bool isCyclic(int N, vector<int> adj[]) {
+
+        queue<int> q;
+        vector<int> indegree(N,0);
+
+        for(int i = 0; i < N; i++) {
+            for(auto it: adj[i]) {
+                indegree[it]++;
+            }
+        }
+
+        for(int i = 0; i < N; i++) {
+            if(indegree[i] == 0){
+                q.push(i);
+            }
+        }
+
+        int count = 0;
+
+        while(!q.empty()){
+            int node = q.front();
+            q.pop();
+
+            count++;
+
+            for(auto it: adj[node]) {
+                indegree[it]--;
+                if(indegree[it] == 0) {
+                    q.push(it);
+                }
+            }
+        }
+
+        if (count == N) return false;
+
+        return true;
+    }
+};
+
+```
 
 
 #### Topological Sorting using DFS
@@ -7978,7 +8023,209 @@ public:
 ```
 
 
+#### [Number of Islands](https://leetcode.com/problems/number-of-islands/)
 
+```cpp
+
+class Solution {
+public:
+    bool inside(int i, int j, int  H, int W){
+        return 0 <= i && i < H && 0 <= j && j < W;
+    }
+    
+    int numIslands(vector<vector<char>>& grid) {
+        int H = grid.size();
+        
+        if(H == 0) return 0;
+        int W = grid[0].size();
+        
+        vector<vector<bool>> visited(H, vector<bool>(W));
+        vector<pair<int,int>> directions {{1,0},{0,1},{-1,0},{0,-1}};
+        int answer = 0;
+        
+        
+        for(int i = 0; i < H; i++){
+            for(int j = 0; j < W; j++) {
+                if (!visited[i][j] && grid[i][j] == '1'){
+                    
+                    queue<pair<int,int>> q;
+                    q.emplace(i,j);
+                    answer++;
+                    
+                    visited[i][j] = true;
+                    
+                    while(!q.empty()) {
+                        pair<int,int> p = q.front();
+                        q.pop();
+                        
+                        for(pair<int,int> dir: directions){
+                            int new_row = p.first + dir.first;
+                            int new_col = p.second + dir.second;
+                            
+                            if(inside(new_row,new_col, H, W) && visited[new_row][new_col] == false && grid[new_row][new_col] == '1'){
+                                q.emplace(new_row, new_col);
+                                visited[new_row][new_col] = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return answer;
+    }
+};
+
+```
+
+#### [Bipartite graphs using BFS](https://leetcode.com/problems/is-graph-bipartite/)
+#### [Video Solution](https://www.youtube.com/watch?v=nbgaEu-pvkU&list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw&index=10)
+
+
+```cpp
+
+#include<bits/stdc++.h>
+using namespace std;
+
+bool bipartiteBFS(int src, vector<int> adj[], int color[]) {
+
+    queue<int> q;
+    q.push(src);
+    color[src] = 1;
+
+    while(!q.empty()){
+        int node = q.front();
+        q.pop();
+
+        for(auto it: adj[node]) {
+            if(color[it] == -1) {
+                color[it] = 1 - color[node];
+                q.push(it);
+            }
+
+            else if(color[it] == color[node]){
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+bool checkBipartite(vector<int> adj[], int n) {
+
+    int color[n];
+    memset(color, -1, sizeof color);
+
+    for(int i = 0; i < n; i++) {
+        if (color[i] == -1) {
+            if(!bipartiteBFS(i, adj, color)) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+
+int main() {
+
+    int n, m;
+    cin >> n >> m;
+
+    vector<int> adj[n];
+    for(int i = 0; i < m; i++) {
+        int u, v;
+        cin >> u >> v;
+
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+
+    if(checkBipartite(adj, n)) {
+        cout << "YES" << endl;
+    }
+
+    else {
+        cout << "NO" << endl;
+    }
+    
+    return 0;
+}
+
+```
+
+#### [Bipartite graphs using DFS](https://leetcode.com/problems/is-graph-bipartite/)
+#### [Video solution](https://www.youtube.com/watch?v=uC884ske2uQ&list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw&index=11)
+
+```cpp
+
+#include<bits/stdc++.h>
+using namespace std;
+
+bool bipartiteDFS(int node, vector<int> adj[], int color[]) {
+
+    if(color[node] == -1) color[node] = 1;
+
+    for(auto it: adj[node]) {
+        if(color[it] == -1) {
+            color[it] = 1 ^ color[node];
+
+            if(!bipartiteDFS(it, adj, color)) {
+                return false;
+            }
+            else if (color[it] == color[node]) return false;
+        }
+    }
+
+    return true;
+}
+
+
+bool checkBipartite(vector<int> adj[], int n) {
+
+    int color[n];
+    memset(color, -1, sizeof color);
+
+    for(int i = 0; i < N; i++) {
+        if (color[i] == -1) {
+            if (!bipartiteDFS(i, adj, color) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+
+int main() {
+
+    int n, m;
+    cin >> n >> m;
+    vector<int> adj[n];
+
+    for(int i = 0; i < m; i++) {
+        int u, v;
+        cin >> u >> v;
+
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+
+    if(checkBipartite(adj, n)) {
+        cout << "YES" << endl;
+    }
+    else {
+        cout << "NO" << endl;
+    }
+    return 0;
+}
+
+
+
+
+```
 
 
 
