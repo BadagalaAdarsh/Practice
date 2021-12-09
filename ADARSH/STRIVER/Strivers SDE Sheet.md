@@ -8227,6 +8227,145 @@ int main() {
 
 ```
 
+#### [Strongly connected components(KosaRaju's alogrithm)](https://leetcode.com/problems/maximum-number-of-non-overlapping-substrings/discuss/766485/kosaraju-algorithm-on)
+
+#### [Video Solution](https://www.youtube.com/watch?v=V8qIqJxCioo&list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw&index=28)
+
+
+```cpp
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void dfs(int node, stack<int>& st, vector<int>& vis, vector<int> adj[]) {
+
+    vis[node] = 1;
+    for(auto it: adj[node]) {
+        if(!vis[it]) {
+            dfs(it, st, vis, adj);
+        }
+    }
+
+    st.push(node);
+}
+
+void revDfs(int node, vector<int>& vis, vector<int> tanspose[]){
+
+    cout << node << " ";
+    vis[node] = 1;
+
+    for(auto it: transpose[node]) {
+        if(!vis[it]){
+            revDfs(it, vis, transpose);
+        }
+    }
+}
+
+int main() {
+
+    int n, m;
+    cin >> n >> m;
+    
+    vector<int> adj[n];
+
+    for(int i = 0; i < m; i++) {
+        int u, v;
+        cin >> u >> v;
+        adj[u].push_back(v);
+    }
+
+    stack<int> st;
+    vector<int> vis(n,0);
+
+    for(int i = 0; i < n; i++) {
+        if(!vis[i]){
+            dfs(i, st, vis, adj);
+        }
+    }
+
+    vector<int> tanspose[n];
+
+    for(int i = 0; i < n; i++) {
+        vis[i] = 0;
+        for(auto it: adj[i]) {
+            transpose[it].push_back(i);
+        }
+    }
+
+    while(!st.empty()){
+        int node = st.top();
+        st.pop();
+
+        if(!vis[node]){
+            cout << "SSC: ";
+            revDfs(node, vis, transpose);
+            cout << endl;
+        }
+    }
+
+    return 0;
+}
+
+```
+
+#### [Dijkstra's Algorithm](https://practice.geeksforgeeks.org/problems/implementing-dijkstra-set-1-adjacency-matrix/1)
+#### [Video Solution](https://www.youtube.com/watch?v=jbhuqIASjoM&list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw&index=19)
+
+
+
+```cpp
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+
+    int n, m;
+    cin >> n >> m;
+
+    vector<pair<int,int>> g[n+1] // 1 based indexing
+
+    int a, b, wt;
+    for(int i = 0; i < m; i++) {
+        cin >> a >> b >> wt;
+        g[a].push_back(make_pair(b,wt));
+        g[b].push_back(make_pair(a,wt));
+    }
+
+    cin >> source;
+
+    priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq; // for min heap
+    vector<int> distTo(n+1, INT_MAX);
+
+    distTo[source] = 0;
+    pq.push(make_pair(0, source));
+
+    while(!pq.empty()){
+        int dist = pq.top().first;
+        int prev = pq.top().second;
+        pq.pop();
+
+        vector<pair<int,int>>::iterator it;
+        for(it = g[prev].begin(); it != g[prev].end(); it++) {
+            int next = it->first;
+            int nextDist = it->second;
+            if(distTo[next] > distTo[prev] + nextDist){
+                distTo[next] = distTo[prev] + nextDist;
+                pq.push(make_pair(distTo[next], next));
+            }
+        }
+    }
+
+    cout << "The distance from source, " << source << ", are :\n";
+    for(int i = 1; i <= n; i++) cout << distTo[i] << " ";
+    cout << endl;
+
+    return 0;
+
+}
+
+```
+
 
 
 
