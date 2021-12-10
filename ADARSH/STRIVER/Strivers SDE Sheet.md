@@ -8366,16 +8366,382 @@ int main() {
 
 ```
 
+#### [Bellman-Ford algorithm](https://practice.geeksforgeeks.org/problems/distance-from-the-source-bellman-ford-algorithm/0/)
+#### [Video solution](https://www.youtube.com/watch?v=75yC1vbS8S8&list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw&index=29)
 
 
 
+```cpp
+
+#include<bits/stdc++.h>
+using namespace std;
+
+struct node{
+    int u;
+    int v;
+    int wt;
+
+    node(int first, int second, int weight) {
+        u = first;
+        v = second;
+        wt = weight;
+    }
+};
+
+
+int main() {
+
+    int n, m;
+    cin >> n >> m;
+    vector<node> edges;
+
+    for(int i = 0; i < m; i++) {
+        int u, v, wt;
+        cin >> u >> v >> wt;
+        edges.push_back(node(u, v, wt));
+    }
+
+    int src;
+    cin >> src;
+
+    int inf = 10000000;
+    vector<int> dist(N, inf);
+
+    dist[src] = 0;
+
+    for(int i = 1; i <= n - 1; i++) {
+        for(auto it: edges) {
+            if(dist[it.u] + it.wt < dist[it.v]) {
+                dist[it.v] = dist[it.u] + it.wt;
+            }
+        }
+    }
+
+    int flag = 0;
+
+    for(auto it: edges) {
+        if(dist[it.u] + it.wt < dist[it.v]) {
+            cout << "Negative cycle found" << endl;
+            flag = 1;
+            break;
+        }
+    }
+
+    if(!flag) {
+        for(int i = 0; i < n; i++) {
+            cout << i << " " << dist[i] << endl;
+        }
+    }
+
+    return 0;
+}
+
+```
+
+
+#### [Floyd Warshall algorith](https://practice.geeksforgeeks.org/problems/implementing-floyd-warshall2042/1)
+
+#### [Video solution](https://www.youtube.com/watch?v=nV_wOZnhbog)
 
 
 
+```cpp
 
 
+#include<bits/stdc++.h>
+using namespace std;
+
+void floyd_warshall(int graph[V][V]) {
+
+    int dist[V][V];
+
+    // assign all values of graph to all pairs sp
+    for(int i = 0; i < V; i++) {
+        for(int j = 0; j < V; j++) {
+            dist[i][j] = graph[i][j];
+        }
+    }
+
+    //find all pairs shortest path by trying all possible paths
+    for(int k = 0; k < V; k++) { // try all intermediate nodes
+        for(int i = 0; i < v; i++) { // try for all possible starting position
+            for(int j = 0; j < V; j++){ // try for all possible ending position
+                if(dist[i][j] == INT_MAX || dist[k][j] == INT_MAX) // skip if k is unreachable from i or j is unreachabel from k 
+                    continue;
+                else if(dist[i][k] + dist[k][j] < dist[i][j]) // check if new distance is shorter via vertex k
+                    dist[i][j] = dist[i][k] + dist[k][j];
+            }
+        }
+    }
+
+    // check for negative edge weight cycle
+
+    for(int i = 0; i < v; i++) {
+        if (dist[i][j] < 0 ) {
+            cout << "Negative edge weight cycle is present " << endl;   
+            return;
+        }
+    }
+
+    // print shortest path graph
+    // values printed as int max defines there is no path
+
+    for(int i = 1; i < V; i++) {
+        for(int j = 0; j < v; j++) {
+            cout << i << " to " << j << " distance is " << dist[i][j] << endl;
+        }
+    }
+}
+
+int main() {
+
+    int graph[V][V] = { { 0, 1, 4, INT_MAX, INT_MAX, INT_MAX},
+                        { INT_MAX, 0, 4, 2, 7, INT_MAX},
+                        {INT_MAX,INT_MAX, 0, 3, 4, INT_MAX},
+                        { INT_MAX, INT_MAX, INT_MAX, 0, INT_MAX, 4},
+                        { INT_MAX, INT_MAX, INT_MAX, 3, 0, INT_MAX},
+                        { INT_MAX, INT_MAX, INT_MAX, INT_MAX, 5, 0} };
+
+    floyd_warshall(graph);
+    return 0;
+}
 
 
+```
+
+### [Minimum spanning tree](https://www.youtube.com/watch?v=xsM8i0jVF1w&list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw&index=19)
+
+
+#### [Minimum spanning tree using Prims algorithm](https://practice.geeksforgeeks.org/problems/minimum-spanning-tree/1)
+#### [Video solution](https://www.youtube.com/watch?v=HnD676J56ak&list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw&index=20)
+
+#### [video for implementation both brute and optimal](https://youtu.be/oNTsS8lGDHw?list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw)
+
+
+### Brute solution
+
+```cpp
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n, m;
+    cin >> n >> m;
+
+    vector<pair<int,int>> adj[n];
+
+    int a, b, wt;
+    for(int i = 0; i < m; i++) {
+        cin >> a >> b >> wt;
+        adj[a].push_back({b, wt});
+        adj[b].push_back({a, wt});
+    }
+
+    int  parent[n];
+    int key[n];
+    bool mstSet[n];
+
+    for(int i = 0; i < n; i++) 
+        key[i] = INT_MAX, mstSet[i] = false, parent[i] = -1;
+
+    key[0] = 0;
+    
+    for(int count = 0; cout < N - 1; count++) {
+
+        int mini = INT_MAX, u;
+
+        for(int v = 0; v < n; v++) {
+            if(mstSet[v] == false && key[v] < mini) {
+                mini = key[v], u = v;
+            }
+        }
+
+        mstSet[u] = true;
+
+        for(auto it: adj[u]) {
+            int v = it.first;
+            int weight = it.second;
+
+            if(mstSet[v] == false && weight < key[v]) {
+                parent[v] = u, key[v] = weight;
+            }
+        }
+    }
+
+    
+    for(int i = 1; i < n; i++)
+        cout << parent[i] << "-" << i << endl;
+
+    return 0;
+}
+
+```
+
+
+### Optimal solution( using min heap or priority queue)
+
+
+```cpp
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+	int N,m;
+	cin >> N >> m;
+	vector<pair<int,int> > adj[N]; 
+
+	int a,b,wt;
+	for(int i = 0; i<m ; i++){
+		cin >> a >> b >> wt;
+		adj[a].push_back(make_pair(b,wt));
+		adj[b].push_back(make_pair(a,wt));
+	}	
+	
+	int parent[N]; 
+      
+    int key[N]; 
+      
+    bool mstSet[N]; 
+  
+    for (int i = 0; i < N; i++) 
+        key[i] = INT_MAX, mstSet[i] = false; 
+    
+    priority_queue< pair<int,int>, vector <pair<int,int>> , greater<pair<int,int>> > pq;
+
+    key[0] = 0; 
+    parent[0] = -1; 
+    pq.push({0, 0});
+    // Run the loop till all the nodes have been visited
+    // because in the brute code we checked for mstSet[node] == false while computing the minimum
+    // but here we simply take the minimal from the priority queue, so a lot of times a node might be taken twice
+    // hence its better to keep running till all the nodes have been taken. 
+    // try the following case: 
+    // Credits: Srejan Bera
+    // 6 7 
+    // 0 1 5 
+    // 0 2 10 
+    // 0 3 100 
+    // 1 3 50 
+    // 1 4 200
+    // 3 4 250
+    // 4 5 50 
+    while(!pq.empty())
+    { 
+        int u = pq.top().second; 
+        pq.pop(); 
+        
+        mstSet[u] = true; 
+        
+        for (auto it : adj[u]) {
+            int v = it.first;
+            int weight = it.second;
+            if (mstSet[v] == false && weight < key[v]) {
+                parent[v] = u;
+		        key[v] = weight; 
+                pq.push({key[v], v});    
+            }
+        }
+            
+    } 
+    
+    for (int i = 1; i < N; i++) 
+        cout << parent[i] << " - " << i <<" \n"; 
+	return 0;
+}
+
+```
+
+#### [Minimum spanning tree kruskals algorith](https://practice.geeksforgeeks.org/problems/minimum-spanning-tree/1)
+
+#### [Video solution](https://www.youtube.com/watch?v=1KRmCzBl_mQ&list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw&index=24)
+
+
+```cpp
+
+#include<bits/stdc++.h>
+using namespace std;
+
+struct node{
+    int u;
+    int v;
+    int wt;
+
+    node(int first, int second, int weight) {
+        u = first;
+        v = second;
+        wt = weight;
+    }
+};
+
+bool comp( node a, node b) {
+    return a.wt < b.wt;
+}
+
+int findParent(int u, vector<int>& parent) {
+    if(u == parent[u]) return u;
+    return findParent(parent[u], parent);
+}
+
+void unionn(int u, int v, vector<int>& parent, vector<int>& rank) {
+
+    u = findParent(u, parent);
+    v = findParent(v, parent);
+
+    if(rank[u] < rank[v])
+        parent[u] = v;
+
+    else if(rank[v] < rank[u])
+        parent[v] = u;
+
+    else{
+        parent[v] = u;
+        rank[u]++;
+    }
+}
+
+int main() {
+
+    int n, m;
+    cin >> n >> m;
+    vector<node> edges;
+
+    for(int i = 0; i < m; i++) {
+        int u, v, wt;
+        cin >> u >> v >> wt;
+        edges.push_back(node(u, v, wt));
+    }
+
+    sort(edges.begin(), edges.end(), comp);
+
+    vector<int> parent(n);
+    for(int i = 0; i < n; i++) 
+        parent[i] = i;
+
+    vector<int> rank(n);
+
+    int cost = 0;
+    vector<pair<int,int>> mst;
+
+    for(auto it: edges) {
+        // check if two nodes are different components or not
+        if(findPar(it.v, parent) != findPar(it.u, parent)) {
+            cost += it.wt;
+            mst.push_back({it.u, it.v});
+            unionn(it.u, it.v, parent, rank);
+        }
+    }
+
+    cout << "cost " << endl;
+
+    for(auto it: mst) cout << it.first << " - " << it.second << endl;
+    return 0;
+}
+
+
+```
 
 
 
