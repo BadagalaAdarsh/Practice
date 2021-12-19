@@ -12,7 +12,7 @@ int main() {
         cin >> row >> col;
 
         ll maxi = max(row , col);
-        ll start  = maxi * maxi;
+        ll start  = (maxi - 1) * (maxi - 1);
         ll ans;
 
         // if max number is odd
@@ -22,7 +22,20 @@ int main() {
             }
             else {
                 ans = start + 2 * maxi - row ;
+            }
         }
+
+        else {
+            if (col == maxi){
+                ans = start + row;
+            }
+            else{
+                ans = start + 2 * maxi - col;
+            }
+        }
+
         cout << ans << "\n";
+    }
+}
 
         
