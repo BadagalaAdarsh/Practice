@@ -61,4 +61,52 @@ using namespace std;
 //     cout << answer;
 // }
 
+int main() {
+
+    string str;
+    cin >> str;
+
+    int character[26]= {}, oddCount = 0;
+
+    for(char ch: str) {
+        ++character[ch - 'A'];
+    }
+
+
+    // count odd frequencies
+    for(int i = 0; i < 26; i++) {
+        oddCount += character[i] & 1;
+    }
+
+    if (oddCount > 1 ) {
+        cout << "NO SOLUTION" ;
+        return 0;
+    }
+
+    string answer;
+
+    for(int i = 0; i < 26; i++) 
+        // condition for even frequencies
+        if(character[i] & 1 ^ 1) 
+            for(int j = 0; j < character[i]/2; ++j)
+                answer += (char)('A' + i);
+
+    cout << answer;
+
+    for(int i = 0; i < 26; i++) {
+        if(character[i] & 1) {
+            for(int j = 0; j < character[i]; j++) {
+                cout << (char)('A' + i);
+            }
+        }
+    }
+
+    reverse(answer.begin(), answer.end());
+
+    cout << answer;
+}
+
+
+
+    
 
