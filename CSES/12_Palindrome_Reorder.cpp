@@ -26,7 +26,7 @@ using namespace std;
 //             oddCount++;
 
 //             if (oddCount > 1) {
-//                 cout << "NO SOLUTION" ;
+//                 cout << "NO SOLUTION" << endl;
 //                 return 0;
 //             }
 //         }
@@ -35,6 +35,7 @@ using namespace std;
 //     string answer;
 
 //     char oddChar ;
+    
 
 //     for(itr = hashmap.begin(); itr != hashmap.end(); itr++) {
 //         int currentCount = itr->second;
@@ -42,6 +43,8 @@ using namespace std;
 //         // if odd count 
 //         if (currentCount % 2 != 0) {
 //             oddChar = itr->first;
+//             oddCount = currentCount;
+//             continue;
 //         }
 
 //         currentCount = currentCount/2;
@@ -56,9 +59,13 @@ using namespace std;
 //     string reverseAnswer = answer;
 //     reverse(reverseAnswer.begin(), reverseAnswer.end());
 
-//     answer = answer + oddChar + reverseAnswer;
+//     for(int i = 0; i < oddCount; i++) {
+//         answer += oddChar;
+//     }
 
-//     cout << answer;
+//     answer += reverseAnswer;    
+
+//     cout << answer << endl;
 // }
 
 int main() {
