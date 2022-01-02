@@ -7363,6 +7363,8 @@ public:
 #### [Distinct numbers in a window](https://www.interviewbit.com/problems/distinct-numbers-in-window/)
 #### [blog solution github](https://github.com/cruxrebels/InterviewBit/blob/master/HeapsAndMaps/DistinctNumbersInWindow.cpp)
 
+#### [Video Solution](https://youtu.be/j48e8ac7r20)
+
 
 ```cpp
 /*
