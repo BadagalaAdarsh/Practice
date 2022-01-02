@@ -8838,7 +8838,7 @@ private:
     for(int i = 0; i < nums.size(); i++) {
         // iterate through the nums array 
         // and check which element is not added yet
-        // if freq[i] != 0
+        // if freq[i] == 0
         if(!freq[i] ){
             // add element to current vector
             ds.push_back(nums[i]);
