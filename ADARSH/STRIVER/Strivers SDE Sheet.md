@@ -7436,6 +7436,43 @@ vector<int> Solution::dNums(vector<int> &A, int B) {
 
 ```
 
+### Java bit better solution to understand
+
+```java
+
+
+void countDistinctElements(int a[], int k) {
+
+	Map<Integer,Integer> map = new HashMap<>();
+	
+	for(int i = 0; i < k; i++) {
+		// if present in map add 1 or keep value as 0 to the key
+		map.put(a[i], map.getOrDefault(a[i],0) + 1);
+	}
+	
+	print( map.size());
+	
+	for(int i = k; i < a.length; i++){
+		
+		if(map.get(a[i-k] == 1))
+			// if frequency of element to be removed is 0 completely remove from the map
+			map.remove(a[i-k]);
+			
+		else	
+			// if frequency is higher than 1 then reduce its frequency by 1 
+			map.put(a[i-k], map.get(a[i-k]) -1);
+		
+		// insert frquency of new element as 0 if not there else increase the value by 1	
+		map.put(a[i], map.getOrDefault(a[i],0) + 1);
+		
+		print( map.size() );
+	}
+}
+
+
+
+```
+
 
 #### [kth largest element in the array](https://leetcode.com/problems/kth-largest-element-in-an-array/)
 #### [blog solution](https://leetcode.com/problems/kth-largest-element-in-an-array/discuss/60294/Solution-explained)
