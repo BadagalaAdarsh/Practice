@@ -1,4 +1,4 @@
-# My Amazon Preparation 
+# My Coding Notes
 
 ## Coding Questions and Answers
 
@@ -8985,3 +8985,12 @@ int main() {
 }
 
 ```
+
+# Some simple useful tips
+
+### Finding ceil of (a/b)
+
+* (a + b - 1) / b equal to ceil(a / b) 
+
+
+
