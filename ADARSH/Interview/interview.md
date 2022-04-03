@@ -46,11 +46,11 @@ A computer can address more memory than the amount physically installed on the s
 The main visible advantage of this scheme is that programs can be larger than physical memory. Virtual memory serves two purposes. First, it allows us to extend the use of physical memory by using a disk. Second, it allows us to have memory protection, because each virtual address is translated to a physical address. (Example Swap in Linux)
 
 - **Thrashing:**
-Thrashing is a condition or a situation when the system is spending a major portion of its time in servicing the **page faults** ==(In computing, a page fault (sometimes called PF or hard fault) is an exception that the memory management unit (MMU) raises when a process accesses a memory page without proper preparations. Accessing the page requires a mapping to be added to the process's virtual address space)== , but the actual processing done is very negligible. High degree of multiprogramming(if number of processes keeps on increasing in the memory), lack of frames (if a process is allocated too few frames, then there will be too many and too frequent page faults) causes Thrashing.
+Thrashing is a condition or a situation when the system is spending a major portion of its time in servicing the **page faults** <mark>(In computing, a page fault (sometimes called PF or hard fault) is an exception that the memory management unit (MMU) raises when a process accesses a memory page without proper preparations. Accessing the page requires a mapping to be added to the process's virtual address space)</mark> , but the actual processing done is very negligible. High degree of multiprogramming(if number of processes keeps on increasing in the memory), lack of frames (if a process is allocated too few frames, then there will be too many and too frequent page faults) causes Thrashing.
 
-    * **Page** (or memory page, or virtual page, or logical page) is a fixed-length contiguous block of ==virtual memory==
+    * **Page** (or memory page, or virtual page, or logical page) is a fixed-length contiguous block of <mark>virtual memory</mark>
 
-    * A **frame** (or memory frame, or physical page, or page frame) is a fixed-length block of ==RAM== (ie. physical memory, it exists - as in ==physical==
+    * A **frame** (or memory frame, or physical page, or page frame) is a fixed-length block of <mark>RAM</mark> (ie. physical memory, it exists - as in <mark>physical<mark/>
 
         * It is the smallest unit of data for memory management in a virtual memory operating system. A frame refers to a storage frame or central storage frame. In terms of physical memory, it is a fixed sized block in physical memory space, or a block of central storage
 
@@ -62,11 +62,11 @@ A thread is a single sequential flow of execution of tasks of a process so it is
 
 **What is RAID ? Different types**
 
-RAID, or ==Redundant Arrays of Independent Disks== is a technique which makes use of a combination of multiple disks instead of using a single disk for increased performance, data redundancy or both.Data redundancy, although taking up extra space, adds to disk reliability. This means, in case of disk failure, if the same data is also backed up onto another disk, we can retrieve the data and go on with the operation
+RAID, or <mark>Redundant Arrays of Independent Disks</mark> is a technique which makes use of a combination of multiple disks instead of using a single disk for increased performance, data redundancy or both.Data redundancy, although taking up extra space, adds to disk reliability. This means, in case of disk failure, if the same data is also backed up onto another disk, we can retrieve the data and go on with the operation
 
 
 * **RAID 0**
-    * RAID level 0, often called ==stripping== The idea behind this level is data to be stored is divided into some parts called strips and loaded these strips across the member of the disk of the array
+    * RAID level 0, often called <mark>stripping</mark> The idea behind this level is data to be stored is divided into some parts called strips and loaded these strips across the member of the disk of the array
 
         * Advantages
             * Very Fast
@@ -81,7 +81,7 @@ RAID, or ==Redundant Arrays of Independent Disks== is a technique which makes us
 
 
 * **RAID 1**
-    * RAID level 1 uses at least two duplicate hard drives and store the same blocks of information between them. So, it is often called ==Mirroring==. If one of the mirrored drives failure due to a mechanical problem or does not respond then the remaining drive will continue to serve and provide correct data.
+    * RAID level 1 uses at least two duplicate hard drives and store the same blocks of information between them. So, it is often called <mark>Mirroring</mark>. If one of the mirrored drives failure due to a mechanical problem or does not respond then the remaining drive will continue to serve and provide correct data.
 
         * Advantages
             * High Reliability
@@ -93,14 +93,14 @@ RAID, or ==Redundant Arrays of Independent Disks== is a technique which makes us
             * Min 2 drives are required      
 
 * **RAID 2**
-    * RAID level is called ==Hamming code== The strips are very small at this level, often as small as a single byte or word. The hamming code is calculated across corresponding bit positions on each data disk and the bits of the code are stored in the corresponding bit positions on multiple disks
+    * RAID level is called <mark>Hamming code</mark> The strips are very small at this level, often as small as a single byte or word. The hamming code is calculated across corresponding bit positions on each data disk and the bits of the code are stored in the corresponding bit positions on multiple disks
 
         * Disadvantages
             * Its rarely implemented (RAID 2 controller was expensive and hard to implement)  
 
 
 * **RAID 3**
-    * RAID level 3 requires only a ==single redundant disk==. RAID 3 employs parallel access with data distributed in small strips. Instead of an error corresponding code, a single ==parity bit== is computed for the set of individual bits in the same position on all of the data disks. In the event of a drive failure, the parity drive is accessed and data is reconstructed from the remaining devices
+    * RAID level 3 requires only a <mark>single redundant disk</mark>. RAID 3 employs parallel access with data distributed in small strips. Instead of an error corresponding code, a single <mark>parity bit</mark> is computed for the set of individual bits in the same position on all of the data disks. In the event of a drive failure, the parity drive is accessed and data is reconstructed from the remaining devices
 
         * Advantages
             * RAID 3 can achieve very high data transfer rates
@@ -111,7 +111,7 @@ RAID, or ==Redundant Arrays of Independent Disks== is a technique which makes us
             * Only processes one I/O at a time
 
 * **RAID 4**
-    * RAID 4 ==stripes== the data across multiple disks just like RAID 0. In addition to that, it also stores ==parity information== of all the disks in a separate dedicated disk to achieve redundancy. If one of the data disks failed is the information re-built on a separate disk using the parity information. If the parity disk fails, the parity information is recalculated on a spare disk. It is better suited to the transaction I/O rather than large file transfers.
+    * RAID 4 <mark>stripes</mark> the data across multiple disks just like RAID 0. In addition to that, it also stores <mark>parity information</mark> of all the disks in a separate dedicated disk to achieve redundancy. If one of the data disks failed is the information re-built on a separate disk using the parity information. If the parity disk fails, the parity information is recalculated on a spare disk. It is better suited to the transaction I/O rather than large file transfers.
 
     * Advantages
             * RAID 4 can recover data from one lost disk
@@ -168,7 +168,7 @@ The conditions of fragmentation depend on the memory allocation system. As the p
 
 **What is spooling ?**
 
-SPOOL is an acronym for ==simultaneous peripheral operations online==. Spooling is a process in which data is temporarily held to be used and executed by a device, program, or system.
+SPOOL is an acronym for <mark>simultaneous peripheral operations online</mark>. Spooling is a process in which data is temporarily held to be used and executed by a device, program, or system.
 In spooling, there is no interaction between the I/O devices and the CPU. That means there is no need for the CPU to wait for the I/O operations to take place. Such operations take a long time to finish executing, so the CPU will not wait for them to finish.
 The biggest example of Spooling is printing. The documents which are to be printed are stored in the SPOOL and then added to the queue for printing. During this time, many processes can perform their operations and use the CPU without waiting while the printer executes the printing process on the documents one-by-on
 
@@ -188,7 +188,7 @@ Semaphore is signaling mechanism (“I am done, you can carry on” kind of sign
 * Binary Semaphore
 Definition. A Binary Semaphore is a semaphore whose integer value range over 0 and 1. A counting semaphore is a semaphore that has multiple values of the counter. The value can range over an unrestricted domain
 
-==The critical section refers to the segment of code where processes access shared resources, such as common variables and files, and perform write operations on them. Since processes execute concurrently, any process can be interrupted mid-execution==
+<mark>The critical section refers to the segment of code where processes access shared resources, such as common variables and files, and perform write operations on them. Since processes execute concurrently, any process can be interrupted mid-execution</mark>
 
 
 **Belady’s Anomaly**
@@ -214,7 +214,7 @@ Paging is a function of memory management where a computer will store and retrie
 
 Paging is used for faster access to data. When a program needs a page, it is available in the main memory as the OS copies a certain number of pages from your storage device to main memory. Paging allows the physical address space of a process to be noncontiguous.
 
-Page Hit. When the CPU attempts to obtain a needed page from main memory and the page exists in main memory (RAM), it is referred to as a ==PAGE HIT==
+Page Hit. When the CPU attempts to obtain a needed page from main memory and the page exists in main memory (RAM), it is referred to as a <mark>PAGE HIT</mark>
 
 Overview. In an operating system, page replacement is referred to a scenario in which a page from the main memory should be replaced by a page from secondary memory. Page replacement occurs due to page faults
 
@@ -274,9 +274,9 @@ First Come First Serve (FCFS) is an operating system scheduling algorithm that a
 
 Shortest Job First (SJF) is an algorithm in which the process having the smallest execution time is chosen for the next execution. This scheduling method can be preemptive or non-preemptive. It significantly reduces the average waiting time for other processes awaiting execution
 
-==non pre emptive==  does not interrupt a process running CPU in middle of execution
+<mark>non pre emptive</mark>  does not interrupt a process running CPU in middle of execution
 
-==pre emptive== program can be interrupted
+<mark>pre emptive</mark> program can be interrupted
 
 **SRTF Scheduling**
 
@@ -342,7 +342,7 @@ Cache Memory is a special very high-speed memory. It is used to speed up and syn
 
 **Fast Memory**
 
-==Level 1 or Register , Level 2 or Cache , Level 3 or Main Memory, Level 4 or Secondary Memory==
+<mark>Level 1 or Register , Level 2 or Cache , Level 3 or Main Memory, Level 4 or Secondary Memory</mark>
 
 **Difference between Direct-mapping, Associative Mapping & Set-Associative Mapping**
 
