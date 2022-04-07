@@ -1,3 +1,108 @@
+## Miscelleneous
+
+**What is DNS lookup?**
+
+A DNS lookup, in a general sense, is the process by which a DNS record is returned from a DNS server. This is like looking up a phone number in a phone book - that is why it is referred to as a "lookup". Interconnected computers, servers and smart phones need to know how to translate the email addresses and domain names people use into meaningful numerical addresses. A DNS lookup performs this function
+
+The basic idea of DNS is that humans can't easily remember long strings of digits like machines can, but can much more easily remember words. So, when you type in a domain name like www.techopedia.com, the request is forwarded to a DNS server (whether locally or at an ISP), which returns the corresponding IP address. This address is then used by all the computers and routers to channel the request and responses of a user's session. The result is the user sees web pages as expected or has email show up in an in-box. The two types of DNS lookups are forward DNS lookups and reverse DNS lookups.
+
+DNS lookups utilize DNS records to translate IP addresses and domain names or email addresses. There are two types of lookups: forward DNS and reverse DNS. Both resolve information related to the domain, depending on the search method
+
+
+**What is forward DNS Mean?**
+
+Forward DNS is a type of DNS request in which a domain name is used to obtain its corresponding IP address. A DNS server is said to resolve a domain name when it returns its IP address. A forward DNS request is the opposite of a reverse DNS lookup.
+
+Forward DNS is also known as a forward DNS lookup
+
+**What does reverse DNS (rDNS) mean?**
+
+Reverse DNS (rDNS or RDNS) is a Domain Name Service (DNS) lookup of a domain name from an IP address. A regular DNS request would resolve an IP address given a domain name; hence the name "reverse."
+
+Reverse DNS is also known as Reverse DNS Lookup and Inverse DNS
+
+Reverse DNS requests are often used for filtering spam. Spammers can easily set the sending email address using any domain name they want, including legitimate domain names like those of banks or trusted organizations.
+
+Receiving email servers can validate incoming messages by checking the sending IP address with a Reverse DNS request. If the email is legitimate, the rDNS resolver should match the domain of the email address. The downside with this technique is that some legitimate mail servers don't have the proper rDNS records setup on their end to respond properly because in many cases their ISP has to set these records up.
+
+Reverse DNS records can be set up for both ipV4 and ipV6 records.
+
+
+**What does DNS Record Mean?**
+
+A DNS record is a database record used to map a URL to an IP address. DNS records are stored in DNS servers and work to help users connect their websites to the outside world. When the URL is entered and searched in the browser, that URL is forwarded to the DNS servers and then directed to the specific Web server. This Web server then serves the queried website outlined in the URL or directs the user to an email server that manages the incoming mail.
+
+The most common record types are A (address), CNAME (canonical name), MX (mail exchange), NS (name server), PTR (pointer), SOA (start of authority) and TXT (text record)
+
+
+**What does domain name registrar mean?**
+
+A domain name registrar is company that has been accredited by the Internet Corporation for Assigned Names and Numbers (ICANN) or a national country code top-level domain (TLD) (such as .uk or .ca) to register domain names. Domain name registration is a competitive industry, in which domains may be sold in a number of TLDs, including ".com," ".net," and ".org." among others
+
+
+**Networking Protocols in Computer Networks**
+
+* Transmission Control Protocol (TCP): TCP is a popular communication protocol which is used for communicating over a network. It divides any message into series of packets that are sent from source to destination and there it gets reassembled at the destination.
+
+* Internet Protocol (IP): IP is designed explicitly as addressing protocol. It is mostly used with TCP. The IP addresses in packets help in routing them through different nodes in a network until it reaches the destination system. TCP/IP is the most popular protocol connecting the networks.
+
+* User Datagram Protocol (UDP): UDP is a substitute communication protocol to Transmission Control Protocol implemented primarily for creating loss-tolerating and low-latency linking between different applications
+
+* Post office Protocol (POP): POP3 is designed for receiving incoming E-mails
+
+* Simple mail transport Protocol (SMTP): SMTP is designed to send and distribute outgoing E-Mail.
+
+
+* File Transfer Protocol (FTP): FTP allows users to transfer files from one machine to another. Types of files may include program files, multimedia files, text files, and documents, etc
+
+* PPP: Point to Point Protocol or PPP is a data link layer protocol that enables transmission of TCP/IP traffic over serial connection, like telephone line.
+
+* Hyper Text Transfer Protocol (HTTP): HTTP is designed for transferring a hypertext among two or more systems. HTML tags are used for creating links. These links may be in any form like text or images. HTTP is designed on Client-server principles which allow a client system for establishing a connection with the server machine for making a request. The server acknowledges the request initiated by the client and responds accordingly
+
+* Hyper Text Transfer Protocol Secure (HTTPS): HTTPS is abbreviated as Hyper Text Transfer Protocol Secure is a standard protocol to secure the communication among two computers one using the browser and other fetching data from web server. HTTP is used for transferring data between the client browser (request) and the web server (response) in the hypertext format, same in case of HTTPS except that the transferring of data is done in an encrypted format. So it can be said that https thwart hackers from interpretation or modification of data throughout the transfer of packets
+
+* Telnet: Telnet is a set of rules designed for connecting one system with another. The connecting process here is termed as remote login. The system which requests for connection is the local computer, and the system which accepts the connection is the remote computer
+
+* Gopher: Gopher is a collection of rules implemented for searching, retrieving as well as displaying documents from isolated sites. Gopher also works on the client/server principle
+
+* Some Other Protocols are
+    * ARP (Address Resolution Protocl)
+    * DHCP (Dynamic Host Configuration Protocol)
+    * IMAP4 (Internet Message Access Protocol)
+    * SIP (Session Initiation Protocol)
+    * RTP (Real-time Transport Protocol)
+    * RLP (Resource Location Protocol)
+    * RAP (Route Access Protocol)
+    * L2TP (Layer Two Tunnelling Protocol)
+    * PPTP ( Point to point tunnelling protocol)
+    * SNMP ( simple network management protocol)
+    * TFTP (Trivial File Transfer Protocol)
+
+
+**Encryption**
+
+Network encryption is the process of encrypting or encoding data and messages transmitted or communicated over a computer network. It is a broad process that includes various tools, techniques and standards to ensure that the messages are unreadable when in transit between two or more network nodes
+
+
+**Difference between delete, truncate and drop in DBMS**
+
+* Delete
+Basically, it is a Data Manipulation Language Command (DML). It is used to delete one or more tuples of a table. With the help of the “DELETE” command, we can either delete all the rows in one go or can delete rows one by one. i.e., we can use it as per the requirement or the condition using the Where clause. It is comparatively slower than the TRUNCATE command. The TRUNCATE command does not remove the structure of the table.
+
+* Drop
+It is a Data Definition Language Command (DDL). It is used to drop the whole table. With the help of the “DROP” command we can drop (delete) the whole structure in one go i.e. it removes the named elements of the schema. By using this command the existence of the whole table is finished or say lost
+
+* Truncate
+It is also a Data Definition Language Command (DDL). It is used to delete all the rows of a relation (table) in one go. With the help of the “TRUNCATE” command, we can’t delete the single row as here WHERE clause is not used. By using this command the existence of all the rows of the table is lost. It is comparatively faster than the delete command as it deletes all the rows fastly. 
+
+
+**Difference between candidate key and super key**
+
+Super Key is a set of attributes or columns that uniquely identifies each row table whereas, a candidate key is a set of attributes that recognizes the tuples in a relation, or table
+
+**Difference between unique and distinct in DBMS**
+
+The UNIQUE keyword marks a database constraint and is defined during table creation or later on a specific column or a set of columns. The DISTINCT keyword is used while fetching the result set from the database
 
 ## Operating System
 
