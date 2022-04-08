@@ -1,5 +1,141 @@
 ## Miscelleneous
 
+**OSI model**
+
+* Open System Interconnection
+
+* Application layer
+    * used by network applications like browser, outlook, skype
+    * uses protocols like http, https, smtp, ftp, telent etc
+
+* Presentation layer
+    * receive data from application layer
+    * convert character to machine language (translatoin)
+    * compressoin
+        * lossy or loss less
+        * faster transfer data
+        * video and audio streaming helpful
+    * encryption and decryption
+    * ssl (secure socket layer) used for encryption / decryption)
+
+* Session layer
+    * setting up and managing connection, termination of connection
+    * uses api
+        * example NETBIOS
+    * performs authentication (process to identify who you are)
+        * connection established
+    * authorization (permission to access a file or not)
+    * keep track of file transfer (data packets)
+    * session management
+
+* above all are performed by browser
+
+* Transport layer
+    * control reliablitiy 
+    * segmentation
+        * data divided to segments (source and dest portnumber, seq number)
+    * flow control
+        * amount of data being transfered
+        * server speed 100MB , client speed 10 MB  
+            * ask to slow down
+    * Error control
+        * data missed
+            * automatic repeat request
+                * check sum 
+    * protocols
+        * TCP and UDP
+    * connectoin oriented (TCP)
+    * connection less (UDP)
+    * TCP (slow and feed back is there)
+    * UDP (fast and no feed back)
+
+    * passes segements to network layer
+
+* Network Layer
+    * here router recides
+    * tranmits data segement one to another networks
+    * data units are packets
+    * functoins are
+        * logical adderssing
+            * IP4 and IP6
+            * attached to data packet (sender and receiver)
+        * routing
+            * method to move data from source to destination
+            * based on logical addressing
+        * path determination
+            * choosing best path
+                * OSPF, BGP etc
+
+* Data Link Layer
+    * physical addressing (MAC) added to data packet to form a frame
+    * software in NIC
+    * two functions
+        * upper layer to acces media using framing
+        * control how data is placed and received from the medium
+            * media access control
+                * technique to move the data on and off the communication medium (ethernet or wifi)
+                * check if media is free (CSMA) carrier sense multiple access
+            * error control
+
+
+* Physical Layer
+ * convert binary to signal (radio signal, light signal etc)
+
+
+ **TCP IP Model**
+
+* set of protocols that supports network commmunication 
+* TCP breaks messgaes into small data uints called segments and give them to IP
+* transmission control protocol/ internet protocol
+* highly reliable , slow
+* practical model
+
+* APPLICATION LAYER
+    * Application message
+    * uses protocols like http/s, smtp, pop etc
+
+* TRANSPORT LAYER
+    * TCP Segment / UDP Data gram
+    * TCP supports segmentation
+    * UDP does not supports (used in DNS, DHCP, SNMP, RIP, videos)
+    * 3 way handshake (connectin oriented)
+    * TCP has 
+        * erro free using check sum
+        * ordered data transfer using the sequence number
+        * retransmission based on the acknowledgement
+        * discarding duplicate segments based on the unique sequence number
+        * congestion throttling or flow control based on the timer at the sender side
+    * four way hand shake for connection termination
+
+* NETWORK LAYER
+    * IP Packet
+    * Add IP address to segment to form the packet
+    * use router to send data (routing) not need if in same network 
+    * choose best path for delivery
+    
+
+* DATA LINK LAYER
+    * Ethernet Frame
+    * Medium Access Control
+        * Data Encapsulation
+            * add header and trailer
+            * header has MAC acress and trailer has error checking data
+        * Accessing the Media
+            * Carrier Sense Multiple Access / Collision detection
+
+    * Logical Link Control
+        * Flow Control
+            * control flow of control without overwhelming the receiver
+        * Error Control
+            * Error detection and retransmission
+            * based on acknowledgement from receiver (Automatic repeat request)
+        * Resize IP packet to fit the frame
+
+* PHYSICAL LAYER
+    * actual communication
+    * binary to signal based on communication medium
+
+
 **What is DNS lookup?**
 
 A DNS lookup, in a general sense, is the process by which a DNS record is returned from a DNS server. This is like looking up a phone number in a phone book - that is why it is referred to as a "lookup". Interconnected computers, servers and smart phones need to know how to translate the email addresses and domain names people use into meaningful numerical addresses. A DNS lookup performs this function
