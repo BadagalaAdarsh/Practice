@@ -50,7 +50,255 @@ that task regarding normalization of a table for free time management system web
 
 * **Answer :** I tend to keep a healthy work life balance so that my productivity never goes down and it always increases but for qalara I had to compromise my generous holiday vacation time for myself where I planned to go home but  to make sure that the new client would like the demo but customer liking the demo and onboarding with us as the new customer made it all worth it
 
+*  How do you get to an understanding of what the customer’s needs are?
+* **Answer** currently I am working as a data scientist where I am learning both the SDE and data science part. Here the customers come to us without much technical knowledge of what they require and can only provide me with the details of the aesthetic that they expect in the final product. I believe that great customer service is not only about doing what they ask us to do but about anticipating what they truly require and exceeding their expectation.
 
+* How do you anticipate your customer’s needs ? (Customer Obsession, Innovation, thinking beyond limits and deliver great results)
+* **Answer** I tried to be updated in their field of business and think in the point of the customer of my current customer and why would I choose him instead of others in the same field and in  that way I'll try to understand the customer's need
+
+* How do you honestly pursue customer feedback, not just solicit them for compliments?
+* **Answer** I always start with making sure I provide a perfect service that encourages the customer to leave feedback on their own without having solicit(ask them separately) When I do pursue feedback, I always do it with clear intent and a purpose, explaining to my customer that what I require is constructive feedback and not simply a positive comment
+
+
+*  How do you wow your customers ?
+* **Answer** Giving the wow factor to a customer is all about pleasantly surprising them by providing a level of service that exceeds their expectations. This should be started with perfect delivery of service along with a positive addition that they do not usually get from the competitors. In my recent task of herbspro along with regular expression one for recommendation I also gave them benefit based approach and for qalara along with the parent one I was able to give leaf level products in the search query
+
+
+* Tell me about a time a customer wanted one thing, but you felt they needed something else.
+
+* **Answer** for herbspro I was told that they need a exact match for the recommendation example for weight gain or weight loss. But I just thought in terms of general customer and I felt that it's not always the case some times the general customer might want a simple one which does the same work instead of the exact same one
+
+* When was a time you had to balance the needs of the customer with the needs of the business?
+* **Answer** This is something that comes up mostly with product pricing and offering discounts and other incentives to the customer. My approach is always thinking about long-term benefits for the business and retention of the customer rather than making a short-term profit and losing the customer
+
+* Give me an example of when you took a risk and it failed.
+* **Answer** we planned as a ACM student chapter a workshop on machine learning and deep learning as most of students asked for that and we arranged a resource person for a pariticular fee but at the event time we failed to meet the min required reg and fee cause there were few continuous holidays in the hostel, so most of the hostlers left home and we paid the resource person from our money. Here two learning were first we should know whether our customer available at a particular time and never promise a resource person that we can pay him upfront
+
+
+* Describe a project or idea (not necessarily your own that was implemented primarily because of your efforts. What was your role? What was the outcome?
+* Give an example of when you saw a peer struggling and decided to step in and help. What was the situation and what action did you take? What was the outcome?
+
+* **Answer** in college my juniors wanted to implement a project for their main project in deep learning based on classification but they didn't had any idea. I told them to do on ASL using VGG16 as it is pretrained network. I helped them in teaching some of the stuff that I know and it turned out that their project was selected as one of the best project in the class
+
+* Tell me about a time when you had to leave a task unfinished?
+* **Answer** in internship i was initially told that I have to extract attributes from the website for all the catalogs or atleast some by going through some, but i found that later i could have done the same based on the customer given data so I told my mentor about it and left it and proceeded with web scraping approach which indeed saved us lot of time later
+
+*  tell me about a time when you had to work on a project with unclear responsibilities?
+* **Answer** In my internship i was just told to get as many attributes as possible from a website where I was unclear about why to do or for what they'll be used. But I did what I can do and soon it turned out that I have performed well because of which the customer was very happy
+
+
+* Give me an example of a decision you owned, which had a long-term focus.(higher standards, diving deep, delivering results)
+* **Answer** I am tech lead and vice chair of ACM and we conduct various codeathons and making questions and resutls were taking so much time because of lack of test cases and checking the palagarism, then I came up with a solution to give random test cases from the recent codeforces and codechef contest and use simple python programs to automate the plag check, although it took some time to get it right , it really helped in fastening the process of creating a questions and providiing results
+
+* Provide an example of when you personally demonstrated ownership.
+* **Answer** for hackathon juniors were responsible for preparing the questions but at last moment due to various reasons they were unable to do it as they were forced to do some courses so they lacked the time and I prepared questions, poster to promote, took the responsibilty for the promotions, arranged the lab, and at the time of event there was some issue with internet routed initially i tried to resolve it in normal manner but I couldn't then I discover that it was a individual router so for the sake of codeathon i rested the router provided the internet later I dive deep into the problem using the network administrator and solved the issue and finally that event went in a very good manner
+
+
+### Ownership
+
+* Give me an example of a time you faced a conflict while working on a team. How did you handle that? (ownership)
+* Do you collaborate well
+* **Answer** in our student chapter there was a delay in the work because of a particular team mate whose responsibilty was to create questions for the deep datathon, then I approached so that i can know how to over come it, he initially reacted defensively, I kept calm and asked him how could I assist him, then he told that his teacher has given him one more assignment to do because of which he was unable to finish the job. So I approached our faculty sponsor and explained him the current situation and later his assignment was reduced and I too helped him a bit in  my free time to complete the work in time
+
+* Tell me about a time when you took on a task that was beyond your job responsibilities.
+* Took on a task that went beyond your typical responsibilities?
+* **Answer** for hackathon juniors were responsible for preparing the questions but at last moment due to various reasons they were unable to do it as they were forced to do some courses so they lacked the time and I prepared questions, poster to promote, took the responsibilty for the promotions, arranged the lab, and at the time of event there was some issue with internet routed initially i tried to resolve it in normal manner but I couldn't then I discover that it was a individual router so for the sake of codeathon i rested the router provided the internet later I dive deep into the problem using the network administrator and solved the issue and finally that event went in a very good manner
+
+* Took it upon yourself to work on a thought-provoking initiative.
+* **Answer** in our ACM student chapter, every time we need to update the data in cpanel which is good by some tiredsome so i decided a taken a initiative to create a admin panel so that later it would be much easy and save us a lot of time. similar thing I have advised in inquisitive though i was not officialy not part of it and I don't know much about web development
+
+
+### Invent and Simplify
+
+* Tell me about recent piece of innovation that you have done?
+* Describe a time when you found a simple solution to a complex problem
+* **Answer** For rubiks cube problem instead of binding all the sides with tape just do the single side with tape so that it can identify the same without much difficulty and finding the individula boxed in cube by using perimeter and area method
+
+* What improvements have you made at your current company?
+* **Answer** there is a config for all the task in herbspro I just told them we can keep a common config for gender and color as they are most often used, in ACM student chapter working on admin panel, automated the stress testing part and plag checker, automated multi checker in face detection during the codeathon
+
+* What is the most innovative project you’ve worked on?
+* **Answer** rubiks cube, super mario game, sudoku solver
+
+* Tell me about a time when you tried to simplify a process but failed. What would you have done differently?
+* Developed something, and it went wrong.
+* Failed to simplify a process and what you would have done otherwise
+* **Answer** Trying to automate the plag check and test case generator for the codeathons, but due to lack of time, no time to clear bugs, actually i should have done earlier in manual and later should have implemented that which I actually did after that codeathon
+
+
+### Are Right, a Lot
+
+* Tell me about a time you stepped up into a leadership role
+* Tell me about a time when you effectively used your judgment to solve a problem.
+* **Answer** there was a discussion why studnets are not interested in coding in a meeting, asked us to do something about it. I stepped up and told that it is due to lack of motivation and may be difficulty of questions that they are trying to solve as a beginner(hard at beginning) so they assigned a task to me to teach juniors some topics like graph and trees, I gathered all the resources from various sources, there are so many so found few, compressed them to little taught them in a simple manner and gave practice questoins later organized the event this strategy I have applied the same in recent deep datathon
+
+* Tell me about a time when you had to work with insufficient information or incomplete data.
+* Qalara example for search engine
+
+* Tell me about a time when you were wrong.
+* Tell me about a time when you had your beliefs challenged and how you responded.
+* **Answer** about deep leanring(cyber security) workshop that studnets would be there and we can get enough registrations to it
+
+* Incorporated a diverse set of perspectives into solving a problem.
+* **Answer** I asked why there is less participation in events in our student chapter there were different reasons as lack of fun activites, certificates delayed.... came up with automation served good ranked as outstanding student chapter prev year in ACM
+
+
+### Learn and Be Curious
+
+* Tell me about a time when you solved a problem through just superior knowledge or observation
+* **Answer** Junior project about ASL
+
+* Tell me about a time when you influenced a change by only asking questions
+* Tell me about a time when your curiosity helped you make a smarter decision.
+* **Answer** herbspro regular exp to benefits I asked question
+
+* Tell me about an experience you went through that changed your way of thinking?
+* Tell me about the most important lesson you learned in the past year
+* Tell me about the most significant and imperative lesson you learned in the past year from your experience?
+* Went through that changed your way of thinking?
+* **Answer** Manoj uncle incident about happy life in present and not in future
+
+
+### Hire and Develop the Best
+
+
+* Tell us about a time when you made a wrong hire. When did you figure it out, and what did you do?
+* **Answer** Yashwant chowdary not good coordinatory not interested here, talked with him, he wanted to leave asked him to leave without any regrets
+
+* Tell us about a time when you mentored someone.
+* **Answer** mentored juniors that they can figure it out irrespective of the troubles they have to learn coding and other things by giving my example of NPTEL and coding journey
+
+* Tell me about the best hire you ever made?
+* **Answer** Manikanta junior not much tech but very much interested, I guided him, he worked hard, good to see him as one of the best coder in our college and a good person too
+
+* What qualities do you look for most when hiring others?
+* **Answer** would they give there 100 percent, good team players, respect other and the organizatoin, add value to it
+
+* Who is the most important person in your life, and why?
+* **Answer** Parents and myself, give inter result example and i supported my self
+
+
+### Insist on high standards
+
+* Tell me about a time when a team member didn't meet your expectations on a project
+* **Answer** Deep datathon question prepartion example. I asked him talked with him about side project and solved the issue
+
+* Tell me about a time when you couldn't meet your own expectations on a project
+* **Answer** Rubiks cube project due to lack of resources, but finally came up with it though it was bit late
+
+* Tell me about a time when you raised the bar
+* **Answer** Rubiks cube example with arrows on it so that it is more user friendly
+
+* Tell me about a time when you were dissatisfied with the quality of something at work and went out of your way to improve it
+* **Answer** Deep datathon situation and task went to him and together came up with the questions and similaril in codeathon for question and test case preparation
+
+* You motivated a team to go above and beyond.
+* **Answer** Deep datathon teams stayed till the morning and tried their level best at it and at the same time in codeathon our team went well and done 3rd prize in it
+
+
+### Think Big
+
+* Tell me about a time when you went way beyond the scope of the project and delivered.
+* **Answer** Rubiks cube project for displaying arrows, herbspro for benefits and primary and secondary benefits
+
+* Tell me about your proudest professional achievement and delivered
+* **Answer** NPTEL exams, coding without mathematics, Rubiks cube project, getting into ML and DL.
+
+* Tell me about a time when you were disappointed because you didn't think big enough.
+* **Answer** initially when we started this culture for codeathon i was not good enough to automate the process of plag check and test case generator because of which participation cout decreased and we didn't got award for ACM luckily I learnt from it and made it all possible now and still looking for things to expand
+
+* Tell me about a time when you had to make a bold and difficult decision.
+* Tell me about a time when your vision resulted in a big impact
+* **Answer** coming to AP from hyd for studies leaving parents
+
+### Bias For Action
+
+* Tell me about a time when you took a calculated risk.
+* Tell me about a time when you had to make a decision with little data or information.
+* Tell me about a time when you made a decision too quickly and what you would have done differently.
+* **Answer** about cyber security event adding that it really helped students and increased participation in next events
+
+* Tell me about a time you needed to get information from someone who wasn't very responsive. What did you do?
+* Describe a time when you noted some problems and took the initiative to correct it rather than waiting for someone else to do it?
+* **Answer** Deep Datathon question preparation problem, talked with the guy personally by explaining the importance of the event and task also took his perspective
+
+
+### Frugality
+
+* Tell me about a time when you had to work with limited time or resources.
+* Tell me about a time you had to rely on yourself to finish a task.
+* Tell me about a time when you beat out the competition with fewer resources.
+* Tell me about a time when you had to be frugal.
+* **Answer** Qalara task with limited time for attribute extraction
+
+* Tell me about a time where you turned down more resources to complete an assignment
+* Tell me about a time when you had to be frugal.
+* **Answer** was told to gather info from website first for herbspro later can be done from the given data as the data is noisy and it is strait forward, I came up with a solution to do it only once with the given data itself and web scraping one at the same time which interm saved us a lot of time in attribute extraction
+
+
+### Earn Trust
+
+* Tell me about a time when you had to tell someone a harsh truth.
+* **Answer** in our second year we formed a team of 4 members for codeathon and started practicing our team members were not satisfied with the fourth person and asked me to replace him, as all were my friends it was difficult for me to do so. initailly I approached him explained the scenario and told him that, if he can improve his skills and could be generous with the team members then we can participate in codeathon together
+
+* What would you do if you found out that your closest friend at work was stealing?
+* **Answer** obviously it is serious thing and against company policy, so stealing company stuff is like not obeying but at the same time we should not make any scene there, so I would talk with my manager or team lead about this in private in the same day because telling it upfront is best thing ask him to handle the situation as he is the correct person, because as a friend it is also my responsibility to correct the person when he is doing wrong and make him move in correct way
+
+* What is the quality you value least about yourself?
+* **Answer** Time management, Procrastination , Being so much strict on my self which generates too much negativity within myself, but today I choose to acitvely stop occasionally and pause to celebrate and sometimes I see few post of linkedin and get demotivated that I am not able to achieve things that others are able to do so
+
+* What do you do to gain the trust of your teammates?
+* **Answer** I believe it is developed over time so I would like to spend good qualify of time with them so that we can get a chance to understand each other better which inturn builds the trust
+
+* Tell me about a time you had to speak up in a difficult environment.
+* **Answer** talking with parents for coming to andhra when they questioned that in front of parents itself i was unable to do well, how can i do if I stay away from them
+
+
+### Dive Deep
+
+* Tell me about something that you learned recently in your role
+* **Answer** coordinator not working well, chair person angry, didn't resolve the issue, I tried to approach the person, talked camly although it didn't completely resolved the bonding between them atleast he is working good and I believe time heals their relation too
+
+* Give me two examples of when you did more than what was required in any job experience.
+* **Answer** herbspro and qalara attribute extractoin late night and weekend, benefits based solution and deep datathon prep of question, taking responsbility, failed cyber security event money handling
+
+* Tell me about the most complex problem you've ever worked on
+* **Answer** Personally my rubiks cube project, professinally internship as it was difficult due to startup but I coped up and taking up the responsibilyt as vice chair and organizing events caused prev it was online now they are offline
+
+* Tell me about a time when understanding the details of a situation helped you arrive at a solution
+* Tell us about a time you utilized in-depth data to come across a solution?
+* **Answer** Deep Datathon internet problem, similarily why there is less participation in the events of our ACM
+
+
+### Have Backbone; DisAgree and Commit
+
+* Tell me about a time when you had to step up and disagree with a team member's approach
+* **Answer** herbspro project my team member suggest just regular expression based, I gave both regular and benefit based able to convince them all moving on with the project, For team project my friend proposed complex normalized table for open elective, i proposed simple one, later found out he was corrent I agreed and proceeded with that
+
+* If your direct manager was instructing you to do something you disagreed with, how would you handle it?
+* **Answer** I'll tell my point of view, later listen to his check the pro's and con's go accoridngly; free time management example on normalization
+
+* Tell me about a time when you did not accept the status quo?
+* **Answer** working on team project image caption, team meber doing slow, I talked with him personally asked his problem, he was not interested in task, but in other one, I am team lead so I splitted the task also  gave him the additional task to do, though additional add on task was not as good as expected atleast he has done the required one so that he can work on the add on
+
+* Tell me about an unpopular decision of yours.
+* **Answer** cyber event all told to cancel the event due to lack of registration and less count, but I defended cause I cannot as resource person already reached and because of which my team members cannot go to home in the holidays when all their friends are gone but because of that later our events got much success
+
+* What do you believe that no one else does?
+* **Anser** in past all told I can't build logic or programming without actually practicing it, I do believe that but I also believe there are other alternatives to do so, so initially I practiced on paper just the logic part, maths important for ML, cannot do NPTEL courses along with current Academics without laptop will be so much stressfull but I proved them wrong
+
+
+### Deliver Results
+
+* By providing an example, tell me when you have had to handle a variety of assignments. Describe the results.
+* Tell me about a time you had too much on your plate to deal with and how you handled getting everything done.
+* **Answer** Internship, ACM and academics task all at once, priotized based on imp and then started doing one by one
+
+* What is the most difficult situation you have ever faced in your life? How did you handle it?
+* **Answer** after inter result, was broken, told myself it is just the bad time going on, I am going to do better later
+
+* Tell me about a time when everyone else on your team gave up on something but you pushed the team towards delivering a result
+* **Answer** Codeathon 2nd year all are de motivated, told them winning or losing is not all the thing we are in 2nd year competiting with final years, that's it self a big thing, need to maintain this, no matter we solve or not we are going to do till morning
 
 ## Miscelleneous
 
