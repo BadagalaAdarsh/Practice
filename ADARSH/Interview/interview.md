@@ -1,3 +1,58 @@
+
+## Amazon Leadership Principles
+
+### Customer Obsession
+
+* Tell me about a time when you were not able to meet a time commitment. What prevented you from meeting it? What was the outcome and what did you learn from it? (customer obsession)\
+* Give me an example of a time when you did not meet a client’s expectation. What happened, and how did you attempt to rectify the situation?
+* **Answer :** In the recent time, I was given a task in my internship to get all the attributes for the given client for a search engine. There were so many product categories in them and they were mostly focused on health sector, which were placed in middle of catalog for some reason. I started the task from the begining of the catalog only to find out that they are not the important ones, and instead I should have started from the ones where most people buy the products. Luckily I found out this a day before and started working on it in the weekends and was able to deliver the result and the good news is the customer liked the presentation and working of our demo and we are soon going to serve them in other fields as well. From this I learnt that when a customer gives us the task it may not be possible to get it all done due to various reasons, so we should always work on the stuff which is going to make most of the impact with least amount of work done to that point
+
+* Describe for me how you have demonstrated customer obsession?
+* **Answer :**In any given situation, I start with the customer and work backward. My sole intention is to provide an amazing customer experience, even if that means going out of my way to exceed their expectations on the service that I give them. I understand that it is not only about earning their trust, but also keeping their trust by consistently and continually providing great customer experience
+
+* Walk us through a time when you helped a customer through a difficult process and what that looked like? (customer obsession, owenership)
+* **Answer :** Well currenlty I am a fresher, so I don't have much of a real life experience but as I said earlier I am currently that Vice Chair of ACM student chapter, where a part of our job was to main  a web site in C panel and as the time passes we should hand over it to our next peers at that, from the intial KT (knowledge transfer) they mis understood some of the concepts and they messed up the website luckily I kept a backup, I restored the website later I told them precisely how to use it and and made sure that they clearly understand it and able to operate it safely
+
+* Tell the story of the last time you had to apologize to someone (vocally self - critical)
+* **Answer** Me and my team were working on a project for the end semester in our 4th sem. My friend proposed a method to solve a particular problem but I rejected thinking that it would slow down and lower the quality, however during the last minute rush, we used the new method which ended up being the great success. I apologized to the new member on not having confidence in him at first
+that task regarding normalization of a table for free time management system web app
+
+* Tell me about a time when you changed your process to better align with customer needs.
+* Tell me about a time you handled a difficult customer. What did you do? How did you manage the customer? What was her/his reaction? What was the outcome?
+* Tell me about a time when you were 75% through a project & you had to pivot strategy
+* Who was your most challenging customer?(Customer obsession)
+* Give me an example of a time when you did not meet a client’s expectation. What happened, and how did you attempt to rectify the situation?
+* Tell me about a time you used customer feedback to change the way you worked.
+
+
+* **Answer :** In  my recent task, I was working on enhancing the recommendation engine, initially I thought I would do it in the usual regular expression manner as it was working good with most of the products related to weight loss, but customer asked to make sure it would work for all of them so I changed approach categorize products based on the benefits that they offer and give recommendation accordingly. they were satisfied with our approach and they onboarded with us as a new customer
+* The style of my work changed after a customer told me the details that I have to focus on vary from one customer to another and that I have to approach every project with a clear and open min
+
+
+* When you’re working with a large number of customers, it’s tricky to deliver excellent service to them all. So how do you go about prioritizing your customers’ needs?(customer obsession, ownership)
+* **Answer :** I believe in approaching each and every customer requirement with the same level of attention at first.Properly understanding the gap between importance and satisfaction is important when prioritizing each customer’s need. I would give priority for the important and expected features or demands first, and fulfill the requirements focusing satisfaction and delight after. It is all about recognizing the vital few from the trivial many
+
+
+*  Most of us, at one time, have felt frustrated or impatient when dealing with customers. Can you tell me about a time when you felt this way and how you dealt with it?
+
+* **Answer** in my second year i was helping one of my seniors starup the inquisitve where my task was to gather questions for a assesment that they were preparing for a customer which is a school and also to make a poster to promote it. for some reason customer was asking for so many changes repeatedly both in assesment question and in the poster. I got bit irritated by both the customer and senior as he was asking so many things to do, then I just reminded my self that this is not a personal attack against me. I kept myself calm and taking some time and later finished the work as expected by  my senior and the customer
+
+* When do you think it is okay to push back or say no to an unreasonable customer request?
+
+* **Answer** As of now I didn't faced such kind of situation due to lack of experience but I, personally, believe that there is always a solution to a problem. Regardless of how difficult it is, I will truly try my best to fulfill a request by a customer or at least meet them halfway. I would say no to a customer only if their request is simply not realistic, or expected me to directly break company policies
+
+
+* How do you develop client relationships?(customer obsession, earning trust, deliver result)
+
+* **Answer :** I believe that when it comes to developing any kind of relationship, communication is the key. I will always be efficient with my communication in my client relationships with an attitude that shows them I truly value customer satisfaction. I believe that maintaining the integrity and being transparent with my objectives are also essential to developing good client relationships.
+
+*  Tell me about a time you had to compromise in order to satisfy a customer.
+
+* **Answer :** I tend to keep a healthy work life balance so that my productivity never goes down and it always increases but for qalara I had to compromise my generous holiday vacation time for myself where I planned to go home but  to make sure that the new client would like the demo but customer liking the demo and onboarding with us as the new customer made it all worth it
+
+
+
+
 ## Miscelleneous
 
 **OSI model**
