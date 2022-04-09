@@ -8,7 +8,7 @@
 * **Answer :** In the recent time, I was given a task in my internship to get all the attributes for the given client for a search engine. There were so many product categories in them and they were mostly focused on health sector, which were placed in middle of catalog for some reason. I started the task from the begining of the catalog only to find out that they are not the important ones, and instead I should have started from the ones where most people buy the products. Luckily I found out this a day before and started working on it in the weekends and was able to deliver the result and the good news is the customer liked the presentation and working of our demo and we are soon going to serve them in other fields as well. From this I learnt that when a customer gives us the task it may not be possible to get it all done due to various reasons, so we should always work on the stuff which is going to make most of the impact with least amount of work done to that point
 
 * Describe for me how you have demonstrated customer obsession?
-* **Answer :**In any given situation, I start with the customer and work backward. My sole intention is to provide an amazing customer experience, even if that means going out of my way to exceed their expectations on the service that I give them. I understand that it is not only about earning their trust, but also keeping their trust by consistently and continually providing great customer experience
+* **Answer :** In any given situation, I start with the customer and work backward. My sole intention is to provide an amazing customer experience, even if that means going out of my way to exceed their expectations on the service that I give them. I understand that it is not only about earning their trust, but also keeping their trust by consistently and continually providing great customer experience
 
 * Walk us through a time when you helped a customer through a difficult process and what that looked like? (customer obsession, owenership)
 * **Answer :** Well currenlty I am a fresher, so I don't have much of a real life experience but as I said earlier I am currently that Vice Chair of ACM student chapter, where a part of our job was to main  a web site in C panel and as the time passes we should hand over it to our next peers at that, from the intial KT (knowledge transfer) they mis understood some of the concepts and they messed up the website luckily I kept a backup, I restored the website later I told them precisely how to use it and and made sure that they clearly understand it and able to operate it safely
@@ -49,7 +49,6 @@ that task regarding normalization of a table for free time management system web
 *  Tell me about a time you had to compromise in order to satisfy a customer.
 
 * **Answer :** I tend to keep a healthy work life balance so that my productivity never goes down and it always increases but for qalara I had to compromise my generous holiday vacation time for myself where I planned to go home but  to make sure that the new client would like the demo but customer liking the demo and onboarding with us as the new customer made it all worth it
-
 
 
 
