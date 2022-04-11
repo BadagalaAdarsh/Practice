@@ -1,4 +1,11 @@
 
+## Self Introduction
+
+* Good Morning sir,
+First of all I would like to thank you for giving me this opportunity to introduce my self. I am Adarsh Badagala,currently pursuing my final year B tech in CSE in GMRIT. I am basically from Srikakulam, AP but we are settled in Hyderabad. Coming to my technical experience I am currently doing internship as a Data Scientist 1 in Argoid Analytics which is a Bangalore based start up. My hobbies are listening to Music, Drawing and Calligraphy. I can work efficiently both as an individual and as a team player. And. I am also serving as Vice Chair and Tech Lead for a student chapter in our college which is ACM Student Chapter
+
+
+
 ## Amazon Leadership Principles
 
 ### Customer Obsession
