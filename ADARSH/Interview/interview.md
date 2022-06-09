@@ -272,6 +272,14 @@ that task regarding normalization of a table for free time management system web
 * Tell me about the most complex problem you've ever worked on
 * **Answer** Personally my rubiks cube project, professinally internship as it was difficult due to startup but I coped up and taking up the responsibilyt as vice chair and organizing events caused prev it was online now they are offline
 
+Hugging face transformers model, BERT NER pipeline, actually top class is a pipe line, in pipe line batch size change ayye koddi predictions change avutai and metrics change avutai ( NER metrics , precion, recal change avutai ) appudu code motham choosanu ( BERT NER github transformers open source library github lo ki velli motham choosanu ) choosaka, na previous experience and code choosi max lenght change avutu untundi kabati predictins and parameters change avutunnai ani ardham ayyindi. so problem fix cheyyadaniki libray lo ki velli (by default manam max lenght ni chagne cheyyalem) code choosi aa class lo undo find out chesi dani inherit chesi custom class and method use chesanu so that ee custom class ki we can pass max lenght as a parameter.
+
+processing anedi batch wise jarugutndi (general ga unna batch lo maximum lenght unnadi teesukuntadi) but ala prathi batch change avutundi so prediciotns kuda change ayyevi, so max lenght might be reason for the problem,
+
+so kind of hyper parameter laa veeru veru vatitho try chesam as of now 100 danitho we are getting reasonable results
+
+attribute extraction automate cheyyadaniki and still reserach jarugutndi and present nenu verey team lo unnanu
+
 * Tell me about a time when understanding the details of a situation helped you arrive at a solution
 * Tell us about a time you utilized in-depth data to come across a solution?
 * **Answer** Deep Datathon internet problem, similarily why there is less participation in the events of our ACM
