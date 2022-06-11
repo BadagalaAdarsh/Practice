@@ -2,7 +2,7 @@
 ## Self Introduction
 
 * Good Morning sir,
-First of all I would like to thank you for giving me this opportunity to introduce my self. I am Adarsh Badagala,I have pursued my B tech in CSE in GMRIT. I am basically from Srikakulam, AP but we are settled in Hyderabad. Coming to my technical experience I am currently doing internship as a Data Scientist 1 in Argoid Analytics which is a Bangalore based start up. My hobbies are listening to Music, Drawing and Calligraphy. I can work efficiently both as an individual and as a team player. And. I served as Vice Chair and Tech Lead for a student chapter in our college which is ACM Student Chapter
+Thanks for having me today. I am Adarsh Badagala,I have pursued my B tech in CSE in GMRIT. I am basically from Srikakulam, AP but we are settled in Hyderabad. Coming to my technical experience I am currently doing internship as a Data Scientist 1 in Argoid Analytics which is a Bangalore based start up. My hobbies are listening to Music, Drawing and Calligraphy. I can work efficiently both as an individual and as a team player. And. I served as Vice Chair and Tech Lead for a student chapter in our college which is ACM Student Chapter
 
 
 
@@ -117,12 +117,20 @@ that task regarding normalization of a table for free time management system web
 
 ### Invent and Simplify
 
+* Difficult problem solved recently
+* **Answer** find the missing and repeated number using bit wise
+* **Answer** find the max product of length of two string such that no common letter between them
+* **Answer** Inorder to increase the subscribers for our upcoming new customer I suggested sequential model because of which he onboarded us which is also a success story for our company in us region
+
 * Tell me about recent piece of innovation that you have done?
 * Describe a time when you found a simple solution to a complex problem
 * **Answer** For rubiks cube problem instead of binding all the sides with tape just do the single side with tape so that it can identify the same without much difficulty and finding the individula boxed in cube by using perimeter and area method
+* **Answer** inorder to decrease the memory usage in the recent running job in my current company changed the data type from np.int64 to int8 in the job which significantly decreasaed the memory usage which is 8 times lesser memory usage
 
 * What improvements have you made at your current company?
 * **Answer** there is a config for all the task in herbspro I just told them we can keep a common config for gender and color as they are most often used, in ACM student chapter working on admin panel, automated the stress testing part and plag checker, automated multi checker in face detection during the codeathon
+* **Answer** inorder to decrease the memory usage in the recent running job in my current company changed the data type from np.int64 to int8 in the job which significantly decreasaed the memory usage which is 8 times lesser memory usage
+
 
 * What is the most innovative project you’ve worked on?
 * **Answer** rubiks cube, super mario game, sudoku solver
@@ -131,6 +139,11 @@ that task regarding normalization of a table for free time management system web
 * Developed something, and it went wrong.
 * Failed to simplify a process and what you would have done otherwise
 * **Answer** Trying to automate the plag check and test case generator for the codeathons, but due to lack of time, no time to clear bugs, actually i should have done earlier in manual and later should have implemented that which I actually did after that codeathon
+
+* Tell me about a time when you invented something.
+* **Answer** came up with sequential model for the upcoming videos so that new customer on boarded and coming with us shortly
+* **Answer** 
+
 
 
 ### Are Right, a Lot
@@ -272,17 +285,22 @@ that task regarding normalization of a table for free time management system web
 * Tell me about the most complex problem you've ever worked on
 * **Answer** Personally my rubiks cube project, professinally internship as it was difficult due to startup but I coped up and taking up the responsibilyt as vice chair and organizing events caused prev it was online now they are offline
 
-Hugging face transformers model, BERT NER pipeline, actually top class is a pipe line, in pipe line batch size change ayye koddi predictions change avutai and metrics change avutai ( NER metrics , precion, recal change avutai ) appudu code motham choosanu ( BERT NER github transformers open source library github lo ki velli motham choosanu ) choosaka, na previous experience and code choosi max lenght change avutu untundi kabati predictins and parameters change avutunnai ani ardham ayyindi. so problem fix cheyyadaniki libray lo ki velli (by default manam max lenght ni chagne cheyyalem) code choosi aa class lo undo find out chesi dani inherit chesi custom class and method use chesanu so that ee custom class ki we can pass max lenght as a parameter.
-
-processing anedi batch wise jarugutndi (general ga unna batch lo maximum lenght unnadi teesukuntadi) but ala prathi batch change avutundi so prediciotns kuda change ayyevi, so max lenght might be reason for the problem,
-
-so kind of hyper parameter laa veeru veru vatitho try chesam as of now 100 danitho we are getting reasonable results
-
 attribute extraction automate cheyyadaniki and still reserach jarugutndi and present nenu verey team lo unnanu
 
 * Tell me about a time when understanding the details of a situation helped you arrive at a solution
 * Tell us about a time you utilized in-depth data to come across a solution?
 * **Answer** Deep Datathon internet problem, similarily why there is less participation in the events of our ACM
+
+
+* Tell me about a time when you were trying to understand a complex problem on your team and you had to dig into the details to figure it out
+* Tell me about a situation that required you to dig deep to get to the root cause
+* Tell me about a problem you had to solve that required in-depth thought and analysis
+
+Hugging face transformers model, BERT NER pipeline, actually top class is a pipe line, in pipe line batch size change ayye koddi predictions change avutai and metrics change avutai ( NER metrics , precion, recal change avutai ) appudu code motham choosanu ( BERT NER github transformers open source library github lo ki velli motham choosanu ) choosaka, na previous experience and code choosi max lenght change avutu untundi kabati predictins and parameters change avutunnai ani ardham ayyindi. so problem fix cheyyadaniki libray lo ki velli (by default manam max lenght ni chagne cheyyalem) code choosi aa class lo undo find out chesi dani inherit chesi custom class and method use chesanu so that ee custom class ki we can pass max lenght as a parameter.
+
+processing anedi batch wise jarugutndi (general ga unna batch lo maximum lenght unnadi teesukuntadi) but ala prathi batch change avutundi so prediciotns kuda change ayyevi, so max lenght might be reason for the problem,
+
+so kind of hyper parameter laa veeru veru vatitho try chesam as of now 100 danitho we are getting reasonable results
 
 
 ### Have Backbone; DisAgree and Commit
