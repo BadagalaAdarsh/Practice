@@ -2,7 +2,7 @@
 ## Self Introduction
 
 * Good Morning sir,
-Thanks for having me today. I am Adarsh Badagala,I have pursued my B tech in CSE in GMRIT. I am basically from Srikakulam, AP but we are settled in Hyderabad. Coming to my technical experience I am currently doing internship as a Data Scientist 1 in Argoid Analytics which is a Bangalore based start up. My hobbies are listening to Music, Drawing and Calligraphy. I can work efficiently both as an individual and as a team player. And. I served as Vice Chair and Tech Lead for a student chapter in our college which is ACM Student Chapter
+Thanks for having me today. I am Adarsh Badagala,I have recently completed my B tech in CSE in GMRIT. I am basically from Srikakulam, AP but we are settled in Hyderabad. Coming to my technical experience I am currently doing internship as a Data Scientist 1 in Argoid Analytics which is a Bangalore based start up. I like to learn new things and grow my skillset My hobbies are listening to Music, Drawing and Calligraphy. I can work efficiently both as an individual and as a team player. And. I served as Vice Chair and Tech Lead for a student chapter in our college which is ACM Student Chapter
 
 
 
@@ -130,6 +130,7 @@ that task regarding normalization of a table for free time management system web
 * What improvements have you made at your current company?
 * **Answer** there is a config for all the task in herbspro I just told them we can keep a common config for gender and color as they are most often used, in ACM student chapter working on admin panel, automated the stress testing part and plag checker, automated multi checker in face detection during the codeathon
 * **Answer** inorder to decrease the memory usage in the recent running job in my current company changed the data type from np.int64 to int8 in the job which significantly decreasaed the memory usage which is 8 times lesser memory usage
+* **Answer** helped to onboard new customer in our company by telling them about the sequential model appraoch
 
 
 * What is the most innovative project you’ve worked on?
@@ -139,10 +140,18 @@ that task regarding normalization of a table for free time management system web
 * Developed something, and it went wrong.
 * Failed to simplify a process and what you would have done otherwise
 * **Answer** Trying to automate the plag check and test case generator for the codeathons, but due to lack of time, no time to clear bugs, actually i should have done earlier in manual and later should have implemented that which I actually did after that codeathon
+* **Answer** I was given a task to note down every thing in excel by monday for all the jobs using the module developed by senior data scientist so that we can identify, which one taking more memory and process time he told use it or any other one so that we can review it on friday and give it to our senior architect on monday , actually I came up with few modules which can do that much easier but later found out that we need to give a command line argument to get the result but our job also needs command line argument. I was bit lucky cause there was other alternative way using a api where we can keep the entire code in the with block and though I was bit late but i made changes during the night and it was ready by saturday afternoon
 
 * Tell me about a time when you invented something.
 * **Answer** came up with sequential model for the upcoming videos so that new customer on boarded and coming with us shortly
 * **Answer** 
+
+
+*  If given the chance to work at Amazon, how would you consider yourself?
+*  **Answer** I would consider Amazon to be an organized company. I would consider myself a leader for any specific department that I will be working for. And because I will be leading that specific department, I’m therefore fully responsible for everything that goes on.
+
+* How do you handle roadblocks or obstacles?
+* **Answer** will try my best to understand it first, then will look for solutions for similar kind of problems and try to apply it over here, lok online first try to do it my self, after certain period will ask for help through colleages
 
 
 
@@ -278,29 +287,66 @@ that task regarding normalization of a table for free time management system web
 
 * Tell me about something that you learned recently in your role
 * **Answer** coordinator not working well, chair person angry, didn't resolve the issue, I tried to approach the person, talked camly although it didn't completely resolved the bonding between them atleast he is working good and I believe time heals their relation too
+* **Answer** before applying something for prod insance or actual code read the entire thing first and check it on somme temporary programs
+* **Answer** It is ok to ask doubts to the senior even if they seem silly to ask but only after trying from my end for a reasonable amount of time
+* **Answer** Its always best to document every thing that we have learnt somewhere that we can access cause he told me that our minds are made for doing things not for remembering things consciously
 
 * Give me two examples of when you did more than what was required in any job experience.
+* Tell me a time you gave insights beyond the data
 * **Answer** herbspro and qalara attribute extractoin late night and weekend, benefits based solution and deep datathon prep of question, taking responsbility, failed cyber security event money handling
+* **Answer** For my infra cost checking job I was only supposed to know the memory usage so that we can reduce the cost, but I went a step ahead calculated the cpu time as well, found few things where we can reduce memory significantly and few methods that are not neccesary in this though it was not my job to do that I was able to atleast help the team in doing so upto some extent also came to know about few things in it
 
 * Tell me about the most complex problem you've ever worked on
+* Tell me a challenge you had where the best way forward was not clear. How did you decide what to do?
 * **Answer** Personally my rubiks cube project, professinally internship as it was difficult due to startup but I coped up and taking up the responsibilyt as vice chair and organizing events caused prev it was online now they are offline
+* **Answer** For qalara attribute extraction I was only told to extract the attributes for the demo purpose, but I didn't had the any code for reference as this is the different domain and we are trying to expand so just based on the expected output I have to come up with a logic in 2 days I was told on friday morning and monday was the demo lucking I was able to do so by working in the weekend, demo went successful and he has onboarded
+* **Answer** Sling customer code understanding was difficult for me as the data was missing and the command line arguments are missing, still I was able to understand it made changes according to the latest data format and currently one team is working on the adding on new features to it
 
-attribute extraction automate cheyyadaniki and still reserach jarugutndi and present nenu verey team lo unnanu
+
 
 * Tell me about a time when understanding the details of a situation helped you arrive at a solution
 * Tell us about a time you utilized in-depth data to come across a solution?
 * **Answer** Deep Datathon internet problem, similarily why there is less participation in the events of our ACM
+* **Answer** BERT NER model inheriting the class and overriding the method
 
 
 * Tell me about a time when you were trying to understand a complex problem on your team and you had to dig into the details to figure it out
 * Tell me about a situation that required you to dig deep to get to the root cause
 * Tell me about a problem you had to solve that required in-depth thought and analysis
+* Tell me about a problem you had to solve that required in-depth thought and analysis. How did you know you were focusing on the right things?
+* Tell me about a time you were trying to understand a problem on your team and you had to go down several layers to figure it out. Who did you talk with and what info proved most valuable? How did you use that info to help solve the problem?
+* Tell me about a time where you had to give insights and analysis beyond the given data.
 
 Hugging face transformers model, BERT NER pipeline, actually top class is a pipe line, in pipe line batch size change ayye koddi predictions change avutai and metrics change avutai ( NER metrics , precion, recal change avutai ) appudu code motham choosanu ( BERT NER github transformers open source library github lo ki velli motham choosanu ) choosaka, na previous experience and code choosi max lenght change avutu untundi kabati predictins and parameters change avutunnai ani ardham ayyindi. so problem fix cheyyadaniki libray lo ki velli (by default manam max lenght ni chagne cheyyalem) code choosi aa class lo undo find out chesi dani inherit chesi custom class and method use chesanu so that ee custom class ki we can pass max lenght as a parameter.
 
 processing anedi batch wise jarugutndi (general ga unna batch lo maximum lenght unnadi teesukuntadi) but ala prathi batch change avutundi so prediciotns kuda change ayyevi, so max lenght might be reason for the problem,
 
 so kind of hyper parameter laa veeru veru vatitho try chesam as of now 100 danitho we are getting reasonable results
+attribute extraction automate cheyyadaniki and still reserach jarugutndi and present nenu verey team lo unnanu
+
+* Give me an example of when you used data to make a decision/solve a problem.
+* Have you ever leveraged data to develop strategy?
+* **Answer** super mario project, funciton call taking time to press the buttonn based on observation and debugging using print statemtne got to know about that
+fixed that using multi threading
+
+
+* Tell me about a time you had to quickly adjust your work priorities to meet changing demands?
+* **Answer** managing both the internship and college works as they are equally important as of now for me and during my project I had other project reviews and sem exams, actually it was during our may at the same time we had few external labs and mid examnations
+
+* Describe a time you took the lead on a project and went above and beyond
+* What did you do when you needed to motivate a group of individuals or promote collaboration on a particular project?
+
+
+* Walk me through a big problem in your organization that you helped to solve. How did you become aware of it? What info did you gather, what was missing, and how did you fill the gaps? Did you do a post mortem analysis and what did you learn?
+* Can you tell me about a specific metric you’ve used to identify a need for change in your department? Did you create the metric or was it readily available? How did this and other info influence the change?
+* **Answer** no answer from internship , but for ACM suggested to do dashboard to reduce the friction time btween the events and uploading the data, so far we have won twice outstanding chapter later may be the best chapeter we can win if we do that
+
+* Tell me about a time when you made a serious error at work, and how did you fix it?
+
+* Briefly explain a scenario where a senior gave you vague instructions, and you had to find your way through it. How did you process the whole situation?
+* **Answer** Qalara example for attribute extraction in less time
+
+* Tell me one of the lessons you learned, which was not a part of your duties/responsibilities?
 
 
 ### Have Backbone; DisAgree and Commit
