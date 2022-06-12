@@ -339,7 +339,8 @@ fixed that using multi threading
 
 * Walk me through a big problem in your organization that you helped to solve. How did you become aware of it? What info did you gather, what was missing, and how did you fill the gaps? Did you do a post mortem analysis and what did you learn?
 * Can you tell me about a specific metric you’ve used to identify a need for change in your department? Did you create the metric or was it readily available? How did this and other info influence the change?
-* **Answer** no answer from internship , but for ACM suggested to do dashboard to reduce the friction time btween the events and uploading the data, so far we have won twice outstanding chapter later may be the best chapeter we can win if we do that
+* **Answer** for ACM suggested to do dashboard to reduce the friction time btween the events and uploading the data, so far we have won twice outstanding chapter later may be the best chapeter we can win if we do that
+* **Answer** In internship suggested multiprocessing instead of multi threading cause in python GIL (global interpreter lock) will make sure only one thread will run at a time but in case of multiprocessing its like divided into different interpreters with different GIL so no boundaries are present, because of this our browsing history based recommendation was intially taking 33 min to generate the recommendations now it is taking only 17 minutes which is roughlyt 50% faster cause it automatically detects all the cpus present, in our case 4 cpus
 
 * Tell me about a time when you made a serious error at work, and how did you fix it?
 
