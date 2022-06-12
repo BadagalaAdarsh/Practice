@@ -17,12 +17,15 @@ Thanks for having me today. I am Adarsh Badagala,I have recently completed my B 
 * Describe for me how you have demonstrated customer obsession?
 * **Answer :** In any given situation, I start with the customer and work backward. My sole intention is to provide an amazing customer experience, even if that means going out of my way to exceed their expectations on the service that I give them. I understand that it is not only about earning their trust, but also keeping their trust by consistently and continually providing great customer experience
 
+
 * Walk us through a time when you helped a customer through a difficult process and what that looked like? (customer obsession, owenership)
 * **Answer :** Well currenlty I am a fresher, so I don't have much of a real life experience but as I said earlier I am currently that Vice Chair of ACM student chapter, where a part of our job was to main  a web site in C panel and as the time passes we should hand over it to our next peers at that, from the intial KT (knowledge transfer) they mis understood some of the concepts and they messed up the website luckily I kept a backup, I restored the website later I told them precisely how to use it and and made sure that they clearly understand it and able to operate it safely
+* **Answer** Well during my internship, it was not neccessarily customer but for me it was my sr architect, to him I explained my approach of extracting the attributes by using the common attributes such as color and geneder for all the products in different config would save us lot of time and similary for herbspro we can use the benefit based approach that too something like primary benefit and secondary benefit would give us better results than general regular expression used one, initially he was bit worried as it was the the first us based e commerce website after the previous one, we wanted them to onboard at any cost, though it was risky, we calculated it preferctly on sample data sets and luckily my approach did work better than normal one and currently we are serving the customer since last like one or one and half month
 
 * Tell the story of the last time you had to apologize to someone (vocally self - critical)
 * **Answer** Me and my team were working on a project for the end semester in our 4th sem. My friend proposed a method to solve a particular problem but I rejected thinking that it would slow down and lower the quality, however during the last minute rush, we used the new method which ended up being the great success. I apologized to the new member on not having confidence in him at first
 that task regarding normalization of a table for free time management system web app
+* **Answer** it was during my recent task where for infra cost management i used other tool than specified to make the work easy but I was bit dealyed as I didn't read the documentation clearly for the command line arguments so I was bit delayed by a day and half so there I felt not good about my self so I apologized to my mentor in internship for that
 
 * Tell me about a time when you changed your process to better align with customer needs.
 * Tell me about a time you handled a difficult customer. What did you do? How did you manage the customer? What was her/his reaction? What was the outcome?
@@ -31,9 +34,9 @@ that task regarding normalization of a table for free time management system web
 * Give me an example of a time when you did not meet a client’s expectation. What happened, and how did you attempt to rectify the situation?
 * Tell me about a time you used customer feedback to change the way you worked.
 
-
 * **Answer :** In  my recent task, I was working on enhancing the recommendation engine, initially I thought I would do it in the usual regular expression manner as it was working good with most of the products related to weight loss, but customer asked to make sure it would work for all of them so I changed approach categorize products based on the benefits that they offer and give recommendation accordingly. they were satisfied with our approach and they onboarded with us as a new customer
 * The style of my work changed after a customer told me the details that I have to focus on vary from one customer to another and that I have to approach every project with a clear and open min
+* my mentor told me to test anything before usign on the actual prod one, before doing anything if we are not sure then it is always good to ask the mentor though it may look silly doubt to us
 
 
 * When you’re working with a large number of customers, it’s tricky to deliver excellent service to them all. So how do you go about prioritizing your customers’ needs?(customer obsession, ownership)
@@ -43,10 +46,11 @@ that task regarding normalization of a table for free time management system web
 *  Most of us, at one time, have felt frustrated or impatient when dealing with customers. Can you tell me about a time when you felt this way and how you dealt with it?
 
 * **Answer** in my second year i was helping one of my seniors starup the inquisitve where my task was to gather questions for a assesment that they were preparing for a customer which is a school and also to make a poster to promote it. for some reason customer was asking for so many changes repeatedly both in assesment question and in the poster. I got bit irritated by both the customer and senior as he was asking so many things to do, then I just reminded my self that this is not a personal attack against me. I kept myself calm and taking some time and later finished the work as expected by  my senior and the customer
+* **Answer** during attribute extraction for qalara I was only given very less time to do with minimum data so I was bit worried on how can I do that and I was new at that, but I told my self that it is just for the company and I just need to do break down the problem and focus on one problem at a time which eventually worked out verey well
 
 * When do you think it is okay to push back or say no to an unreasonable customer request?
 
-* **Answer** As of now I didn't faced such kind of situation due to lack of experience but I, personally, believe that there is always a solution to a problem. Regardless of how difficult it is, I will truly try my best to fulfill a request by a customer or at least meet them halfway. I would say no to a customer only if their request is simply not realistic, or expected me to directly break company policies
+* **Answer** As of now I didn't faced such kind of situation due to lack of experience but I, personally, believe that there is always a solution to a problem. Regardless of how difficult it is, I will truly try my best to fulfill a request by a customer or at least meet them halfway. I would say no to a customer only if their request is simply not realistic, or expected me to directly break company policies or asking for very low pricing
 
 
 * How do you develop client relationships?(customer obsession, earning trust, deliver result)
@@ -56,9 +60,10 @@ that task regarding normalization of a table for free time management system web
 *  Tell me about a time you had to compromise in order to satisfy a customer.
 
 * **Answer :** I tend to keep a healthy work life balance so that my productivity never goes down and it always increases but for qalara I had to compromise my generous holiday vacation time for myself where I planned to go home but  to make sure that the new client would like the demo but customer liking the demo and onboarding with us as the new customer made it all worth it
+* **Answer** and for recent infra related stuff I was bit working lately inorder to manage both my semester end examinations and internship work as both are eqaully important so it was the time I had to compromise for satisfaction of both the things
 
 *  How do you get to an understanding of what the customer’s needs are?
-* **Answer** currently I am working as a data scientist where I am learning both the SDE and data science part. Here the customers come to us without much technical knowledge of what they require and can only provide me with the details of the aesthetic that they expect in the final product. I believe that great customer service is not only about doing what they ask us to do but about anticipating what they truly require and exceeding their expectation.
+* **Answer** currently I am working as a data scientist where I am learning both the SDE and data science part. Here the customers come to us without much technical knowledge of what they require and can only provide me with the details of the aesthetic that they expect in the final product. I believe that great customer service is not only about doing what they ask us to do but about anticipating what they truly require and exceeding their expectation. so we try to gain some knowledge in their domain and try to map their requirements with the domain knowledge inorder to provide them with the best experience that we can
 
 * How do you anticipate your customer’s needs ? (Customer Obsession, Innovation, thinking beyond limits and deliver great results)
 * **Answer** I tried to be updated in their field of business and think in the point of the customer of my current customer and why would I choose him instead of others in the same field and in  that way I'll try to understand the customer's need
@@ -69,17 +74,19 @@ that task regarding normalization of a table for free time management system web
 
 *  How do you wow your customers ?
 * **Answer** Giving the wow factor to a customer is all about pleasantly surprising them by providing a level of service that exceeds their expectations. This should be started with perfect delivery of service along with a positive addition that they do not usually get from the competitors. In my recent task of herbspro along with regular expression one for recommendation I also gave them benefit based approach and for qalara along with the parent one I was able to give leaf level products in the search query
+* **Answer** in recent task i was able to do it my calculating cpu time along with memory used and also reducing the memory and cpu time both by converting the data tuype from int64 to int8 and multiprocessing which increased our eficienty and reduced the infra cost too
 
 
 * Tell me about a time a customer wanted one thing, but you felt they needed something else.
 
-* **Answer** for herbspro I was told that they need a exact match for the recommendation example for weight gain or weight loss. But I just thought in terms of general customer and I felt that it's not always the case some times the general customer might want a simple one which does the same work instead of the exact same one
+* **Answer** for herbspro I was told that they need a exact match for the recommendation example for weight gain or weight loss. But I just thought in terms of general customer and I felt that it's not always the case some times the general customer might want a simple one which does the same work instead of the exact same word matching so I developed a logic which recommends the products of the same cateogry though it is not mentioned in the title of the product
 
 * When was a time you had to balance the needs of the customer with the needs of the business?
 * **Answer** This is something that comes up mostly with product pricing and offering discounts and other incentives to the customer. My approach is always thinking about long-term benefits for the business and retention of the customer rather than making a short-term profit and losing the customer
 
 * Give me an example of when you took a risk and it failed.
 * **Answer** we planned as a ACM student chapter a workshop on machine learning and deep learning as most of students asked for that and we arranged a resource person for a pariticular fee but at the event time we failed to meet the min required reg and fee cause there were few continuous holidays in the hostel, so most of the hostlers left home and we paid the resource person from our money. Here two learning were first we should know whether our customer available at a particular time and never promise a resource person that we can pay him upfront
+* **Answer** it was not neccesarily risk but i tried other module for memory stuff but there were few issue with comand line arguments because of which my work was littel delayed by say day and half
 
 
 * Describe a project or idea (not necessarily your own that was implemented primarily because of your efforts. What was your role? What was the outcome?
@@ -96,9 +103,11 @@ that task regarding normalization of a table for free time management system web
 
 * Give me an example of a decision you owned, which had a long-term focus.(higher standards, diving deep, delivering results)
 * **Answer** I am tech lead and vice chair of ACM and we conduct various codeathons and making questions and resutls were taking so much time because of lack of test cases and checking the palagarism, then I came up with a solution to give random test cases from the recent codeforces and codechef contest and use simple python programs to automate the plag check, although it took some time to get it right , it really helped in fastening the process of creating a questions and providiing results
+* **Answer** Memory optimization lead to reduce in recurring cost of the infra, cpu optimization lead to faster results devlopement, sequence based model suggestion lead onboard of sling customer, benefit based appraoch lead to onboard of hearbspro approach
 
 * Provide an example of when you personally demonstrated ownership.
 * **Answer** for hackathon juniors were responsible for preparing the questions but at last moment due to various reasons they were unable to do it as they were forced to do some courses so they lacked the time and I prepared questions, poster to promote, took the responsibilty for the promotions, arranged the lab, and at the time of event there was some issue with internet routed initially i tried to resolve it in normal manner but I couldn't then I discover that it was a individual router so for the sake of codeathon i rested the router provided the internet later I dive deep into the problem using the network administrator and solved the issue and finally that event went in a very good manner
+* **Answer** I personally took the responsibilyt to make the herbspro one work better than the normal appraoch by benfit appraoch with the help of my mentor where he supported me alot
 
 
 ### Ownership
@@ -106,13 +115,16 @@ that task regarding normalization of a table for free time management system web
 * Give me an example of a time you faced a conflict while working on a team. How did you handle that? (ownership)
 * Do you collaborate well
 * **Answer** in our student chapter there was a delay in the work because of a particular team mate whose responsibilty was to create questions for the deep datathon, then I approached so that i can know how to over come it, he initially reacted defensively, I kept calm and asked him how could I assist him, then he told that his teacher has given him one more assignment to do because of which he was unable to finish the job. So I approached our faculty sponsor and explained him the current situation and later his assignment was reduced and I too helped him a bit in  my free time to complete the work in time
+* **Answer** for herbspro manager told to go with regular appraoch i and deepak told benefit based and for infra cpu optimization initally deepak told multiprocessing might overload the cpu and after analysis and discussion we concluded that it is ok to go forward with this
 
 * Tell me about a time when you took on a task that was beyond your job responsibilities.
 * Took on a task that went beyond your typical responsibilities?
 * **Answer** for hackathon juniors were responsible for preparing the questions but at last moment due to various reasons they were unable to do it as they were forced to do some courses so they lacked the time and I prepared questions, poster to promote, took the responsibilty for the promotions, arranged the lab, and at the time of event there was some issue with internet routed initially i tried to resolve it in normal manner but I couldn't then I discover that it was a individual router so for the sake of codeathon i rested the router provided the internet later I dive deep into the problem using the network administrator and solved the issue and finally that event went in a very good manner
+* **Answer** I was only told to calculate the memory consumption, I went beyond and calculatoin and came up with approaches to reduce the memory usage whcih really benefitted in redcuing the infra cost for the upcoming months
 
 * Took it upon yourself to work on a thought-provoking initiative.
 * **Answer** in our ACM student chapter, every time we need to update the data in cpanel which is good by some tiredsome so i decided a taken a initiative to create a admin panel so that later it would be much easy and save us a lot of time. similar thing I have advised in inquisitive though i was not officialy not part of it and I don't know much about web development
+* **Answer** I took the responbility for herbspro for benefit based approach where other team was working on normal one just to be safe but I am happy that I was right in that case
 
 
 ### Invent and Simplify
@@ -120,17 +132,17 @@ that task regarding normalization of a table for free time management system web
 * Difficult problem solved recently
 * **Answer** find the missing and repeated number using bit wise
 * **Answer** find the max product of length of two string such that no common letter between them
-* **Answer** Inorder to increase the subscribers for our upcoming new customer I suggested sequential model because of which he onboarded us which is also a success story for our company in us region
+* **Answer** Inorder to increase the subscribers for our upcoming new customer I suggested sequential model because of which he onboarded us which is also a success story for our company in us region and incorporating that one with old code which was lacking the data set so it was really diffuicult to understand and incorporate
 
 * Tell me about recent piece of innovation that you have done?
 * Describe a time when you found a simple solution to a complex problem
 * **Answer** For rubiks cube problem instead of binding all the sides with tape just do the single side with tape so that it can identify the same without much difficulty and finding the individula boxed in cube by using perimeter and area method
-* **Answer** inorder to decrease the memory usage in the recent running job in my current company changed the data type from np.int64 to int8 in the job which significantly decreasaed the memory usage which is 8 times lesser memory usage
+* **Answer** inorder to decrease the memory usage in the recent running job in my current company changed the data type from np.int64 to int8 in the job which significantly decreasaed the memory usage which is 8 times lesser memory usage and also increased the speed and reduced the usage of the cpu by using the multiprocessing
 
 * What improvements have you made at your current company?
 * **Answer** there is a config for all the task in herbspro I just told them we can keep a common config for gender and color as they are most often used, in ACM student chapter working on admin panel, automated the stress testing part and plag checker, automated multi checker in face detection during the codeathon
 * **Answer** inorder to decrease the memory usage in the recent running job in my current company changed the data type from np.int64 to int8 in the job which significantly decreasaed the memory usage which is 8 times lesser memory usage
-* **Answer** helped to onboard new customer in our company by telling them about the sequential model appraoch
+* **Answer** helped to onboard new customer in our company by telling them about the sequential model appraoch, for herbs pro came up with benefit based approach for the recommendation engine
 
 
 * What is the most innovative project you’ve worked on?
@@ -144,7 +156,7 @@ that task regarding normalization of a table for free time management system web
 
 * Tell me about a time when you invented something.
 * **Answer** came up with sequential model for the upcoming videos so that new customer on boarded and coming with us shortly
-* **Answer** 
+* **Answer** reduced cpu time using multiprocessing, came with with benefit based approach for the herbspro, used line profiler and mem profiler for memory usage instead of the one used by the company
 
 
 *  If given the chance to work at Amazon, how would you consider yourself?
@@ -160,32 +172,38 @@ that task regarding normalization of a table for free time management system web
 * Tell me about a time you stepped up into a leadership role
 * Tell me about a time when you effectively used your judgment to solve a problem.
 * **Answer** there was a discussion why studnets are not interested in coding in a meeting, asked us to do something about it. I stepped up and told that it is due to lack of motivation and may be difficulty of questions that they are trying to solve as a beginner(hard at beginning) so they assigned a task to me to teach juniors some topics like graph and trees, I gathered all the resources from various sources, there are so many so found few, compressed them to little taught them in a simple manner and gave practice questoins later organized the event this strategy I have applied the same in recent deep datathon
+* **Answer** I stepped in team discussion for suggesting sequential model for sling, benefit based approach for herbspro, reduced memeory and cpu usage in infra to reduce recurring cost
 
 * Tell me about a time when you had to work with insufficient information or incomplete data.
-* Qalara example for search engine
+* **Answer** Qalara example for search engine, sling previous approach to understand without actual data
 
 * Tell me about a time when you were wrong.
 * Tell me about a time when you had your beliefs challenged and how you responded.
 * **Answer** about deep leanring(cyber security) workshop that studnets would be there and we can get enough registrations to it
+* **Answer** benefit based approach was challenged two teams working simultaneourly, i am happy that mine worked good
 
 * Incorporated a diverse set of perspectives into solving a problem.
 * **Answer** I asked why there is less participation in events in our student chapter there were different reasons as lack of fun activites, certificates delayed.... came up with automation served good ranked as outstanding student chapter prev year in ACM
+* **Answer** asked what else can be done to reduce the infra or what else can be done to manage things, few members came up with a questions to recommend on android app as in newer versions it is difficult to track the customer prefernces based on cache
 
 
 ### Learn and Be Curious
 
 * Tell me about a time when you solved a problem through just superior knowledge or observation
 * **Answer** Junior project about ASL
+* **Answer** hugging face bert ner model, batch size changing resulting in change in predicitions gone through the code of actual implementation
 
 * Tell me about a time when you influenced a change by only asking questions
 * Tell me about a time when your curiosity helped you make a smarter decision.
 * **Answer** herbspro regular exp to benefits I asked question
+* **Answer** what are the new things can be done improvise one, so based on benefits converting them to primary and secondary benefits suggested by my mentor
 
 * Tell me about an experience you went through that changed your way of thinking?
 * Tell me about the most important lesson you learned in the past year
 * Tell me about the most significant and imperative lesson you learned in the past year from your experience?
 * Went through that changed your way of thinking?
 * **Answer** Manoj uncle incident about happy life in present and not in future
+* **Answer** doing things for outcome not for output, should be happy in our work, never compare with other just with yourself and always trust yourself and keep trying
 
 
 ### Hire and Develop the Best
@@ -195,10 +213,10 @@ that task regarding normalization of a table for free time management system web
 * **Answer** Yashwant chowdary not good coordinatory not interested here, talked with him, he wanted to leave asked him to leave without any regrets
 
 * Tell us about a time when you mentored someone.
-* **Answer** mentored juniors that they can figure it out irrespective of the troubles they have to learn coding and other things by giving my example of NPTEL and coding journey
+* **Answer** mentored juniors that they can figure it out irrespective of the troubles they have to learn coding and other things by giving my example of NPTEL and coding journey, told them not to worry about the job they will eventually get placed
 
 * Tell me about the best hire you ever made?
-* **Answer** Manikanta junior not much tech but very much interested, I guided him, he worked hard, good to see him as one of the best coder in our college and a good person too
+* **Answer** some name junior not much tech but very much interested, I guided him, he worked hard, good to see him as one of the best coder in our college and a good person too
 
 * What qualities do you look for most when hiring others?
 * **Answer** would they give there 100 percent, good team players, respect other and the organizatoin, add value to it
@@ -211,34 +229,40 @@ that task regarding normalization of a table for free time management system web
 
 * Tell me about a time when a team member didn't meet your expectations on a project
 * **Answer** Deep datathon question prepartion example. I asked him talked with him about side project and solved the issue
+* **Answe** personal project , one member didn't do anything, spoke with him, had some few problems from family, told not worry about anything everything will be settled
 
 * Tell me about a time when you couldn't meet your own expectations on a project
 * **Answer** Rubiks cube project due to lack of resources, but finally came up with it though it was bit late
+* **Answer** for memory management though would do it in time but couldn't do so
 
 * Tell me about a time when you raised the bar
 * **Answer** Rubiks cube example with arrows on it so that it is more user friendly
+* **Answer** wanted to do the recommendations fast and did it using multi processing
 
 * Tell me about a time when you were dissatisfied with the quality of something at work and went out of your way to improve it
 * **Answer** Deep datathon situation and task went to him and together came up with the questions and similaril in codeathon for question and test case preparation
+* **Answer** I am generally do coding, so when I heard and saw few things in profiel few of them are in brute force way so trying to do optimize them
 
 * You motivated a team to go above and beyond.
 * **Answer** Deep datathon teams stayed till the morning and tried their level best at it and at the same time in codeathon our team went well and done 3rd prize in it
-
+* **Answer** personally our ACM student chapter
 
 ### Think Big
 
 * Tell me about a time when you went way beyond the scope of the project and delivered.
 * **Answer** Rubiks cube project for displaying arrows, herbspro for benefits and primary and secondary benefits
+* **Answer** went beyond to improve recommednation for herbspro using benefits approach and for sling using sequentail recommendation system
 
 * Tell me about your proudest professional achievement and delivered
-* **Answer** NPTEL exams, coding without mathematics, Rubiks cube project, getting into ML and DL.
+* **Answer** NPTEL exams, coding without mathematics, Rubiks cube project, getting into ML and DL and was able to do all of this without smartphone or laptop with the help of department
 
 * Tell me about a time when you were disappointed because you didn't think big enough.
 * **Answer** initially when we started this culture for codeathon i was not good enough to automate the process of plag check and test case generator because of which participation cout decreased and we didn't got award for ACM luckily I learnt from it and made it all possible now and still looking for things to expand
+* **Answer** I didn't think about memory profiler how to use after changing the changes initally else it would have saved me some time over there
 
 * Tell me about a time when you had to make a bold and difficult decision.
 * Tell me about a time when your vision resulted in a big impact
-* **Answer** coming to AP from hyd for studies leaving parents
+* **Answer** coming to AP from hyd for studies leaving parents, moving forward with new approach for sling with sequential based recommendation system
 
 ### Bias For Action
 
@@ -246,10 +270,12 @@ that task regarding normalization of a table for free time management system web
 * Tell me about a time when you had to make a decision with little data or information.
 * Tell me about a time when you made a decision too quickly and what you would have done differently.
 * **Answer** about cyber security event adding that it really helped students and increased participation in next events
+* **Answer** took risk and gone wiht sequential based recommendation system implementation, with beneift based approached for herbspro
 
 * Tell me about a time you needed to get information from someone who wasn't very responsive. What did you do?
 * Describe a time when you noted some problems and took the initiative to correct it rather than waiting for someone else to do it?
 * **Answer** Deep Datathon question preparation problem, talked with the guy personally by explaining the importance of the event and task also took his perspective
+* **Answer** Team project wasn't responding correctly, spoke with him perosnaly about his problems, problem with facutly, 
 
 
 ### Frugality
@@ -281,6 +307,7 @@ that task regarding normalization of a table for free time management system web
 
 * Tell me about a time you had to speak up in a difficult environment.
 * **Answer** talking with parents for coming to andhra when they questioned that in front of parents itself i was unable to do well, how can i do if I stay away from them
+* **Answer** talking about the new approach for the new customer in front of all the team members as I am still intern but later came to know in this industry we all are same though there are some experience people so it is actually good to speak out at that point so that others can give their opinion about the approach
 
 
 ### Dive Deep
@@ -307,7 +334,7 @@ that task regarding normalization of a table for free time management system web
 * Tell me about a time when understanding the details of a situation helped you arrive at a solution
 * Tell us about a time you utilized in-depth data to come across a solution?
 * **Answer** Deep Datathon internet problem, similarily why there is less participation in the events of our ACM
-* **Answer** BERT NER model inheriting the class and overriding the method
+* **Answer** BERT  (bi directional encoder representation  from tranformer) NER (named entity recognition) model inheriting the class and overriding the method
 
 
 * Tell me about a time when you were trying to understand a complex problem on your team and you had to dig into the details to figure it out
@@ -328,6 +355,7 @@ attribute extraction automate cheyyadaniki and still reserach jarugutndi and pre
 * Have you ever leveraged data to develop strategy?
 * **Answer** super mario project, funciton call taking time to press the buttonn based on observation and debugging using print statemtne got to know about that
 fixed that using multi threading
+* **Answer** based on memory profiler came to knwo reading data is taking lot of data reduced it by changing the data type
 
 
 * Tell me about a time you had to quickly adjust your work priorities to meet changing demands?
@@ -343,11 +371,13 @@ fixed that using multi threading
 * **Answer** In internship suggested multiprocessing instead of multi threading cause in python GIL (global interpreter lock) will make sure only one thread will run at a time but in case of multiprocessing its like divided into different interpreters with different GIL so no boundaries are present, because of this our browsing history based recommendation was intially taking 33 min to generate the recommendations now it is taking only 17 minutes which is roughlyt 50% faster cause it automatically detects all the cpus present, in our case 4 cpus
 
 * Tell me about a time when you made a serious error at work, and how did you fix it?
+* **Answer** for checking I ran the same code as the prod one in the prod instance where it was actually writing output to my location came to know later fixed with by changing the task name
 
 * Briefly explain a scenario where a senior gave you vague instructions, and you had to find your way through it. How did you process the whole situation?
 * **Answer** Qalara example for attribute extraction in less time
 
 * Tell me one of the lessons you learned, which was not a part of your duties/responsibilities?
+* **Answer** talking professionally with others, collaborating with everyone, respect need not be by calling sir
 
 
 ### Have Backbone; DisAgree and Commit
@@ -356,16 +386,17 @@ fixed that using multi threading
 * **Answer** herbspro project my team member suggest just regular expression based, I gave both regular and benefit based able to convince them all moving on with the project, For team project my friend proposed complex normalized table for open elective, i proposed simple one, later found out he was corrent I agreed and proceeded with that
 
 * If your direct manager was instructing you to do something you disagreed with, how would you handle it?
-* **Answer** I'll tell my point of view, later listen to his check the pro's and con's go accoridngly; free time management example on normalization
+* **Answer** I'll tell my point of view, later listen to his check the pro's and con's go accoridngly; example herbspro benefit based one weight loss and weight gain similar in reg expr
 
 * Tell me about a time when you did not accept the status quo?
 * **Answer** working on team project image caption, team meber doing slow, I talked with him personally asked his problem, he was not interested in task, but in other one, I am team lead so I splitted the task also  gave him the additional task to do, though additional add on task was not as good as expected atleast he has done the required one so that he can work on the add on
 
 * Tell me about an unpopular decision of yours.
 * **Answer** cyber event all told to cancel the event due to lack of registration and less count, but I defended cause I cannot as resource person already reached and because of which my team members cannot go to home in the holidays when all their friends are gone but because of that later our events got much success
+* **Answer** bit delayed on mem profiler for memory usage as i didn't read the documentation properly
 
 * What do you believe that no one else does?
-* **Anser** in past all told I can't build logic or programming without actually practicing it, I do believe that but I also believe there are other alternatives to do so, so initially I practiced on paper just the logic part, maths important for ML, cannot do NPTEL courses along with current Academics without laptop will be so much stressfull but I proved them wrong
+* **Answer** in past all told I can't build logic or programming without actually practicing it, I do believe that but I also believe there are other alternatives to do so, so initially I practiced on paper just the logic part, maths important for ML, cannot do NPTEL courses along with current Academics without laptop will be so much stressfull but I proved them wrong
 
 
 ### Deliver Results
@@ -379,6 +410,7 @@ fixed that using multi threading
 
 * Tell me about a time when everyone else on your team gave up on something but you pushed the team towards delivering a result
 * **Answer** Codeathon 2nd year all are de motivated, told them winning or losing is not all the thing we are in 2nd year competiting with final years, that's it self a big thing, need to maintain this, no matter we solve or not we are going to do till morning
+* **Answer** for sling they said we cannot improve the accuracy further came up with additional feature which is sequential one by MAP@k mean average precision and MAR@K mean avearge recall
 
 ## Miscelleneous
 
