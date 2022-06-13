@@ -138,6 +138,7 @@ that task regarding normalization of a table for free time management system web
 * Describe a time when you found a simple solution to a complex problem
 * **Answer** For rubiks cube problem instead of binding all the sides with tape just do the single side with tape so that it can identify the same without much difficulty and finding the individula boxed in cube by using perimeter and area method
 * **Answer** inorder to decrease the memory usage in the recent running job in my current company changed the data type from np.int64 to int8 in the job which significantly decreasaed the memory usage which is 8 times lesser memory usage and also increased the speed and reduced the usage of the cpu by using the multiprocessing
+* **Answer** In ACM made the codeathon made multi face detection and eye tracker using media pipe inorder to avoid cheating in exam
 
 * What improvements have you made at your current company?
 * **Answer** there is a config for all the task in herbspro I just told them we can keep a common config for gender and color as they are most often used, in ACM student chapter working on admin panel, automated the stress testing part and plag checker, automated multi checker in face detection during the codeathon
