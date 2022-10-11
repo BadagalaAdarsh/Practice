@@ -211,7 +211,7 @@ that task regarding normalization of a table for free time management system web
 
 
 * Tell us about a time when you made a wrong hire. When did you figure it out, and what did you do?
-* **Answer** Yashwant chowdary not good coordinatory not interested here, talked with him, he wanted to leave asked him to leave without any regrets
+* **Answer** some guy not good coordinatory not interested here, talked with him, he wanted to leave asked him to leave without any regrets
 
 * Tell us about a time when you mentored someone.
 * **Answer** mentored juniors that they can figure it out irrespective of the troubles they have to learn coding and other things by giving my example of NPTEL and coding journey, told them not to worry about the job they will eventually get placed
