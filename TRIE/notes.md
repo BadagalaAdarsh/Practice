@@ -1,4 +1,4 @@
-## Basic functionalities of the TRIE data structure
+## Basic functionalities of the TRIE data structures
 
 [ Link to the video ](https://www.youtube.com/watch?v=dBGUmUQhjaM&list=PLgUwDviBIf0pcIDCZnxhv0LkHf5KzG9zp)
 
