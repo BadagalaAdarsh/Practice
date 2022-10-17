@@ -1,4 +1,5 @@
 // articulation points are the nodes on whose removal the graph changes to 2 or more components
+// or the points which make the a single graph to multiple graph
 #include<bits/stdc++.h>
 #define endl "\n"
 using namespace std;
